@@ -21,7 +21,7 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)registerUser {
+- (IBAction)registerUser:(id)sender {
     // initialize a user object
     PFUser *newUser = [PFUser user];
     
@@ -88,7 +88,7 @@
             NSLog(@"User registered successfully");
            
             // manually segue to logged in view
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil]; // TODO: Change this loginSegue
+            [self performSegueWithIdentifier:@"signupSegue" sender:nil];
         }
     }];
 }

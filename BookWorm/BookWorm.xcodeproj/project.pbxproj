@@ -22,6 +22,7 @@
 		4F9C87282874F4B5000D2259 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C87272874F4B5000D2259 /* SignUpViewController.m */; };
 		4F9C872B2874F4C5000D2259 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C872A2874F4C5000D2259 /* FirstViewController.m */; };
 		4F9C872F2875F74D000D2259 /* RecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C872E2875F74D000D2259 /* RecommendationsViewController.m */; };
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 		4FBF788F28762238003014B4 /* GenrePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF788E28762238003014B4 /* GenrePickerViewController.m */; };
@@ -29,6 +30,11 @@
 		4FBF789528763326003014B4 /* BookTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF789428763326003014B4 /* BookTalkViewController.m */; };
 		4FBF789828763A65003014B4 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF789728763A65003014B4 /* ProfileViewController.m */; };
 >>>>>>> Stashed changes
+=======
+		4FBF788F28762238003014B4 /* GenrePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF788E28762238003014B4 /* GenrePickerViewController.m */; };
+		4FBF78922876314B003014B4 /* MyBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF78912876314B003014B4 /* MyBooksViewController.m */; };
+		4FBF789528763326003014B4 /* BookTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF789428763326003014B4 /* BookTalkViewController.m */; };
+>>>>>>> c574321813ad6977be8a6d39a355b78d81718b7a
 		5B6C50F9E1D7FDFDB70DC1FF /* Pods_BookWorm_BookWormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CA1621476D8BC034EB2A0B /* Pods_BookWorm_BookWormUITests.framework */; };
 		E7C615A9C0296EC9FCB15621 /* Pods_BookWormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C74ACF1CE29EDE361F5B22 /* Pods_BookWormTests.framework */; };
 /* End PBXBuildFile section */
@@ -78,17 +84,23 @@
 		4F9C872A2874F4C5000D2259 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		4F9C872D2875F74D000D2259 /* RecommendationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationsViewController.h; sourceTree = "<group>"; };
 		4F9C872E2875F74D000D2259 /* RecommendationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendationsViewController.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> c574321813ad6977be8a6d39a355b78d81718b7a
 		4FBF788D28762238003014B4 /* GenrePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenrePickerViewController.h; sourceTree = "<group>"; };
 		4FBF788E28762238003014B4 /* GenrePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenrePickerViewController.m; sourceTree = "<group>"; };
 		4FBF78902876314B003014B4 /* MyBooksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBooksViewController.h; sourceTree = "<group>"; };
 		4FBF78912876314B003014B4 /* MyBooksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBooksViewController.m; sourceTree = "<group>"; };
 		4FBF789328763326003014B4 /* BookTalkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookTalkViewController.h; sourceTree = "<group>"; };
 		4FBF789428763326003014B4 /* BookTalkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookTalkViewController.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		4FBF789628763A65003014B4 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		4FBF789728763A65003014B4 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 >>>>>>> Stashed changes
+=======
+>>>>>>> c574321813ad6977be8a6d39a355b78d81718b7a
 		99CA1621476D8BC034EB2A0B /* Pods_BookWorm_BookWormUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWorm_BookWormUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D380C0C823DBC80A2EDAD6 /* Pods-BookWorm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWorm.debug.xcconfig"; path = "Target Support Files/Pods-BookWorm/Pods-BookWorm.debug.xcconfig"; sourceTree = "<group>"; };
 		B8C74ACF1CE29EDE361F5B22 /* Pods_BookWormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,17 +216,23 @@
 				4F9C87242874F3CE000D2259 /* LoginViewController.m */,
 				4F9C872D2875F74D000D2259 /* RecommendationsViewController.h */,
 				4F9C872E2875F74D000D2259 /* RecommendationsViewController.m */,
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> c574321813ad6977be8a6d39a355b78d81718b7a
 				4FBF788D28762238003014B4 /* GenrePickerViewController.h */,
 				4FBF788E28762238003014B4 /* GenrePickerViewController.m */,
 				4FBF78902876314B003014B4 /* MyBooksViewController.h */,
 				4FBF78912876314B003014B4 /* MyBooksViewController.m */,
 				4FBF789328763326003014B4 /* BookTalkViewController.h */,
 				4FBF789428763326003014B4 /* BookTalkViewController.m */,
+<<<<<<< HEAD
 				4FBF789628763A65003014B4 /* ProfileViewController.h */,
 				4FBF789728763A65003014B4 /* ProfileViewController.m */,
 >>>>>>> Stashed changes
+=======
+>>>>>>> c574321813ad6977be8a6d39a355b78d81718b7a
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -481,10 +499,13 @@
 				4F9C872B2874F4C5000D2259 /* FirstViewController.m in Sources */,
 				4F9C87282874F4B5000D2259 /* SignUpViewController.m in Sources */,
 				4F9C86EB2874D608000D2259 /* AppDelegate.m in Sources */,
+				4FBF788F28762238003014B4 /* GenrePickerViewController.m in Sources */,
 				4F9C86FC2874D609000D2259 /* main.m in Sources */,
+				4FBF78922876314B003014B4 /* MyBooksViewController.m in Sources */,
 				4F9C872F2875F74D000D2259 /* RecommendationsViewController.m in Sources */,
 				4FBF789828763A65003014B4 /* ProfileViewController.m in Sources */,
 				4F9C86EE2874D608000D2259 /* SceneDelegate.m in Sources */,
+				4FBF789528763326003014B4 /* BookTalkViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
