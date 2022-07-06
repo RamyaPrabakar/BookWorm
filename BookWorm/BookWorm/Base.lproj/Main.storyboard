@@ -188,11 +188,157 @@
                         <viewLayoutGuide key="safeArea" id="420-xQ-dQf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+<<<<<<< Updated upstream
                     <navigationItem key="navigationItem" id="ZpE-Vx-DmC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pKS-wc-gqu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1667" y="-445"/>
+=======
+                    <navigationItem key="navigationItem" id="ZpE-Vx-DmC">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="hH0-MU-BVr">
+                            <connections>
+                                <action selector="logout:" destination="UKi-0w-KiI" id="sy2-of-LR2"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.icloud.fill" catalog="system" id="PHA-IP-8jz">
+                            <connections>
+                                <segue destination="QqI-0z-RJJ" kind="show" id="117-hV-2Up"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pKS-wc-gqu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2542" y="366"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="BuW-4z-r6I">
+            <objects>
+                <viewController id="QqI-0z-RJJ" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DSq-bL-YEh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile Picture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vmd-pk-ZBs">
+                                <rect key="frame" x="154" y="376" width="107" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PdT-hA-8Vh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Heg-L4-6yN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nxN-MT-peM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3836" y="1341"/>
+        </scene>
+        <!--Book Talk View Controller-->
+        <scene sceneID="y2g-F4-BQ2">
+            <objects>
+                <viewController id="1gp-5k-2xl" customClass="BookTalkViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a4N-Mc-wqJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Book Talk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfG-24-Dbn">
+                                <rect key="frame" x="170" y="386" width="75" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pvM-hd-8JB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RdO-CE-2bN">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.icloud.fill" catalog="system" id="HT8-H2-FIL">
+                            <connections>
+                                <segue destination="QqI-0z-RJJ" kind="show" id="SEU-A7-4tG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5fH-EO-v8v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6600.0000000000009" y="365.625"/>
+        </scene>
+        <!--Recommendations-->
+        <scene sceneID="TqV-tv-dIw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ddi-Hk-GrI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Recommendations" id="1XO-pF-6Fk"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AXc-Eu-h2Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UKi-0w-KiI" kind="relationship" relationship="rootViewController" id="bEM-jL-b39"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gxw-1P-Vav" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1790" y="366"/>
+        </scene>
+        <!--My Books View Controller-->
+        <scene sceneID="ItC-Wt-rla">
+            <objects>
+                <viewController id="vui-AN-fr1" customClass="MyBooksViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="61h-MF-jw3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsS-Z0-89Z">
+                                <rect key="frame" x="170" y="397" width="75" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kXX-5O-V4I"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="8by-KS-zma">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.icloud.fill" catalog="system" id="QNQ-GN-GBy">
+                            <connections>
+                                <segue destination="QqI-0z-RJJ" kind="show" id="yT6-vG-fcF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Itf-L1-t6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4713" y="366"/>
+        </scene>
+        <!--Book Talk-->
+        <scene sceneID="etE-Tb-hby">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qcF-r4-d75" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Book Talk" id="0q3-bT-mi2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mB0-D7-KeF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1gp-5k-2xl" kind="relationship" relationship="rootViewController" id="lQw-HA-p5f"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="izk-hi-PNP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5800" y="365.625"/>
+>>>>>>> Stashed changes
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ukQ-SF-h6z">
@@ -214,7 +360,16 @@
             <point key="canvasLocation" x="865" y="-445"/>
         </scene>
     </scenes>
+<<<<<<< Updated upstream
     <resources>
+=======
+    <inferredMetricsTieBreakers>
+        <segue reference="yT6-vG-fcF"/>
+        <segue reference="lEz-FZ-OQo"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="person.icloud.fill" catalog="system" width="128" height="88"/>
+>>>>>>> Stashed changes
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
