@@ -6,6 +6,8 @@
 //
 
 #import "RecommendationsViewController.h"
+#import "SceneDelegate.h"
+#import "FirstViewController.h""
 
 // Frameworks
 #import <FBSDKCoreKit/FBSDKProfile.h>
@@ -28,6 +30,19 @@
         }];
     });
 }
+
+- (IBAction)logout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+    }];
+    
+    SceneDelegate *sceneDelegate = (SceneDelegate *)UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    FirstViewController *firstViewController = [storyboard instantiateViewControllerWithIdentifier:@"FirstViewController"];
+    sceneDelegate.window.rootViewController = firstViewController;
+}
+
 
 /*
 #pragma mark - Navigation
