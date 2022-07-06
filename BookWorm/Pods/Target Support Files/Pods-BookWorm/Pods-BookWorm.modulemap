@@ -1,0 +1,6 @@
+framework module Pods_BookWorm {
+  umbrella header "Pods-BookWorm-umbrella.h"
+
+  export *
+  module * { export * }
+}

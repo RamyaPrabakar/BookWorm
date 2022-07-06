@@ -1,0 +1,818 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		493E7C0178C59BF16681911E /* Pods_BookWorm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2440EDAB4164CFD6618E6D /* Pods_BookWorm.framework */; };
+		4F9C86EB2874D608000D2259 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C86EA2874D608000D2259 /* AppDelegate.m */; };
+		4F9C86EE2874D608000D2259 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C86ED2874D608000D2259 /* SceneDelegate.m */; };
+		4F9C86F42874D608000D2259 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C86F22874D608000D2259 /* Main.storyboard */; };
+		4F9C86F62874D609000D2259 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C86F52874D609000D2259 /* Assets.xcassets */; };
+		4F9C86F92874D609000D2259 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C86F72874D609000D2259 /* LaunchScreen.storyboard */; };
+		4F9C86FC2874D609000D2259 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C86FB2874D609000D2259 /* main.m */; };
+		4F9C87062874D609000D2259 /* BookWormTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C87052874D609000D2259 /* BookWormTests.m */; };
+		4F9C87102874D609000D2259 /* BookWormUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C870F2874D609000D2259 /* BookWormUITests.m */; };
+		4F9C87122874D609000D2259 /* BookWormUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C87112874D609000D2259 /* BookWormUITestsLaunchTests.m */; };
+		4F9C87212874E7F2000D2259 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4F9C87202874E7F2000D2259 /* FacebookLogin */; };
+		4F9C87252874F3CE000D2259 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C87242874F3CE000D2259 /* LoginViewController.m */; };
+		4F9C87282874F4B5000D2259 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C87272874F4B5000D2259 /* SignUpViewController.m */; };
+		4F9C872B2874F4C5000D2259 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C872A2874F4C5000D2259 /* FirstViewController.m */; };
+		4F9C872F2875F74D000D2259 /* RecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C872E2875F74D000D2259 /* RecommendationsViewController.m */; };
+		5B6C50F9E1D7FDFDB70DC1FF /* Pods_BookWorm_BookWormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CA1621476D8BC034EB2A0B /* Pods_BookWorm_BookWormUITests.framework */; };
+		E7C615A9C0296EC9FCB15621 /* Pods_BookWormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C74ACF1CE29EDE361F5B22 /* Pods_BookWormTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F9C87022874D609000D2259 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F9C86DE2874D608000D2259 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F9C86E52874D608000D2259;
+			remoteInfo = BookWorm;
+		};
+		4F9C870C2874D609000D2259 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F9C86DE2874D608000D2259 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F9C86E52874D608000D2259;
+			remoteInfo = BookWorm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3A850E5A13E93469249E5F6F /* Pods-BookWorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWorm.release.xcconfig"; path = "Target Support Files/Pods-BookWorm/Pods-BookWorm.release.xcconfig"; sourceTree = "<group>"; };
+		3E2440EDAB4164CFD6618E6D /* Pods_BookWorm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWorm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C6ADD1E0906A1B77B38F8CF /* Pods-BookWorm-BookWormUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWorm-BookWormUITests.debug.xcconfig"; path = "Target Support Files/Pods-BookWorm-BookWormUITests/Pods-BookWorm-BookWormUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4F9C86E62874D608000D2259 /* BookWorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookWorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F9C86E92874D608000D2259 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F9C86EA2874D608000D2259 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F9C86EC2874D608000D2259 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		4F9C86ED2874D608000D2259 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		4F9C86F32874D608000D2259 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4F9C86F52874D609000D2259 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F9C86F82874D609000D2259 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F9C86FA2874D609000D2259 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F9C86FB2874D609000D2259 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F9C87012874D609000D2259 /* BookWormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookWormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F9C87052874D609000D2259 /* BookWormTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookWormTests.m; sourceTree = "<group>"; };
+		4F9C870B2874D609000D2259 /* BookWormUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookWormUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F9C870F2874D609000D2259 /* BookWormUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookWormUITests.m; sourceTree = "<group>"; };
+		4F9C87112874D609000D2259 /* BookWormUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookWormUITestsLaunchTests.m; sourceTree = "<group>"; };
+		4F9C87222874EEB3000D2259 /* BookWorm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookWorm.entitlements; sourceTree = "<group>"; };
+		4F9C87232874F3CE000D2259 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		4F9C87242874F3CE000D2259 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4F9C87262874F4B5000D2259 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		4F9C87272874F4B5000D2259 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		4F9C87292874F4C5000D2259 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		4F9C872A2874F4C5000D2259 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		4F9C872D2875F74D000D2259 /* RecommendationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationsViewController.h; sourceTree = "<group>"; };
+		4F9C872E2875F74D000D2259 /* RecommendationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendationsViewController.m; sourceTree = "<group>"; };
+		99CA1621476D8BC034EB2A0B /* Pods_BookWorm_BookWormUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWorm_BookWormUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6D380C0C823DBC80A2EDAD6 /* Pods-BookWorm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWorm.debug.xcconfig"; path = "Target Support Files/Pods-BookWorm/Pods-BookWorm.debug.xcconfig"; sourceTree = "<group>"; };
+		B8C74ACF1CE29EDE361F5B22 /* Pods_BookWormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C153829403B7032900461F2A /* Pods-BookWormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWormTests.release.xcconfig"; path = "Target Support Files/Pods-BookWormTests/Pods-BookWormTests.release.xcconfig"; sourceTree = "<group>"; };
+		C5A509D512B93FD4C46892A9 /* Pods-BookWorm-BookWormUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWorm-BookWormUITests.release.xcconfig"; path = "Target Support Files/Pods-BookWorm-BookWormUITests/Pods-BookWorm-BookWormUITests.release.xcconfig"; sourceTree = "<group>"; };
+		EFAD7D844A1113ECEB25208C /* Pods-BookWormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWormTests.debug.xcconfig"; path = "Target Support Files/Pods-BookWormTests/Pods-BookWormTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F9C86E32874D608000D2259 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F9C87212874E7F2000D2259 /* FacebookLogin in Frameworks */,
+				493E7C0178C59BF16681911E /* Pods_BookWorm.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F9C86FE2874D609000D2259 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7C615A9C0296EC9FCB15621 /* Pods_BookWormTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F9C87082874D609000D2259 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B6C50F9E1D7FDFDB70DC1FF /* Pods_BookWorm_BookWormUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A1FBBAC4B7AC858EFC39500 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E2440EDAB4164CFD6618E6D /* Pods_BookWorm.framework */,
+				99CA1621476D8BC034EB2A0B /* Pods_BookWorm_BookWormUITests.framework */,
+				B8C74ACF1CE29EDE361F5B22 /* Pods_BookWormTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F9C86DD2874D608000D2259 = {
+			isa = PBXGroup;
+			children = (
+				4F9C86E82874D608000D2259 /* BookWorm */,
+				4F9C87042874D609000D2259 /* BookWormTests */,
+				4F9C870E2874D609000D2259 /* BookWormUITests */,
+				4F9C86E72874D608000D2259 /* Products */,
+				D78695B0928D82E875F0802F /* Pods */,
+				3A1FBBAC4B7AC858EFC39500 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4F9C86E72874D608000D2259 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F9C86E62874D608000D2259 /* BookWorm.app */,
+				4F9C87012874D609000D2259 /* BookWormTests.xctest */,
+				4F9C870B2874D609000D2259 /* BookWormUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F9C86E82874D608000D2259 /* BookWorm */ = {
+			isa = PBXGroup;
+			children = (
+				4F9C87222874EEB3000D2259 /* BookWorm.entitlements */,
+				4F9C86E92874D608000D2259 /* AppDelegate.h */,
+				4F9C86EA2874D608000D2259 /* AppDelegate.m */,
+				4F9C86EC2874D608000D2259 /* SceneDelegate.h */,
+				4F9C86ED2874D608000D2259 /* SceneDelegate.m */,
+				4F9C86F22874D608000D2259 /* Main.storyboard */,
+				4F9C872C2874F4D0000D2259 /* View Controllers */,
+				4F9C86F52874D609000D2259 /* Assets.xcassets */,
+				4F9C86F72874D609000D2259 /* LaunchScreen.storyboard */,
+				4F9C86FA2874D609000D2259 /* Info.plist */,
+				4F9C86FB2874D609000D2259 /* main.m */,
+			);
+			path = BookWorm;
+			sourceTree = "<group>";
+		};
+		4F9C87042874D609000D2259 /* BookWormTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F9C87052874D609000D2259 /* BookWormTests.m */,
+			);
+			path = BookWormTests;
+			sourceTree = "<group>";
+		};
+		4F9C870E2874D609000D2259 /* BookWormUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4F9C870F2874D609000D2259 /* BookWormUITests.m */,
+				4F9C87112874D609000D2259 /* BookWormUITestsLaunchTests.m */,
+			);
+			path = BookWormUITests;
+			sourceTree = "<group>";
+		};
+		4F9C872C2874F4D0000D2259 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F9C87262874F4B5000D2259 /* SignUpViewController.h */,
+				4F9C87272874F4B5000D2259 /* SignUpViewController.m */,
+				4F9C87292874F4C5000D2259 /* FirstViewController.h */,
+				4F9C872A2874F4C5000D2259 /* FirstViewController.m */,
+				4F9C87232874F3CE000D2259 /* LoginViewController.h */,
+				4F9C87242874F3CE000D2259 /* LoginViewController.m */,
+				4F9C872D2875F74D000D2259 /* RecommendationsViewController.h */,
+				4F9C872E2875F74D000D2259 /* RecommendationsViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D78695B0928D82E875F0802F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6D380C0C823DBC80A2EDAD6 /* Pods-BookWorm.debug.xcconfig */,
+				3A850E5A13E93469249E5F6F /* Pods-BookWorm.release.xcconfig */,
+				4C6ADD1E0906A1B77B38F8CF /* Pods-BookWorm-BookWormUITests.debug.xcconfig */,
+				C5A509D512B93FD4C46892A9 /* Pods-BookWorm-BookWormUITests.release.xcconfig */,
+				EFAD7D844A1113ECEB25208C /* Pods-BookWormTests.debug.xcconfig */,
+				C153829403B7032900461F2A /* Pods-BookWormTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F9C86E52874D608000D2259 /* BookWorm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F9C87152874D609000D2259 /* Build configuration list for PBXNativeTarget "BookWorm" */;
+			buildPhases = (
+				14A1184DE7861005B75B0A77 /* [CP] Check Pods Manifest.lock */,
+				4F9C86E22874D608000D2259 /* Sources */,
+				4F9C86E32874D608000D2259 /* Frameworks */,
+				4F9C86E42874D608000D2259 /* Resources */,
+				5412B6EEF040D5CD7717C25A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BookWorm;
+			packageProductDependencies = (
+				4F9C87202874E7F2000D2259 /* FacebookLogin */,
+			);
+			productName = BookWorm;
+			productReference = 4F9C86E62874D608000D2259 /* BookWorm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4F9C87002874D609000D2259 /* BookWormTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F9C87182874D609000D2259 /* Build configuration list for PBXNativeTarget "BookWormTests" */;
+			buildPhases = (
+				247549AE13B5D8C8F2914192 /* [CP] Check Pods Manifest.lock */,
+				4F9C86FD2874D609000D2259 /* Sources */,
+				4F9C86FE2874D609000D2259 /* Frameworks */,
+				4F9C86FF2874D609000D2259 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F9C87032874D609000D2259 /* PBXTargetDependency */,
+			);
+			name = BookWormTests;
+			productName = BookWormTests;
+			productReference = 4F9C87012874D609000D2259 /* BookWormTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4F9C870A2874D609000D2259 /* BookWormUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F9C871B2874D609000D2259 /* Build configuration list for PBXNativeTarget "BookWormUITests" */;
+			buildPhases = (
+				B39578DB81F27A1B4E3DC76A /* [CP] Check Pods Manifest.lock */,
+				4F9C87072874D609000D2259 /* Sources */,
+				4F9C87082874D609000D2259 /* Frameworks */,
+				4F9C87092874D609000D2259 /* Resources */,
+				33B90930886F7C410DDB700D /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F9C870D2874D609000D2259 /* PBXTargetDependency */,
+			);
+			name = BookWormUITests;
+			productName = BookWormUITests;
+			productReference = 4F9C870B2874D609000D2259 /* BookWormUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F9C86DE2874D608000D2259 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					4F9C86E52874D608000D2259 = {
+						CreatedOnToolsVersion = 13.4;
+					};
+					4F9C87002874D609000D2259 = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = 4F9C86E52874D608000D2259;
+					};
+					4F9C870A2874D609000D2259 = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = 4F9C86E52874D608000D2259;
+					};
+				};
+			};
+			buildConfigurationList = 4F9C86E12874D608000D2259 /* Build configuration list for PBXProject "BookWorm" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F9C86DD2874D608000D2259;
+			packageReferences = (
+				4F9C871E2874E3B7000D2259 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				4F9C871F2874E7F2000D2259 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
+			productRefGroup = 4F9C86E72874D608000D2259 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F9C86E52874D608000D2259 /* BookWorm */,
+				4F9C87002874D609000D2259 /* BookWormTests */,
+				4F9C870A2874D609000D2259 /* BookWormUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F9C86E42874D608000D2259 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F9C86F92874D609000D2259 /* LaunchScreen.storyboard in Resources */,
+				4F9C86F62874D609000D2259 /* Assets.xcassets in Resources */,
+				4F9C86F42874D608000D2259 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F9C86FF2874D609000D2259 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F9C87092874D609000D2259 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		14A1184DE7861005B75B0A77 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BookWorm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		247549AE13B5D8C8F2914192 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BookWormTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33B90930886F7C410DDB700D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookWorm-BookWormUITests/Pods-BookWorm-BookWormUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookWorm-BookWormUITests/Pods-BookWorm-BookWormUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookWorm-BookWormUITests/Pods-BookWorm-BookWormUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5412B6EEF040D5CD7717C25A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookWorm/Pods-BookWorm-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookWorm/Pods-BookWorm-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookWorm/Pods-BookWorm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B39578DB81F27A1B4E3DC76A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BookWorm-BookWormUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F9C86E22874D608000D2259 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F9C87252874F3CE000D2259 /* LoginViewController.m in Sources */,
+				4F9C872B2874F4C5000D2259 /* FirstViewController.m in Sources */,
+				4F9C87282874F4B5000D2259 /* SignUpViewController.m in Sources */,
+				4F9C86EB2874D608000D2259 /* AppDelegate.m in Sources */,
+				4F9C86FC2874D609000D2259 /* main.m in Sources */,
+				4F9C872F2875F74D000D2259 /* RecommendationsViewController.m in Sources */,
+				4F9C86EE2874D608000D2259 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F9C86FD2874D609000D2259 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F9C87062874D609000D2259 /* BookWormTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F9C87072874D609000D2259 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F9C87122874D609000D2259 /* BookWormUITestsLaunchTests.m in Sources */,
+				4F9C87102874D609000D2259 /* BookWormUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F9C87032874D609000D2259 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F9C86E52874D608000D2259 /* BookWorm */;
+			targetProxy = 4F9C87022874D609000D2259 /* PBXContainerItemProxy */;
+		};
+		4F9C870D2874D609000D2259 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F9C86E52874D608000D2259 /* BookWorm */;
+			targetProxy = 4F9C870C2874D609000D2259 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4F9C86F22874D608000D2259 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F9C86F32874D608000D2259 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4F9C86F72874D609000D2259 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F9C86F82874D609000D2259 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F9C87132874D609000D2259 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4F9C87142874D609000D2259 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F9C87162874D609000D2259 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D380C0C823DBC80A2EDAD6 /* Pods-BookWorm.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CSJ58387Y7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BookWorm/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWorm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F9C87172874D609000D2259 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A850E5A13E93469249E5F6F /* Pods-BookWorm.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CSJ58387Y7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BookWorm/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWorm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4F9C87192874D609000D2259 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFAD7D844A1113ECEB25208C /* Pods-BookWormTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWormTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BookWorm.app/BookWorm";
+			};
+			name = Debug;
+		};
+		4F9C871A2874D609000D2259 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C153829403B7032900461F2A /* Pods-BookWormTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWormTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BookWorm.app/BookWorm";
+			};
+			name = Release;
+		};
+		4F9C871C2874D609000D2259 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C6ADD1E0906A1B77B38F8CF /* Pods-BookWorm-BookWormUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWormUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BookWorm;
+			};
+			name = Debug;
+		};
+		4F9C871D2874D609000D2259 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5A509D512B93FD4C46892A9 /* Pods-BookWorm-BookWormUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWormUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BookWorm;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F9C86E12874D608000D2259 /* Build configuration list for PBXProject "BookWorm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F9C87132874D609000D2259 /* Debug */,
+				4F9C87142874D609000D2259 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F9C87152874D609000D2259 /* Build configuration list for PBXNativeTarget "BookWorm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F9C87162874D609000D2259 /* Debug */,
+				4F9C87172874D609000D2259 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F9C87182874D609000D2259 /* Build configuration list for PBXNativeTarget "BookWormTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F9C87192874D609000D2259 /* Debug */,
+				4F9C871A2874D609000D2259 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F9C871B2874D609000D2259 /* Build configuration list for PBXNativeTarget "BookWormUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F9C871C2874D609000D2259 /* Debug */,
+				4F9C871D2874D609000D2259 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4F9C871E2874E3B7000D2259 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
+		4F9C871F2874E7F2000D2259 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F9C87202874E7F2000D2259 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F9C871F2874E7F2000D2259 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4F9C86DE2874D608000D2259 /* Project object */;
+}
