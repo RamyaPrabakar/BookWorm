@@ -21,29 +21,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string></string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb5228267170594596</string>
-			</array>
-		</dict>
-	</array>
-	<key>FacebookAppID</key>
-	<string>5228267170594596</string>
-	<key>FacebookClientToken</key>
-	<string>8b226e612a98c2079376173cf21377f4</string>
-	<key>FacebookDisplayName</key>
-	<string>CapstoneApp</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-share-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-	</array>
 </dict>
 </plist>
