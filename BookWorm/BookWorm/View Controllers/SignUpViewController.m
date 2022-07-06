@@ -8,6 +8,9 @@
 #import "SignUpViewController.h"
 
 @interface SignUpViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *retypePasswordField;
 
 @end
 
@@ -16,6 +19,78 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)registerUser {
+    // initialize a user object
+    PFUser *newUser = [PFUser user];
+    
+    // checking if user inputted both the username and the password
+    if ([self.usernameField.text isEqual:@""]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Username Required"
+                                                                                   message:@"Please make sure to enter your username"
+                                                                            preferredStyle:(UIAlertControllerStyleAlert)];
+        // create an OK action
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                                 // handle response here.
+                                                         }];
+        // add the OK action to the alert controller
+        [alert addAction:okAction];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            // optional code for what happens after the alert controller has finished presenting
+        }];
+    } else if ([self.passwordField.text isEqual:@""]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password Required"
+                                                                                   message:@"Please make sure to enter your password"
+                                                                            preferredStyle:(UIAlertControllerStyleAlert)];
+        // create an OK action
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                                 // handle response here.
+                                                         }];
+        // add the OK action to the alert controller
+        [alert addAction:okAction];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            // optional code for what happens after the alert controller has finished presenting
+        }];
+    } else if (![self.passwordField.text isEqual:self.retypePasswordField.text]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Passwords don't match"
+                                                                                   message:@"Please make sure that your passwords match"
+                                                                            preferredStyle:(UIAlertControllerStyleAlert)];
+        // create an OK action
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                                 // handle response here.
+                                                         }];
+        // add the OK action to the alert controller
+        [alert addAction:okAction];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            // optional code for what happens after the alert controller has finished presenting
+        }];
+    }
+    
+    // set user properties
+    newUser.username = self.usernameField.text;
+    newUser.password = self.passwordField.text;
+   
+    // call sign up function on the object
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"User registered successfully");
+           
+            // manually segue to logged in view
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil]; // TODO: Change this loginSegue
+        }
+    }];
 }
 
 /*
