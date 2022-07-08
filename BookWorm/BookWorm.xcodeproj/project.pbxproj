@@ -27,6 +27,7 @@
 		4F80F5F528768EDF00B93E31 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4F80F5F428768EDF00B93E31 /* FacebookLogin */; };
 		4F80F601287895C500B93E31 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F600287895C500B93E31 /* SearchViewController.m */; };
 		4F80F6052878981200B93E31 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F6042878981200B93E31 /* Book.m */; };
+		4F80F60A28789E6100B93E31 /* BookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F60928789E6100B93E31 /* BookCell.m */; };
 		6C194A797230C582E171B5D3 /* Pods_BookWorm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52848B3014FC79971D2C5425 /* Pods_BookWorm.framework */; };
 		AA30A573E4FF0EEFE9EAE08A /* Pods_BookWorm_BookWormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E6B1B3D109AEA0F30C266B /* Pods_BookWorm_BookWormUITests.framework */; };
 		B7787CF0E0C4083DDA8C0BAD /* Pods_BookWormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B6135B0CCB78300E2A39B9 /* Pods_BookWormTests.framework */; };
@@ -89,6 +90,8 @@
 		4F80F600287895C500B93E31 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		4F80F6042878981200B93E31 /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		4F80F6062878982300B93E31 /* Book.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		4F80F60828789E6100B93E31 /* BookCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookCell.h; sourceTree = "<group>"; };
+		4F80F60928789E6100B93E31 /* BookCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookCell.m; sourceTree = "<group>"; };
 		52848B3014FC79971D2C5425 /* Pods_BookWorm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWorm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		852401C44F12B736CF67DA6D /* Pods-BookWormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWormTests.debug.xcconfig"; path = "Target Support Files/Pods-BookWormTests/Pods-BookWormTests.debug.xcconfig"; sourceTree = "<group>"; };
 		87B6135B0CCB78300E2A39B9 /* Pods_BookWormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +169,8 @@
 				4F80F5A62876730500B93E31 /* AppDelegate.m */,
 				4F80F5A82876730500B93E31 /* SceneDelegate.h */,
 				4F80F5A92876730500B93E31 /* SceneDelegate.m */,
+				4F80F60828789E6100B93E31 /* BookCell.h */,
+				4F80F60928789E6100B93E31 /* BookCell.m */,
 				4F80F5AE2876730500B93E31 /* Main.storyboard */,
 				4F80F5DD287674DB00B93E31 /* View Controllers */,
 				4F80F5B12876730500B93E31 /* Assets.xcassets */,
@@ -493,6 +498,7 @@
 				4F80F5E62876758B00B93E31 /* GenrePickerViewController.m in Sources */,
 				4F80F5AA2876730500B93E31 /* SceneDelegate.m in Sources */,
 				4F80F5EC287675D600B93E31 /* MyBooksViewController.m in Sources */,
+				4F80F60A28789E6100B93E31 /* BookCell.m in Sources */,
 				4F80F5DC287674D300B93E31 /* FirstViewController.m in Sources */,
 				4F80F5F2287675F700B93E31 /* ProfileViewController.m in Sources */,
 				4F80F5E02876751700B93E31 /* LoginViewController.m in Sources */,

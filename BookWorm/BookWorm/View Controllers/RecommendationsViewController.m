@@ -9,10 +9,12 @@
 #import "SceneDelegate.h"
 #import "FirstViewController.h"
 #import "Book.h"
+#import "BookCell.h"
 
 // Frameworks
 #import <FBSDKCoreKit/FBSDKProfile.h>
 @interface RecommendationsViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfBooks;
 @end
 
