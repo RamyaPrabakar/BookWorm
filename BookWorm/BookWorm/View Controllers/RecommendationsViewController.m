@@ -47,7 +47,7 @@
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                
-               NSLog(@"%@", dataDictionary);
+               // NSLog(@"%@", dataDictionary);
                
                // Get the results dictionary
                NSDictionary *resultsDictionary = dataDictionary[@"results"];
