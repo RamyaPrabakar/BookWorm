@@ -8,6 +8,7 @@ target 'BookWorm' do
   # Pods for BookWorm
   pod 'Parse'
   pod 'FBSDKLoginKit'
+  pod 'AFNetworking'
 
   target 'BookWormTests' do
     inherit! :search_paths

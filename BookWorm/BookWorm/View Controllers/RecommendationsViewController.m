@@ -10,6 +10,7 @@
 #import "FirstViewController.h"
 #import "Book.h"
 #import "BookCell.h"
+#import "UIImageView+AFNetworking.h"
 
 // Frameworks
 #import <FBSDKCoreKit/FBSDKProfile.h>
@@ -46,7 +47,7 @@
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                
-               // NSLog(@"%@", dataDictionary);
+               NSLog(@"%@", dataDictionary);
                
                // Get the results dictionary
                NSDictionary *resultsDictionary = dataDictionary[@"results"];
@@ -61,6 +62,11 @@
                    for (NSDictionary *bookDictionary in books) {
                        // Now we initialize a Book object with this book dictionary
                        Book *book = [[Book alloc]initWithDictionary:bookDictionary];
+                       
+                       if([book.bookImageLink isEqual:[NSNull null]]) {
+                           //do something if object is equals to [NSNull null]
+                           break;
+                       }
                        // NSString *text = book.title;
                        // NSLog(@"%@", text);
                        
@@ -82,11 +88,11 @@
     cell.title.text = book.title;
     cell.author.text = book.author;
     cell.bookDescription.text = book.bookDescription;
-    
+
     NSURL *bookPosterURL = [NSURL URLWithString:book.bookImageLink];
-    // [cell.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
+    [cell.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
     
-    NSLog(@"I am returning the table view cell");
+    // NSLog(@"I am returning the table view cell");
     return cell;
 }
 
