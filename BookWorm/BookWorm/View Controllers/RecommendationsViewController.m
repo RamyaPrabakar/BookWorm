@@ -11,6 +11,7 @@
 #import "Book.h"
 #import "BookCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "RecommendationsDetailViewController.h"
 
 // Frameworks
 #import <FBSDKCoreKit/FBSDKProfile.h>
@@ -113,14 +114,17 @@
     sceneDelegate.window.rootViewController = firstViewController;
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     // Get the new view controller using [segue destinationViewController].
+     // Pass the selected object to the new view controller.
+     
+     Book *bookToPass = self.arrayOfBooks[[self.tableView indexPathForCell:sender].row];
+     RecommendationsDetailViewController *detailsVC = [segue destinationViewController];
+     detailsVC.bookPassed = bookToPass;
+ }
 
 @end

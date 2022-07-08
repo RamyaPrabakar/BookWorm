@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GenrePickerViewController : UIViewController <UITableViewDataSource>
+@interface GenrePickerViewController : UIViewController
 
 @end
 
