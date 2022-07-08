@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *author; // The author of the book
 @property (nonatomic, strong) NSString *bookImageLink; // Link to the book image
-@property (nonatomic, strong) NSString *description; // Desription of the book
+@property (nonatomic, strong) NSString *bookDescription; // Desription of the book
 @property (nonatomic, strong) NSString *amazonProductURL; // Amazon product url
 @property (nonatomic, strong) NSString *title; // The title of the book
 

@@ -14,17 +14,28 @@
 // Frameworks
 #import <FBSDKCoreKit/FBSDKProfile.h>
 @interface RecommendationsViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfBooks;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation RecommendationsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    // [self fetchBooks];
-    
+    self.tableView.dataSource = self;
+    [self getMovies];
+    self.arrayOfBooks = [[NSMutableArray alloc] init];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
+            if (profile) {
+                // get users profile name
+                self.navigationItem.title = [NSString stringWithFormat:@"Hello %@ %@", profile.firstName, profile.lastName];
+            }
+        }];
+    });
+}
+
+- (void) getMovies {
     NSURL *url = [NSURL URLWithString:@"https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=YtAgwkllS22d8OMJZPnAE8hUJ167mguo"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -35,7 +46,7 @@
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                
-               NSLog(@"%@", dataDictionary);
+               // NSLog(@"%@", dataDictionary);
                
                // Get the results dictionary
                NSDictionary *resultsDictionary = dataDictionary[@"results"];
@@ -50,21 +61,38 @@
                    for (NSDictionary *bookDictionary in books) {
                        // Now we initialize a Book object with this book dictionary
                        Book *book = [[Book alloc]initWithDictionary:bookDictionary];
+                       // NSString *text = book.title;
+                       // NSLog(@"%@", text);
+                       
                        [self.arrayOfBooks addObject:book];
                    }
                }
            }
+        // Reload your table view data
+        [self.tableView reloadData];
        }];
     [task resume];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BookCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BookCell"];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
-            if (profile) {
-                // get users profile name
-                self.navigationItem.title = [NSString stringWithFormat:@"Hello %@ %@", profile.firstName, profile.lastName];
-            }
-        }];
-    });
+    // Configuring the BookCell
+    Book *book = self.arrayOfBooks[indexPath.row];
+    cell.title.text = book.title;
+    cell.author.text = book.author;
+    cell.bookDescription.text = book.bookDescription;
+    
+    NSURL *bookPosterURL = [NSURL URLWithString:book.bookImageLink];
+    // [cell.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
+    
+    NSLog(@"I am returning the table view cell");
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"%lu", (unsigned long)self.arrayOfBooks.count);
+    return self.arrayOfBooks.count;
 }
 
 - (IBAction)logout:(id)sender {

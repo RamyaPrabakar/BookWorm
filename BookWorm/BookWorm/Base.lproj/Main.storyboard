@@ -361,6 +361,12 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="author" destination="jeA-og-b2a" id="cFm-9C-WRq"/>
+                                            <outlet property="bookDescription" destination="dZS-WV-vBB" id="NeO-ra-VfO"/>
+                                            <outlet property="bookImage" destination="72y-Tr-ys1" id="OXd-iG-jAZ"/>
+                                            <outlet property="title" destination="zvh-vL-fjP" id="hmL-Tn-WbY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -381,7 +387,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="Hr9-yD-bXV" id="KgS-2K-JWW"/>
+                        <outlet property="tableView" destination="Hr9-yD-bXV" id="GFW-Uh-Pgm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3md-jV-ffP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

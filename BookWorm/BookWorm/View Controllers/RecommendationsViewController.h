@@ -10,8 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RecommendationsViewController : UIViewController
-
+@interface RecommendationsViewController : UIViewController <UITableViewDataSource>
 @end
 
 NS_ASSUME_NONNULL_END

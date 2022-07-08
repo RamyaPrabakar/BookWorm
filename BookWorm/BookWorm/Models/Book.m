@@ -14,7 +14,7 @@
     
     self.author = dictionary[@"author"];
     self.bookImageLink = dictionary[@"book_image"];
-    self.description = dictionary[@"description"];
+    self.bookDescription = dictionary[@"description"];
     self.amazonProductURL = dictionary[@"amazon_product_url"];
     self.title = dictionary[@"title"];
     
