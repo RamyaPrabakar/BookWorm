@@ -8,6 +8,7 @@
 #import "RecommendationsViewController.h"
 #import "SceneDelegate.h"
 #import "FirstViewController.h"
+#import "Book.h"
 
 // Frameworks
 #import <FBSDKCoreKit/FBSDKProfile.h>
@@ -44,8 +45,10 @@
                    // this contains an array of dictionaries. Each dictionary refers to a book
                    NSArray *books = list[@"books"];
                    
-                   for (NSDictionary *book in books) {
+                   for (NSDictionary *bookDictionary in books) {
                        // Now we initialize a Book object with this book dictionary
+                       Book *book = [[Book alloc]initWithDictionary:bookDictionary];
+                       [self.arrayOfBooks addObject:book];
                    }
                }
            }

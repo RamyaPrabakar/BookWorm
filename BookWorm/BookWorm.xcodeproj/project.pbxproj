@@ -25,6 +25,8 @@
 		4F80F5EF287675E800B93E31 /* BookTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5EE287675E800B93E31 /* BookTalkViewController.m */; };
 		4F80F5F2287675F700B93E31 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5F1287675F700B93E31 /* ProfileViewController.m */; };
 		4F80F5F528768EDF00B93E31 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4F80F5F428768EDF00B93E31 /* FacebookLogin */; };
+		4F80F601287895C500B93E31 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F600287895C500B93E31 /* SearchViewController.m */; };
+		4F80F6052878981200B93E31 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F6042878981200B93E31 /* Book.m */; };
 		6C194A797230C582E171B5D3 /* Pods_BookWorm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52848B3014FC79971D2C5425 /* Pods_BookWorm.framework */; };
 		AA30A573E4FF0EEFE9EAE08A /* Pods_BookWorm_BookWormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E6B1B3D109AEA0F30C266B /* Pods_BookWorm_BookWormUITests.framework */; };
 		B7787CF0E0C4083DDA8C0BAD /* Pods_BookWormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B6135B0CCB78300E2A39B9 /* Pods_BookWormTests.framework */; };
@@ -83,6 +85,10 @@
 		4F80F5F0287675F700B93E31 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		4F80F5F1287675F700B93E31 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		4F80F5F6287696A400B93E31 /* BookWorm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookWorm.entitlements; sourceTree = "<group>"; };
+		4F80F5FF287895C500B93E31 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		4F80F600287895C500B93E31 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		4F80F6042878981200B93E31 /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		4F80F6062878982300B93E31 /* Book.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		52848B3014FC79971D2C5425 /* Pods_BookWorm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWorm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		852401C44F12B736CF67DA6D /* Pods-BookWormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWormTests.debug.xcconfig"; path = "Target Support Files/Pods-BookWormTests/Pods-BookWormTests.debug.xcconfig"; sourceTree = "<group>"; };
 		87B6135B0CCB78300E2A39B9 /* Pods_BookWormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +172,7 @@
 				4F80F5B32876730500B93E31 /* LaunchScreen.storyboard */,
 				4F80F5B62876730500B93E31 /* Info.plist */,
 				4F80F5B72876730500B93E31 /* main.m */,
+				4F80F6072878982900B93E31 /* Models */,
 			);
 			path = BookWorm;
 			sourceTree = "<group>";
@@ -206,8 +213,19 @@
 				4F80F5EE287675E800B93E31 /* BookTalkViewController.m */,
 				4F80F5F0287675F700B93E31 /* ProfileViewController.h */,
 				4F80F5F1287675F700B93E31 /* ProfileViewController.m */,
+				4F80F5FF287895C500B93E31 /* SearchViewController.h */,
+				4F80F600287895C500B93E31 /* SearchViewController.m */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4F80F6072878982900B93E31 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4F80F6042878981200B93E31 /* Book.m */,
+				4F80F6062878982300B93E31 /* Book.h */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B8E2D9372452FD074C16E9BF /* Pods */ = {
@@ -467,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F80F6052878981200B93E31 /* Book.m in Sources */,
 				4F80F5A72876730500B93E31 /* AppDelegate.m in Sources */,
 				4F80F5E9287675C000B93E31 /* RecommendationsViewController.m in Sources */,
 				4F80F5B82876730500B93E31 /* main.m in Sources */,
@@ -477,6 +496,7 @@
 				4F80F5DC287674D300B93E31 /* FirstViewController.m in Sources */,
 				4F80F5F2287675F700B93E31 /* ProfileViewController.m in Sources */,
 				4F80F5E02876751700B93E31 /* LoginViewController.m in Sources */,
+				4F80F601287895C500B93E31 /* SearchViewController.m in Sources */,
 				4F80F5EF287675E800B93E31 /* BookTalkViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
