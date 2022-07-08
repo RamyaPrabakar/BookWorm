@@ -74,23 +74,23 @@
         [self presentViewController:alert animated:YES completion:^{
             // optional code for what happens after the alert controller has finished presenting
         }];
+    } else {
+        // set user properties
+        newUser.username = self.usernameField.text;
+        newUser.password = self.passwordField.text;
+       
+        // call sign up function on the object
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                NSLog(@"User registered successfully");
+               
+                // manually segue to logged in view
+                [self performSegueWithIdentifier:@"signupSegue" sender:nil];
+            }
+        }];
     }
-    
-    // set user properties
-    newUser.username = self.usernameField.text;
-    newUser.password = self.passwordField.text;
-   
-    // call sign up function on the object
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"User registered successfully");
-           
-            // manually segue to logged in view
-            [self performSegueWithIdentifier:@"signupSegue" sender:nil];
-        }
-    }];
 }
 
 /*
