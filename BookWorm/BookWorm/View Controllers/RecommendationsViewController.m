@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
-    [self getMovies];
+    [self getBooks];
     self.arrayOfBooks = [[NSMutableArray alloc] init];
     dispatch_async(dispatch_get_main_queue(), ^{
         [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
@@ -37,7 +37,7 @@
     });
 }
 
-- (void) getMovies {
+- (void) getBooks {
     NSURL *url = [NSURL URLWithString:@"https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=YtAgwkllS22d8OMJZPnAE8hUJ167mguo"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -93,7 +93,7 @@
     NSURL *bookPosterURL = [NSURL URLWithString:book.bookImageLink];
     [cell.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
     
-    // NSLog(@"I am returning the table view cell");
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
