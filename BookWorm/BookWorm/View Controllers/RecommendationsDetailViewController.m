@@ -24,7 +24,11 @@
     self.author.text = self.bookPassed.author;
     self.bookTitle.text = self.bookPassed.title;
     self.bookDescription.text = self.bookPassed.bookDescription;
-    self.buyLink.text = self.bookPassed.amazonProductURL;
+    // self.buyLink.text = self.bookPassed.amazonProductURL;
+    
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:@"Buy this book"
+                                                                           attributes:@{ NSLinkAttributeName: [NSURL URLWithString:self.bookPassed.amazonProductURL] }];
+    self.buyLink.attributedText = attributedString;
     
     NSURL *bookPosterURL = [NSURL URLWithString:self.bookPassed.bookImageLink];
     [self.bigBookImage setImageWithURL:bookPosterURL placeholderImage:nil];
