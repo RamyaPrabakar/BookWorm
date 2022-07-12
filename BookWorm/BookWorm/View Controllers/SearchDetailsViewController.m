@@ -15,13 +15,28 @@
 @property (weak, nonatomic) IBOutlet UILabel *authors;
 @property (weak, nonatomic) IBOutlet UILabel *bookDesciption;
 @property (weak, nonatomic) IBOutlet UITextView *buyLink;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
 
 @implementation SearchDetailsViewController
-
+@synthesize scrollView;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Setting up the scroll view
+    /* self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 3)];
+    [self.view addSubview:self.scrollView];
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 3)];
+    [self.scrollView addSubview:self.bookImage];
+    [self.scrollView addSubview:self.bookTitle];
+    [self.scrollView addSubview:self.bookSubtitle];
+    [self.scrollView addSubview:self.authors];
+    [self.scrollView addSubview:self.bookDesciption];*/
+
+    // another trial to set up the scroll view
+    [self.scrollView setScrollEnabled:YES];
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 3)];
+    
+    
     // Do any additional setup after loading the view.
     self.bookTitle.text = self.bookPassed.title;
     self.bookSubtitle.text = self.bookPassed.subtitle;
