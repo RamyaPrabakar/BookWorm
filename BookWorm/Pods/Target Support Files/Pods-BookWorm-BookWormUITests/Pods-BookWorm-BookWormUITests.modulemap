@@ -1,6 +1,0 @@
-framework module Pods_BookWorm_BookWormUITests {
-  umbrella header "Pods-BookWorm-BookWormUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
