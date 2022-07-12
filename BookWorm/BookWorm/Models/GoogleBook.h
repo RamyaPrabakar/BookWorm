@@ -11,13 +11,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GoogleBook : NSObject
 
-@property (nonatomic, strong) NSArray *authors; // The author of the book - DONE
+@property (nonatomic, strong) NSArray *authors; // The author of the book
 @property (nonatomic, strong) NSString *bookImageLink; // Link to the book image
-@property (nonatomic, strong) NSString *bookDescription; // Desription of the book - DONE
-@property (nonatomic, strong) NSString *buyLink; // Link to buy the book - DONE
-@property (nonatomic, strong) NSString *title; // The title of the book - DONE
-@property (nonatomic, strong) NSString *subtitle; // The subtitle of the book - DONE
-@property (nonatomic, strong) NSString *publisher; // The publisher of the book - DONE
+@property (nonatomic, strong) NSString *bookDescription; // Desription of the book
+@property (nonatomic, strong) NSString *buyLink; // Link to buy the book
+@property (nonatomic, strong) NSString *title; // The title of the book
+@property (nonatomic, strong) NSString *subtitle; // The subtitle of the book
+@property (nonatomic, strong) NSString *publisher; // The publisher of the book
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
