@@ -9,6 +9,7 @@
 #import "BookCell.h"
 #import "GoogleBook.h"
 #import "UIImageView+AFNetworking.h"
+#import "SearchDetailsViewController.h"
 
 @interface SearchViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *searchTitle;
@@ -141,14 +142,16 @@
     return self.arrayOfBooks.count;
 }
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     // Get the new view controller using [segue destinationViewController].
+     // Pass the selected object to the new view controller.
+     
+     GoogleBook *bookToPass = self.arrayOfBooks[[self.tableView indexPathForCell:sender].row];
+     SearchDetailsViewController *detailsVC = [segue destinationViewController];
+     detailsVC.bookPassed = bookToPass;
+ }
 
 @end

@@ -32,6 +32,7 @@
 		4FC2765A2878E58900ED3ACA /* RecommendationsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC276592878E58900ED3ACA /* RecommendationsDetailViewController.m */; };
 		4FC27660287C9E3500ED3ACA /* GoogleBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2765F287C9E3500ED3ACA /* GoogleBook.m */; };
 		4FC27662287DD82400ED3ACA /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FC27661287DD82400ED3ACA /* Keys.plist */; };
+		4FC27668287DE64A00ED3ACA /* SearchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC27667287DE64A00ED3ACA /* SearchDetailsViewController.m */; };
 		6C194A797230C582E171B5D3 /* Pods_BookWorm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52848B3014FC79971D2C5425 /* Pods_BookWorm.framework */; };
 		AA30A573E4FF0EEFE9EAE08A /* Pods_BookWorm_BookWormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E6B1B3D109AEA0F30C266B /* Pods_BookWorm_BookWormUITests.framework */; };
 		B7787CF0E0C4083DDA8C0BAD /* Pods_BookWormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B6135B0CCB78300E2A39B9 /* Pods_BookWormTests.framework */; };
@@ -103,6 +104,8 @@
 		4FC2765E287C9E3500ED3ACA /* GoogleBook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleBook.h; sourceTree = "<group>"; };
 		4FC2765F287C9E3500ED3ACA /* GoogleBook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleBook.m; sourceTree = "<group>"; };
 		4FC27661287DD82400ED3ACA /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		4FC27666287DE64A00ED3ACA /* SearchDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchDetailsViewController.h; sourceTree = "<group>"; };
+		4FC27667287DE64A00ED3ACA /* SearchDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchDetailsViewController.m; sourceTree = "<group>"; };
 		52848B3014FC79971D2C5425 /* Pods_BookWorm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWorm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		852401C44F12B736CF67DA6D /* Pods-BookWormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWormTests.debug.xcconfig"; path = "Target Support Files/Pods-BookWormTests/Pods-BookWormTests.debug.xcconfig"; sourceTree = "<group>"; };
 		87B6135B0CCB78300E2A39B9 /* Pods_BookWormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,6 +239,8 @@
 				4F80F600287895C500B93E31 /* SearchViewController.m */,
 				4FC276582878E58900ED3ACA /* RecommendationsDetailViewController.h */,
 				4FC276592878E58900ED3ACA /* RecommendationsDetailViewController.m */,
+				4FC27666287DE64A00ED3ACA /* SearchDetailsViewController.h */,
+				4FC27667287DE64A00ED3ACA /* SearchDetailsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -522,6 +527,7 @@
 				4F80F60A28789E6100B93E31 /* BookCell.m in Sources */,
 				4FC2765A2878E58900ED3ACA /* RecommendationsDetailViewController.m in Sources */,
 				4F80F5DC287674D300B93E31 /* FirstViewController.m in Sources */,
+				4FC27668287DE64A00ED3ACA /* SearchDetailsViewController.m in Sources */,
 				4F80F5F2287675F700B93E31 /* ProfileViewController.m in Sources */,
 				4F80F5E02876751700B93E31 /* LoginViewController.m in Sources */,
 				4F80F601287895C500B93E31 /* SearchViewController.m in Sources */,
