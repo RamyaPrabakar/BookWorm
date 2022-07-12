@@ -886,11 +886,11 @@
             </objects>
             <point key="canvasLocation" x="6016" y="82"/>
         </scene>
-        <!--Recommendations-->
+        <!--Recs-->
         <scene sceneID="F0L-VE-hXG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3vK-Fc-M9D" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recommendations" id="8RJ-w7-ydB"/>
+                    <tabBarItem key="tabBarItem" title="Recs" id="8RJ-w7-ydB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0oQ-6w-nwy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
