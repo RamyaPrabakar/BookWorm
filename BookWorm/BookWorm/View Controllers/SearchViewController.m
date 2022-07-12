@@ -61,7 +61,11 @@
         isbnString = [publisherString stringByAppendingString:@""];
     }
     
-    NSString *finalURL = [isbnString stringByAppendingString:@"&key=AIzaSyCjEvM7q5U2YBifQv82XnAy687T4NUee9A"];
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+    NSString *googleKey = [dict objectForKey: @"GoogleBooksAPIKey"];
+    NSString *finalURL = [isbnString stringByAppendingFormat:@"%@%@", @"&key=", googleKey];
+    // NSString *finalURL = [isbnString stringByAppendingString:@"&key=AIzaSyCjEvM7q5U2YBifQv82XnAy687T4NUee9A"];
     NSURL *url = [NSURL URLWithString:finalURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];

@@ -38,7 +38,14 @@
 }
 
 - (void) getBooks {
-    NSURL *url = [NSURL URLWithString:@"https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=YtAgwkllS22d8OMJZPnAE8hUJ167mguo"];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+    NSString *key = [dict objectForKey: @"NYtimesAPIKey"];
+    NSString *baseURL = @"https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=";
+    NSString *urlString = [baseURL stringByAppendingString:key];
+
+    NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

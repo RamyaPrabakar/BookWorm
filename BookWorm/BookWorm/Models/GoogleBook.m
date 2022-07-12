@@ -18,7 +18,6 @@
     self.buyLink = dictionary[@"buyLink"];
     self.bookDescription = dictionary[@"description"];
     self.authors = dictionary[@"authors"];
-    // self.bookImageLink = [dictionary[@"imageLinks"][@"thumbnail"] stringByAppendingString:@".png"];
     self.bookImageLink = dictionary[@"imageLinks"][@"thumbnail"];
     return self;
 }
