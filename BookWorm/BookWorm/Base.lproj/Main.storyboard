@@ -781,15 +781,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6S-rQ-noA">
-                                                <rect key="frame" x="10" y="338" width="394" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT8-UB-F6l">
                                                 <rect key="frame" x="10" y="255" width="394" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6S-rQ-noA">
+                                                <rect key="frame" x="10" y="338" width="394" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -807,8 +807,8 @@
                                             <constraint firstItem="OT8-UB-F6l" firstAttribute="top" secondItem="K5j-RH-xpK" secondAttribute="bottom" constant="10" id="c0A-ab-RiM"/>
                                             <constraint firstItem="K5j-RH-xpK" firstAttribute="centerX" secondItem="da2-F1-Fj9" secondAttribute="centerX" id="g68-wY-rb4"/>
                                             <constraint firstItem="S6S-rQ-noA" firstAttribute="top" secondItem="VQN-ty-hIE" secondAttribute="bottom" constant="10" id="gWk-Gk-cqB"/>
-                                            <constraint firstAttribute="bottom" secondItem="S6S-rQ-noA" secondAttribute="bottom" constant="10" id="hHl-ef-YRb"/>
                                             <constraint firstItem="wRQ-WV-Tyc" firstAttribute="top" secondItem="OT8-UB-F6l" secondAttribute="bottom" constant="10" id="lZW-Dj-wgP"/>
+                                            <constraint firstAttribute="bottom" secondItem="S6S-rQ-noA" secondAttribute="bottom" constant="10" id="ldx-v6-IDM"/>
                                             <constraint firstItem="OT8-UB-F6l" firstAttribute="leading" secondItem="da2-F1-Fj9" secondAttribute="leading" constant="10" id="luN-YM-IEN"/>
                                             <constraint firstAttribute="trailing" secondItem="VQN-ty-hIE" secondAttribute="trailing" constant="10" id="oid-r8-S2I"/>
                                         </constraints>
