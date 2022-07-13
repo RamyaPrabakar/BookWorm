@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SearchDetailsViewController : UIViewController
+@interface SearchDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) GoogleBook *bookPassed;
+@property (nonatomic, strong) NSArray *optionsData;
 @end
 
 NS_ASSUME_NONNULL_END

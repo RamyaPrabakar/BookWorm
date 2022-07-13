@@ -149,9 +149,11 @@
      // Get the new view controller using [segue destinationViewController].
      // Pass the selected object to the new view controller.
      
-     GoogleBook *bookToPass = self.arrayOfBooks[[self.tableView indexPathForCell:sender].row];
-     SearchDetailsViewController *detailsVC = [segue destinationViewController];
-     detailsVC.bookPassed = bookToPass;
+     if ([[segue identifier] isEqualToString:@"searchDetailsSegue"]) {
+         GoogleBook *bookToPass = self.arrayOfBooks[[self.tableView indexPathForCell:sender].row];
+         SearchDetailsViewController *detailsVC = [segue destinationViewController];
+         detailsVC.bookPassed = bookToPass;
+     }
  }
 
 @end

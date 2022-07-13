@@ -1,4 +1,5 @@
 BookWorm/Keys.plist
-BookWorm/Info.plist
+BookWorm/BookWorm/Info.plist
 .DS_Store
 build/*
+BookWorm/Pods

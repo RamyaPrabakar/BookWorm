@@ -12,12 +12,15 @@
 #import "BookCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "RecommendationsDetailViewController.h"
+#import "Parse/Parse.h"
+#import "PFImageView.h"
 
 // Frameworks
 #import <FBSDKCoreKit/FBSDKProfile.h>
 @interface RecommendationsViewController ()
 @property (nonatomic, strong) NSMutableArray *arrayOfBooks;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *profileImage;
 @end
 
 @implementation RecommendationsViewController
@@ -25,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
+    
     [self getBooks];
     self.arrayOfBooks = [[NSMutableArray alloc] init];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -129,9 +133,11 @@
      // Get the new view controller using [segue destinationViewController].
      // Pass the selected object to the new view controller.
      
-     Book *bookToPass = self.arrayOfBooks[[self.tableView indexPathForCell:sender].row];
-     RecommendationsDetailViewController *detailsVC = [segue destinationViewController];
-     detailsVC.bookPassed = bookToPass;
+     if ([[segue identifier] isEqualToString:@"recommendationsDetailSegue"]) {
+         Book *bookToPass = self.arrayOfBooks[[self.tableView indexPathForCell:sender].row];
+         RecommendationsDetailViewController *detailsVC = [segue destinationViewController];
+         detailsVC.bookPassed = bookToPass;
+     }
  }
 
 @end

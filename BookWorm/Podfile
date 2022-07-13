@@ -7,6 +7,7 @@ target 'BookWorm' do
 
   # Pods for BookWorm
   pod 'Parse'
+  pod 'Parse/UI'
   pod 'FBSDKLoginKit'
   pod 'AFNetworking'
 
