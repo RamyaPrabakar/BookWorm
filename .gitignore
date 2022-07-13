@@ -2,4 +2,5 @@ BookWorm/Keys.plist
 BookWorm/BookWorm/Info.plist
 .DS_Store
 build/*
+BookWorm/BookWorm.xcworkspace/xcuserdata/*
 BookWorm/Pods
