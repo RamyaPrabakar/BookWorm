@@ -9,17 +9,30 @@
 
 @implementation GoogleBook
 
+@dynamic bookId;
+@dynamic title;
+@dynamic subtitle;
+@dynamic publisher;
+@dynamic buyLink;
+@dynamic bookDescription;
+@dynamic authors;
+@dynamic bookImageLink;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
-    
-    self.title = dictionary[@"title"];
-    self.subtitle = dictionary[@"subtitle"];
-    self.publisher = dictionary[@"publisher"];
-    self.buyLink = dictionary[@"buyLink"];
-    self.bookDescription = dictionary[@"description"];
-    self.authors = dictionary[@"authors"];
-    self.bookImageLink = dictionary[@"imageLinks"][@"thumbnail"];
+    self.bookId = dictionary[@"id"];
+    self.title = dictionary[@"volumeInfo"][@"title"];
+    self.subtitle = dictionary[@"volumeInfo"][@"subtitle"];
+    self.publisher = dictionary[@"volumeInfo"][@"publisher"];
+    self.buyLink = dictionary[@"volumeInfo"][@"buyLink"];
+    self.bookDescription = dictionary[@"volumeInfo"][@"description"];
+    self.authors = dictionary[@"volumeInfo"][@"authors"];
+    self.bookImageLink = dictionary[@"volumeInfo"][@"imageLinks"][@"thumbnail"];
     return self;
+}
+
++ (nonnull NSString *)parseClassName {
+    return @"GoogleBook";
 }
 
 @end

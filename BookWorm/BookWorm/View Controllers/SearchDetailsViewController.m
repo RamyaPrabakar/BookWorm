@@ -47,9 +47,6 @@
     self.optionsTableView.delegate = self;
     self.optionsTableView.dataSource = self;
     self.optionsTableView.hidden = YES;
-    
-    PFUser *currUser = [PFUser currentUser];
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,25 +61,49 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.optionsTableView cellForRowAtIndexPath:indexPath];
+    
+    // getting the previous title of the button
+    NSString *prevTitle = self.markThisBookButton.titleLabel.text;
+    NSLog(@"prev title");
+    NSLog(@"%@", prevTitle);
+    // setting the new title of the button
     [self.markThisBookButton setTitle:cell.textLabel.text forState:UIControlStateNormal];
+    NSLog(@"I got here");
     self.optionsTableView.hidden = YES;
     
+    NSString *currTitle = [self.markThisBookButton currentTitle];
     
-     PFUser *currUser = [PFUser currentUser];
+    NSLog(@"current title");
+    NSLog(@"%@", currTitle);
     
-    if ([[self.markThisBookButton currentTitle] isEqualToString:@"To Read"]) {
-        currUser[@"toRead"] = @YES;
-    } else if ([[self.markThisBookButton currentTitle] isEqualToString:@"Read"]) {
-        currUser[@"read"] = @YES;
-    } else if ([[self.markThisBookButton currentTitle] isEqualToString:@"Reading"]) {
-        currUser[@"reading"] = @YES;
+    currTitle = [currTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
+    prevTitle = [prevTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSLog(@"prev title");
+    NSLog(@"%@", prevTitle);
+    
+    NSLog(@"current title");
+    NSLog(@"%@", currTitle);
+    PFUser *currUser = [PFUser currentUser];
+    
+    if ([currTitle isEqualToString:prevTitle]) {
+        return;
+    } else if ([currTitle isEqualToString:@"Markthisbook"]) {
+        [currUser removeObject:self.bookPassed forKey:prevTitle];
+    } else if ([prevTitle isEqualToString:@"Markthisbook"]) {
+        [currUser addObject:self.bookPassed forKey:currTitle];
     } else {
-        currUser[@"read"] = @NO;
-        currUser[@"toRead"] = @NO;
-        currUser[@"reading"] = @NO;
+        [currUser removeObject:self.bookPassed forKey:prevTitle];
+        [currUser addObject:self.bookPassed forKey:currTitle];
     }
     
-    [currUser saveInBackground];
+    [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Saved!");
+        } else {
+            NSLog(@"Error: %@", error.description);
+        }
+    }];
 }
 
 - (IBAction)markButtonPressed:(id)sender {

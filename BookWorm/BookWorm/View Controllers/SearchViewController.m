@@ -83,8 +83,7 @@
                
                for (NSDictionary *item in itemsArray) {
                    // Get the volumeInfo dictionary
-                   NSDictionary *volumeInfoDictionary = item[@"volumeInfo"];
-                   GoogleBook *googleBook = [[GoogleBook alloc]initWithDictionary:volumeInfoDictionary];
+                   GoogleBook *googleBook = [[GoogleBook alloc]initWithDictionary:item];
                    [self.arrayOfBooks addObject:googleBook];
                }
            }
