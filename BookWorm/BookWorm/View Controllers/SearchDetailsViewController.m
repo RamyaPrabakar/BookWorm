@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookDesciption;
 @property (weak, nonatomic) IBOutlet UIButton *markThisBookButton;
 @property (weak, nonatomic) IBOutlet UITableView *optionsTableView;
+@property (weak, nonatomic) NSString *buttonString;
 
 @end
 @implementation SearchDetailsViewController
@@ -47,6 +48,51 @@
     self.optionsTableView.delegate = self;
     self.optionsTableView.dataSource = self;
     self.optionsTableView.hidden = YES;
+    
+    PFUser *currUser = [PFUser currentUser];
+    
+    for (GoogleBook * obj in currUser[@"Reading"]) {
+        [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (!error) {
+                if ([obj.bookId isEqualToString:self.bookPassed.bookId]) {
+                    [self.markThisBookButton setTitle:@"Reading" forState:UIControlStateNormal];
+                    return;
+                }
+            }
+        }];
+    }
+    
+    for (GoogleBook * obj in currUser[@"Read"]) {
+        [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (!error) {
+                if ([obj.bookId isEqualToString:self.bookPassed.bookId]) {
+                    [self.markThisBookButton setTitle:@"Read" forState:UIControlStateNormal];
+                    return;
+                }
+            }
+        }];
+    }
+    
+    for (GoogleBook * obj in currUser[@"ToRead"]) {
+        [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (!error) {
+                if ([obj.bookId isEqualToString:self.bookPassed.bookId]) {
+                    [self.markThisBookButton setTitle:@"To Read" forState:UIControlStateNormal];
+                    return;
+                }
+            }
+        }];
+    }
+    
+    /* PFQuery *query = [PFQuery queryWithClassName:@"GoogleBooks"];
+    [query whereKey:@"objectId" containedIn:readingUserObjectIds];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        NSLog(@"%@", objects);
+        readingArray = [[NSArray alloc] initWithArray:objects];
+    }];
+    
+    NSLog(@"I came here");
+    NSLog(@"%@", readingArray);*/
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,26 +110,28 @@
     
     // getting the previous title of the button
     NSString *prevTitle = self.markThisBookButton.titleLabel.text;
-    NSLog(@"prev title");
-    NSLog(@"%@", prevTitle);
+    // NSLog(@"prev title");
+    // NSLog(@"%@", prevTitle);
     // setting the new title of the button
     [self.markThisBookButton setTitle:cell.textLabel.text forState:UIControlStateNormal];
-    NSLog(@"I got here");
+    // NSLog(@"I got here");
     self.optionsTableView.hidden = YES;
     
     NSString *currTitle = [self.markThisBookButton currentTitle];
-    
-    NSLog(@"current title");
-    NSLog(@"%@", currTitle);
+    self.buttonString = currTitle;
+    // NSLog(@"current title");
+    // NSLog(@"%@", currTitle);
     
     currTitle = [currTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
     prevTitle = [prevTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    NSLog(@"prev title");
-    NSLog(@"%@", prevTitle);
+    // NSLog(@"prev title");
+    // NSLog(@"%@", prevTitle);
     
-    NSLog(@"current title");
-    NSLog(@"%@", currTitle);
+    // NSLog(@"current title");
+    // NSLog(@"%@", currTitle);
+    
+    
     PFUser *currUser = [PFUser currentUser];
     
     if ([currTitle isEqualToString:prevTitle]) {
@@ -94,6 +142,7 @@
         [currUser addObject:self.bookPassed forKey:currTitle];
     } else {
         [currUser removeObject:self.bookPassed forKey:prevTitle];
+        [currUser saveInBackground];
         [currUser addObject:self.bookPassed forKey:currTitle];
     }
     

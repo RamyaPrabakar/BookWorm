@@ -76,7 +76,7 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSLog(@"%@", dataDictionary);
+               // NSLog(@"%@", dataDictionary);
                
                [self.arrayOfBooks removeAllObjects];
                NSArray *itemsArray = dataDictionary[@"items"];
@@ -105,8 +105,8 @@
         result = [result stringByAppendingString:@"+"];
     }
     
-    NSLog(@"Word");
-    NSLog(@"%@", result);
+    // NSLog(@"Word");
+    // NSLog(@"%@", result);
     return result;
 }
 
@@ -136,8 +136,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"Array count: ");
-    NSLog(@"%lu", (unsigned long)self.arrayOfBooks.count);
+    // NSLog(@"Array count: ");
+    // NSLog(@"%lu", (unsigned long)self.arrayOfBooks.count);
     return self.arrayOfBooks.count;
 }
 
