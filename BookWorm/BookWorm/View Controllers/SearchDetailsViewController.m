@@ -83,16 +83,6 @@
             }
         }];
     }
-    
-    /* PFQuery *query = [PFQuery queryWithClassName:@"GoogleBooks"];
-    [query whereKey:@"objectId" containedIn:readingUserObjectIds];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        NSLog(@"%@", objects);
-        readingArray = [[NSArray alloc] initWithArray:objects];
-    }];
-    
-    NSLog(@"I came here");
-    NSLog(@"%@", readingArray);*/
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -110,40 +100,36 @@
     
     // getting the previous title of the button
     NSString *prevTitle = self.markThisBookButton.titleLabel.text;
-    // NSLog(@"prev title");
-    // NSLog(@"%@", prevTitle);
+    
     // setting the new title of the button
     [self.markThisBookButton setTitle:cell.textLabel.text forState:UIControlStateNormal];
-    // NSLog(@"I got here");
     self.optionsTableView.hidden = YES;
     
     NSString *currTitle = [self.markThisBookButton currentTitle];
     self.buttonString = currTitle;
-    // NSLog(@"current title");
-    // NSLog(@"%@", currTitle);
     
     currTitle = [currTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
     prevTitle = [prevTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    // NSLog(@"prev title");
-    // NSLog(@"%@", prevTitle);
-    
-    // NSLog(@"current title");
-    // NSLog(@"%@", currTitle);
-    
-    
+        
     PFUser *currUser = [PFUser currentUser];
     
+    // no change to be made
     if ([currTitle isEqualToString:prevTitle]) {
         return;
     } else if ([currTitle isEqualToString:@"Markthisbook"]) {
+        // We are unmarking this book. This means we want to remove
+        // the GoogleBook pointer for the previous array and delete
+        // the book from the Google Book database
         [currUser removeObject:self.bookPassed forKey:prevTitle];
     } else if ([prevTitle isEqualToString:@"Markthisbook"]) {
-        [currUser addObject:self.bookPassed forKey:currTitle];
+        // We just add the object to the list we want to add it too - DONE
+        [currUser addUniqueObject:self.bookPassed forKey:currTitle];
     } else {
+        // changing from one list to another. Remove the book from one list.
+        // Put the pointer to the same book in another list
         [currUser removeObject:self.bookPassed forKey:prevTitle];
         [currUser saveInBackground];
-        [currUser addObject:self.bookPassed forKey:currTitle];
+        [currUser addUniqueObject:self.bookPassed forKey:currTitle];
     }
     
     [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

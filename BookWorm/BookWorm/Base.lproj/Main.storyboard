@@ -116,16 +116,86 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MB-0x-z1K">
-                                <rect key="frame" x="170" y="411" width="75" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YhG-MK-vi3">
+                                <rect key="frame" x="109.5" y="285" width="195" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="WHe-cS-3vK"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="filled" title="Reading">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="markButtonPressed:" destination="yCe-cC-YRb" eventType="touchUpInside" id="xTE-QH-3Qa"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O2X-YZ-4V1">
+                                <rect key="frame" x="109.5" y="316" width="195" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="cZk-Ar-0nb"/>
+                                </constraints>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cin-2q-L9t">
+                                <rect key="frame" x="109.5" y="464" width="195" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="eir-lq-ZC0"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="filled" title="Read">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="markButtonPressed:" destination="yCe-cC-YRb" eventType="touchUpInside" id="CNG-H5-Ez2"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jJv-5T-eLA">
+                                <rect key="frame" x="109.5" y="495" width="195" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Nfq-tB-i8n"/>
+                                </constraints>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGO-k6-1hE">
+                                <rect key="frame" x="109.5" y="106" width="195" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="QL4-zh-grH"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="filled" title=" To Read">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="markButtonPressed:" destination="yCe-cC-YRb" eventType="touchUpInside" id="0UC-vn-cOh"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fCP-FM-e2d">
+                                <rect key="frame" x="109.5" y="137" width="195" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="x3d-dU-Xxf"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="129-cC-NDq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SGO-k6-1hE" firstAttribute="centerX" secondItem="129-cC-NDq" secondAttribute="centerX" id="1N8-US-bWh"/>
+                            <constraint firstItem="fCP-FM-e2d" firstAttribute="top" secondItem="SGO-k6-1hE" secondAttribute="bottom" id="BuQ-67-bV4"/>
+                            <constraint firstItem="YhG-MK-vi3" firstAttribute="centerX" secondItem="129-cC-NDq" secondAttribute="centerX" id="D5m-vW-AX9"/>
+                            <constraint firstItem="cin-2q-L9t" firstAttribute="centerX" secondItem="129-cC-NDq" secondAttribute="centerX" id="KiL-YA-y5p"/>
+                            <constraint firstItem="cin-2q-L9t" firstAttribute="top" secondItem="O2X-YZ-4V1" secondAttribute="bottom" constant="20" id="MpW-Xa-IiD"/>
+                            <constraint firstItem="SGO-k6-1hE" firstAttribute="top" secondItem="129-cC-NDq" secondAttribute="top" constant="50" id="PtU-tb-zMh"/>
+                            <constraint firstItem="YhG-MK-vi3" firstAttribute="top" secondItem="fCP-FM-e2d" secondAttribute="bottom" constant="20" id="V97-Ld-FJq"/>
+                            <constraint firstItem="O2X-YZ-4V1" firstAttribute="top" secondItem="YhG-MK-vi3" secondAttribute="bottom" id="aaz-vF-6KF"/>
+                            <constraint firstItem="jJv-5T-eLA" firstAttribute="width" secondItem="cin-2q-L9t" secondAttribute="width" id="c7G-7g-AmX"/>
+                            <constraint firstItem="fCP-FM-e2d" firstAttribute="width" secondItem="SGO-k6-1hE" secondAttribute="width" id="gMo-JW-r96"/>
+                            <constraint firstItem="jJv-5T-eLA" firstAttribute="centerX" secondItem="129-cC-NDq" secondAttribute="centerX" id="h8Y-uH-ojg"/>
+                            <constraint firstItem="jJv-5T-eLA" firstAttribute="top" secondItem="cin-2q-L9t" secondAttribute="bottom" id="jCq-1b-UNg"/>
+                            <constraint firstItem="fCP-FM-e2d" firstAttribute="centerX" secondItem="129-cC-NDq" secondAttribute="centerX" id="oUr-M7-Hj7"/>
+                            <constraint firstItem="O2X-YZ-4V1" firstAttribute="width" secondItem="YhG-MK-vi3" secondAttribute="width" id="olY-a5-y9T"/>
+                            <constraint firstItem="O2X-YZ-4V1" firstAttribute="centerX" secondItem="129-cC-NDq" secondAttribute="centerX" id="zaO-GL-Br3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cY9-rM-Gsh">
                         <barButtonItem key="rightBarButtonItem" image="person" catalog="system" id="j0H-bi-Nv7">
@@ -1034,7 +1104,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Xqo-ch-zQ2"/>
+        <segue reference="P0C-PF-Pa4"/>
         <segue reference="7QM-sK-AMr"/>
     </inferredMetricsTieBreakers>
     <resources>
