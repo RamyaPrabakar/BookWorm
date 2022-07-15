@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookDesciption;
 @property (weak, nonatomic) IBOutlet UIButton *markThisBookButton;
 @property (weak, nonatomic) IBOutlet UITableView *optionsTableView;
+@property (weak, nonatomic) NSString *buttonString;
 
 @end
 @implementation SearchDetailsViewController
@@ -50,6 +51,35 @@
     
     PFUser *currUser = [PFUser currentUser];
     
+    // Fetching books from the user's "reading" list
+    for (GoogleBook * book in currUser[@"Reading"]) {
+        [book fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (!error && [book.bookId isEqualToString:self.bookPassed.bookId]) {
+                [self.markThisBookButton setTitle:@"Reading" forState:UIControlStateNormal];
+                return;
+            }
+        }];
+    }
+    
+    // Fetching books from the user's "read" list
+    for (GoogleBook * book in currUser[@"Read"]) {
+        [book fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (!error && [book.bookId isEqualToString:self.bookPassed.bookId]) {
+                [self.markThisBookButton setTitle:@"Read" forState:UIControlStateNormal];
+                return;
+            }
+        }];
+    }
+    
+    // Fetching books from the user's "to read" list
+    for (GoogleBook * book in currUser[@"ToRead"]) {
+        [book fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (!error && [book.bookId isEqualToString:self.bookPassed.bookId]) {
+                [self.markThisBookButton setTitle:@"To Read" forState:UIControlStateNormal];
+                return;
+            }
+        }];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,25 +94,47 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.optionsTableView cellForRowAtIndexPath:indexPath];
+    
+    // getting the previous title of the button
+    NSString *prevTitle = self.markThisBookButton.titleLabel.text;
+    
+    // setting the new title of the button
     [self.markThisBookButton setTitle:cell.textLabel.text forState:UIControlStateNormal];
     self.optionsTableView.hidden = YES;
     
+    NSString *currTitle = [self.markThisBookButton currentTitle];
+    self.buttonString = currTitle;
     
-     PFUser *currUser = [PFUser currentUser];
+    currTitle = [currTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
+    prevTitle = [prevTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+    PFUser *currUser = [PFUser currentUser];
     
-    if ([[self.markThisBookButton currentTitle] isEqualToString:@"To Read"]) {
-        currUser[@"toRead"] = @YES;
-    } else if ([[self.markThisBookButton currentTitle] isEqualToString:@"Read"]) {
-        currUser[@"read"] = @YES;
-    } else if ([[self.markThisBookButton currentTitle] isEqualToString:@"Reading"]) {
-        currUser[@"reading"] = @YES;
+    // no change to be made
+    if ([currTitle isEqualToString:prevTitle]) {
+        return;
+    } else if ([currTitle isEqualToString:@"Markthisbook"]) {
+        // We are unmarking this book. This means we want to remove
+        // the GoogleBook pointer for the previous array and delete
+        // the book from the Google Book database
+        [currUser removeObject:self.bookPassed forKey:prevTitle];
+    } else if ([prevTitle isEqualToString:@"Markthisbook"]) {
+        // We just add the object to the list we want to add it too
+        [currUser addUniqueObject:self.bookPassed forKey:currTitle];
     } else {
-        currUser[@"read"] = @NO;
-        currUser[@"toRead"] = @NO;
-        currUser[@"reading"] = @NO;
+        // changing from one list to another. Remove the book from one list.
+        // Put the pointer to the same book in another list
+        [currUser removeObject:self.bookPassed forKey:prevTitle];
+        [currUser addUniqueObject:self.bookPassed forKey:currTitle];
     }
     
-    [currUser saveInBackground];
+    [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // TODO: See if I can add a notification to tell the user that the change has been saved
+        } else {
+            // TODO: Notify the user that the change has not been saved
+        }
+    }];
 }
 
 - (IBAction)markButtonPressed:(id)sender {
