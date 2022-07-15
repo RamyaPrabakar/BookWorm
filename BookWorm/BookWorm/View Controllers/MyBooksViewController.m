@@ -48,30 +48,29 @@
     self.readTableView.hidden = YES;
     
     [self fetchFromParse];
-    
-    NSLog(@"COUNTS");
-    NSLog(@"%lu", (unsigned long)[self.toReadBooks count]);
-    NSLog(@"%lu", (unsigned long)[self.readBooks count]);
-    NSLog(@"%lu", (unsigned long)[self.readingBooks count]);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.readingBooks removeAllObjects];
+    [self.readBooks removeAllObjects];
+    [self.toReadBooks removeAllObjects];
+    [self fetchFromParse];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    // NSLog(@"Do I get here?");
+   
     if (tableView == self.readingTableView) {
-        // NSLog(@"%lu", (unsigned long)self.readingBooks.count);
         if ([self.readingBooks count] == 0) {
             return 1;
         }
         return [self.readingBooks count];
     } else if (tableView == self.readTableView) {
-        // NSLog(@"%lu", (unsigned long)self.readBooks.count);
         if ([self.readBooks count] == 0) {
             return 1;
         }
         return [self.readBooks count];
     } else if (tableView == self.toReadTableView) {
-        // NSLog(@"%lu", (unsigned long)self.toReadBooks.count);
         if ([self.toReadBooks count] == 0) {
             return 1;
         }
@@ -83,10 +82,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = nil;
-    // NSLog(@"Did I atleast get here");
     
     if (tableView == self.readingTableView) {
-        // NSLog(@"I got here");
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if ([self.readingBooks count] == 0) {
             cell.textLabel.text = @"No books in your reading list";
@@ -94,7 +91,6 @@
         }
         cell.textLabel.text = self.readingBooks[indexPath.row][@"title"];
     } else if (tableView == self.readTableView) {
-        // NSLog(@"I got here too");
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if ([self.readBooks count] == 0) {
             cell.textLabel.text = @"No books in your read list";
@@ -102,7 +98,6 @@
         }
         cell.textLabel.text = self.readBooks[indexPath.row][@"title"];
     } else if (tableView == self.toReadTableView) {
-        // NSLog(@"I got here yay");
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if ([self.toReadBooks count] == 0) {
             cell.textLabel.text = @"No books in your to read list";
@@ -142,14 +137,10 @@
     PFUser *currUser = [PFUser currentUser];
     
     // Fetching books from the user's "reading" list
-    for (GoogleBook * obj in currUser[@"Reading"]) {
-        [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+    for (GoogleBook * book in currUser[@"Reading"]) {
+        [book fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
             if (!error) {
-                NSLog(@"Came to reading");
-                NSLog(@"%@", obj);
-                [self.readingBooks addObject:obj];
-                NSLog(@"Count reading");
-                NSLog(@"%lu", (unsigned long)[self.readingBooks count]);
+                [self.readingBooks addObject:book];
                 [self.readingTableView reloadData];
             }
         }];
@@ -157,28 +148,20 @@
     }
     
     // Fetching books from the user's "read" list
-    for (GoogleBook * obj in currUser[@"Read"]) {
-        [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+    for (GoogleBook * book in currUser[@"Read"]) {
+        [book fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
             if (!error) {
-                NSLog(@"Came to read");
-                NSLog(@"%@", obj);
-                [self.readBooks addObject:obj];
-                NSLog(@"Count read");
-                NSLog(@"%lu", (unsigned long)[self.readingBooks count]);
+                [self.readBooks addObject:book];
                 [self.readTableView reloadData];
             }
         }];
     }
     
     // Fetching books from the user's "to read" list
-    for (GoogleBook * obj in currUser[@"ToRead"]) {
-        [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+    for (GoogleBook * book in currUser[@"ToRead"]) {
+        [book fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
             if (!error) {
-                NSLog(@"Came to to read");
-                NSLog(@"%@", obj);
-                [self.toReadBooks addObject:obj];
-                NSLog(@"Count to read");
-                NSLog(@"%lu", (unsigned long)[self.readingBooks count]);
+                [self.toReadBooks addObject:book];
                 [self.toReadTableView reloadData];
             }
         }];

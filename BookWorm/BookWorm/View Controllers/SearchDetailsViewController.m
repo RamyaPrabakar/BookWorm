@@ -52,37 +52,31 @@
     PFUser *currUser = [PFUser currentUser];
     
     // Fetching books from the user's "reading" list
-    for (GoogleBook * obj in currUser[@"Reading"]) {
-        [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-            if (!error) {
-                if ([obj.bookId isEqualToString:self.bookPassed.bookId]) {
-                    [self.markThisBookButton setTitle:@"Reading" forState:UIControlStateNormal];
-                    return;
-                }
+    for (GoogleBook * book in currUser[@"Reading"]) {
+        [book fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (!error && [book.bookId isEqualToString:self.bookPassed.bookId]) {
+                [self.markThisBookButton setTitle:@"Reading" forState:UIControlStateNormal];
+                return;
             }
         }];
     }
     
     // Fetching books from the user's "read" list
-    for (GoogleBook * obj in currUser[@"Read"]) {
-        [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-            if (!error) {
-                if ([obj.bookId isEqualToString:self.bookPassed.bookId]) {
-                    [self.markThisBookButton setTitle:@"Read" forState:UIControlStateNormal];
-                    return;
-                }
+    for (GoogleBook * book in currUser[@"Read"]) {
+        [book fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (!error && [book.bookId isEqualToString:self.bookPassed.bookId]) {
+                [self.markThisBookButton setTitle:@"Read" forState:UIControlStateNormal];
+                return;
             }
         }];
     }
     
     // Fetching books from the user's "to read" list
-    for (GoogleBook * obj in currUser[@"ToRead"]) {
-        [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-            if (!error) {
-                if ([obj.bookId isEqualToString:self.bookPassed.bookId]) {
-                    [self.markThisBookButton setTitle:@"To Read" forState:UIControlStateNormal];
-                    return;
-                }
+    for (GoogleBook * book in currUser[@"ToRead"]) {
+        [book fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (!error && [book.bookId isEqualToString:self.bookPassed.bookId]) {
+                [self.markThisBookButton setTitle:@"To Read" forState:UIControlStateNormal];
+                return;
             }
         }];
     }
@@ -131,15 +125,14 @@
         // changing from one list to another. Remove the book from one list.
         // Put the pointer to the same book in another list
         [currUser removeObject:self.bookPassed forKey:prevTitle];
-        [currUser saveInBackground];
         [currUser addUniqueObject:self.bookPassed forKey:currTitle];
     }
     
     [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            NSLog(@"Saved!");
+            // TODO: See if I can add a notification to tell the user that the change has been saved
         } else {
-            NSLog(@"Error: %@", error.description);
+            // TODO: Notify the user that the change has not been saved
         }
     }];
 }
