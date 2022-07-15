@@ -46,8 +46,6 @@
     self.readTableView.delegate = self;
     self.readTableView.dataSource = self;
     self.readTableView.hidden = YES;
-    
-    [self fetchFromParse];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
