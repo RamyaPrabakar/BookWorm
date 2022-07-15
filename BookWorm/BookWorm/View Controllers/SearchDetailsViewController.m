@@ -51,6 +51,7 @@
     
     PFUser *currUser = [PFUser currentUser];
     
+    // Fetching books from the user's "reading" list
     for (GoogleBook * obj in currUser[@"Reading"]) {
         [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
             if (!error) {
@@ -62,6 +63,7 @@
         }];
     }
     
+    // Fetching books from the user's "read" list
     for (GoogleBook * obj in currUser[@"Read"]) {
         [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
             if (!error) {
@@ -73,6 +75,7 @@
         }];
     }
     
+    // Fetching books from the user's "to read" list
     for (GoogleBook * obj in currUser[@"ToRead"]) {
         [obj fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
             if (!error) {
@@ -122,7 +125,7 @@
         // the book from the Google Book database
         [currUser removeObject:self.bookPassed forKey:prevTitle];
     } else if ([prevTitle isEqualToString:@"Markthisbook"]) {
-        // We just add the object to the list we want to add it too - DONE
+        // We just add the object to the list we want to add it too
         [currUser addUniqueObject:self.bookPassed forKey:currTitle];
     } else {
         // changing from one list to another. Remove the book from one list.

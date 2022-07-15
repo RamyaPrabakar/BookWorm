@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MyBooksViewController : UIViewController
+@interface MyBooksViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
 

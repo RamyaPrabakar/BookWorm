@@ -117,60 +117,60 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YhG-MK-vi3">
-                                <rect key="frame" x="109.5" y="285" width="195" height="31"/>
+                                <rect key="frame" x="57" y="285" width="300" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="195" id="WHe-cS-3vK"/>
+                                    <constraint firstAttribute="width" constant="300" id="WHe-cS-3vK"/>
                                 </constraints>
                                 <buttonConfiguration key="configuration" style="filled" title="Reading">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="markButtonPressed:" destination="yCe-cC-YRb" eventType="touchUpInside" id="xTE-QH-3Qa"/>
+                                    <action selector="readingButtonPressed:" destination="hip-ov-YyQ" eventType="touchUpInside" id="Bbm-a0-DLC"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O2X-YZ-4V1">
-                                <rect key="frame" x="109.5" y="316" width="195" height="128"/>
+                                <rect key="frame" x="57" y="316" width="300" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="cZk-Ar-0nb"/>
                                 </constraints>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cin-2q-L9t">
-                                <rect key="frame" x="109.5" y="464" width="195" height="31"/>
+                                <rect key="frame" x="57" y="464" width="300" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="195" id="eir-lq-ZC0"/>
+                                    <constraint firstAttribute="width" constant="300" id="eir-lq-ZC0"/>
                                 </constraints>
                                 <buttonConfiguration key="configuration" style="filled" title="Read">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="markButtonPressed:" destination="yCe-cC-YRb" eventType="touchUpInside" id="CNG-H5-Ez2"/>
+                                    <action selector="readButtonPressed:" destination="hip-ov-YyQ" eventType="touchUpInside" id="P2q-fG-H1c"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jJv-5T-eLA">
-                                <rect key="frame" x="109.5" y="495" width="195" height="128"/>
+                                <rect key="frame" x="57" y="495" width="300" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="Nfq-tB-i8n"/>
                                 </constraints>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGO-k6-1hE">
-                                <rect key="frame" x="109.5" y="106" width="195" height="31"/>
+                                <rect key="frame" x="57" y="106" width="300" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="195" id="QL4-zh-grH"/>
+                                    <constraint firstAttribute="width" constant="300" id="QL4-zh-grH"/>
                                 </constraints>
                                 <buttonConfiguration key="configuration" style="filled" title=" To Read">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="markButtonPressed:" destination="yCe-cC-YRb" eventType="touchUpInside" id="0UC-vn-cOh"/>
+                                    <action selector="toReadButtonPressed:" destination="hip-ov-YyQ" eventType="touchUpInside" id="ezi-60-Nnv"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fCP-FM-e2d">
-                                <rect key="frame" x="109.5" y="137" width="195" height="128"/>
+                                <rect key="frame" x="57" y="137" width="300" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="x3d-dU-Xxf"/>
@@ -204,10 +204,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="readButton" destination="cin-2q-L9t" id="Hdg-2w-Mpi"/>
+                        <outlet property="readTableView" destination="jJv-5T-eLA" id="9yK-ew-CWW"/>
+                        <outlet property="readingButton" destination="YhG-MK-vi3" id="OKb-Cz-YaY"/>
+                        <outlet property="readingTableView" destination="O2X-YZ-4V1" id="TfE-RL-g6h"/>
+                        <outlet property="toReadButton" destination="SGO-k6-1hE" id="rtc-0L-tDL"/>
+                        <outlet property="toReadTableView" destination="fCP-FM-e2d" id="ys1-0a-r9h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FWp-tt-ZqB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5107" y="82"/>
+            <point key="canvasLocation" x="5105.7971014492759" y="81.696428571428569"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Hcn-sc-IYV">
