@@ -55,6 +55,7 @@
     NSLog(@"%lu", (unsigned long)[self.readingBooks count]);
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     // NSLog(@"Do I get here?");
     if (tableView == self.readingTableView) {
@@ -83,6 +84,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = nil;
     // NSLog(@"Did I atleast get here");
+    
     if (tableView == self.readingTableView) {
         // NSLog(@"I got here");
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
