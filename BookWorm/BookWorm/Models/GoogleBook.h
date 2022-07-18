@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *subtitle; // The subtitle of the book
 @property (nonatomic, strong) NSString *publisher; // The publisher of the book
 @property (nonatomic, strong) NSString *bookId; // Unique id that represents the book
+@property (nonatomic, strong) NSArray *comments; // The comments for the given book
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

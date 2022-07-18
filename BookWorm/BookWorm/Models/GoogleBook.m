@@ -17,6 +17,7 @@
 @dynamic bookDescription;
 @dynamic authors;
 @dynamic bookImageLink;
+@dynamic comments;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];

@@ -53,6 +53,9 @@
     [self.readBooks removeAllObjects];
     [self.toReadBooks removeAllObjects];
     [self fetchFromParse];
+    [self.readTableView reloadData];
+    [self.readingTableView reloadData];
+    [self.toReadTableView reloadData];
 }
 
 
@@ -85,6 +88,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if ([self.readingBooks count] == 0) {
             cell.textLabel.text = @"No books in your reading list";
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
         }
         cell.textLabel.text = self.readingBooks[indexPath.row][@"title"];
@@ -92,6 +96,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if ([self.readBooks count] == 0) {
             cell.textLabel.text = @"No books in your read list";
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
         }
         cell.textLabel.text = self.readBooks[indexPath.row][@"title"];
@@ -99,11 +104,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if ([self.toReadBooks count] == 0) {
             cell.textLabel.text = @"No books in your to read list";
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
         }
         cell.textLabel.text = self.toReadBooks[indexPath.row][@"title"];
     }
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
