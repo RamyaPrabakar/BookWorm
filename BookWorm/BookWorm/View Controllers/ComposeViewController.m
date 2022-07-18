@@ -24,13 +24,9 @@
     [[self.commentSpace layer] setBorderColor:[[UIColor grayColor] CGColor]];
     [[self.commentSpace layer] setBorderWidth:2.3];
     [[self.commentSpace layer] setCornerRadius:15];
-    
-    NSLog(@"Book Passed");
-    NSLog(@"%@", self.bookPassed);
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-    self.commentSaved.text = @"";
     NSString *substring = [NSString stringWithString:textView.text];
     
     if (substring.length > 0) {
@@ -52,7 +48,6 @@
 }
 
 - (IBAction)compose:(id)sender {
-    NSLog(@"Umm hello???");
     PFObject *comment = [PFObject objectWithClassName:@"Comment"];
     PFUser *currUser = [PFUser currentUser];
     comment[@"author"] = currUser;
@@ -60,15 +55,15 @@
     
     [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            self.commentSaved.text = @"Comment saved";
+            self.commentSaved.text = @"Comment saved!";
         } else {
             self.commentSaved.text = @"Error saving comment";
         }
     }];
     
+    [self performSelector:@selector(hideLabel:) withObject:nil afterDelay:2.0];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"GoogleBook"];
-    NSLog(@"I got here");
-    NSLog(@"%@", self.bookPassed.bookId);
     [query whereKey:@"bookId" equalTo:self.bookPassed.bookId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
@@ -99,17 +94,10 @@
         NSLog(@"Error: %@ %@", error, [error userInfo]);
       }
     }];
-    
-    /* GoogleBook *book = (GoogleBook*)self.bookPassed;
-    [book addUniqueObject:comment forKey:@"comments"];
-    
-    [book saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            // TODO: See if I can add a notification to tell the user that the comment has been saved
-        } else {
-            // TODO: Notify the user that the comment has not been saved
-        }
-    }];*/
+}
+
+-(void)hideLabel:(NSTimer *)timer {
+    [self.commentSaved setHidden:YES];
 }
 
 

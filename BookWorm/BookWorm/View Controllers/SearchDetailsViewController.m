@@ -9,6 +9,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "Parse/Parse.h"
 #import "ComposeViewController.h"
+#import "Comment.h"
+#import "CommentCell.h"
 
 @interface SearchDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
@@ -21,7 +23,7 @@
 @property (weak, nonatomic) NSString *buttonString;
 @property (weak, nonatomic) IBOutlet UIButton *commentsButton;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
-
+@property (nonatomic, strong) NSMutableArray *commentsArray;
 @end
 @implementation SearchDetailsViewController
 
@@ -32,7 +34,7 @@
     self.bookTitle.text = self.bookPassed.title;
     self.bookSubtitle.text = self.bookPassed.subtitle;
     self.bookDesciption.text = self.bookPassed.bookDescription;
-    
+    self.commentsArray = [[NSMutableArray alloc] init];
     NSURL *bookPosterURL = [NSURL URLWithString:self.bookPassed.bookImageLink];
     [self.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
     
@@ -87,28 +89,76 @@
             }
         }];
     }
+    
+    // fetching all the comments for the current book
+    PFQuery *query = [PFQuery queryWithClassName:@"GoogleBook"];
+    [query whereKey:@"bookId" equalTo:self.bookPassed.bookId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+          NSLog(@"Successfully retrieved %lu book.", (unsigned long)objects.count);
+          
+          if ([objects count] != 0) {
+              // adding all the comment objects to the commentsArray
+              NSLog(@"%@", objects[0]);
+              for (Comment *comment in objects[0][@"comments"]) {
+                  [comment fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                      NSLog(@"%@", comment);
+                      [self.commentsArray addObject:comment];
+                  }];
+              }
+          }
+      } else {
+          // Log details of the failure
+          NSLog(@"Error: %@ %@", error, [error userInfo]);
+      }
+    }];
+    
+    NSLog(@"%@", self.commentsArray);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    
+    CommentCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [commentCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     if (tableView == self.optionsTableView) {
         cell.textLabel.text = self.optionsData[indexPath.row];
+        return cell;
     } else if (tableView == self.commentsTableView) {
-        cell.textLabel.text = @"Commments will be here";
+        if ([self.commentsArray count] == 0) {
+            NSLog(@"I come here");
+            cell.textLabel.text = @"No comments for this book";
+            return cell;
+        }
+        
+        Comment *currComment = self.commentsArray[indexPath.row];
+        commentCell.commentLabel.text = currComment.comment;
+        PFUser *author = currComment[@"author"];
+        
+        [author fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            commentCell.usernameLabel.text = author[@"username"];
+            commentCell.profileImage.file = author[@"profilePicture"];
+            [commentCell.profileImage loadInBackground];
+            commentCell.profileImage.layer.cornerRadius = commentCell.profileImage.frame.size.height / 2;
+            commentCell.profileImage.layer.masksToBounds = YES;
+        }];
     }
     
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    return  cell;
+    return commentCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (tableView == self.optionsTableView) {
         return [self.optionsData count];
+    } else if (tableView == self.commentsTableView) {
+        if ([self.commentsArray count] == 0) {
+            return 1;
+        }
+        return [self.commentsArray count];
     }
     
-    return 1;
+    return 0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -169,6 +219,7 @@
 
 - (IBAction)commentsButtonPressed:(id)sender {
     if (self.commentsTableView.hidden == YES) {
+        [self.commentsTableView reloadData];
         self.commentsTableView.hidden = NO;
     } else {
         self.commentsTableView.hidden = YES;
