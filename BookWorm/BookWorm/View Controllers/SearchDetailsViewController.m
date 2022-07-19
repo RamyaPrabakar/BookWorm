@@ -97,11 +97,9 @@
     [query whereKey:@"bookId" equalTo:self.bookPassed.bookId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
-          NSLog(@"Successfully retrieved %lu book.", (unsigned long)objects.count);
           
           if ([objects count] != 0) {
               // adding all the comment objects to the commentsArray
-              NSLog(@"%@", objects[0]);
               for (Comment *comment in objects[0][@"comments"]) {
                   [comment fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
                       NSLog(@"%@", comment);
@@ -109,9 +107,6 @@
                   }];
               }
           }
-      } else {
-          // Log details of the failure
-          NSLog(@"Error: %@ %@", error, [error userInfo]);
       }
     }];
 }
@@ -126,7 +121,6 @@
         return cell;
     } else if (tableView == self.commentsTableView) {
         if ([self.commentsArray count] == 0) {
-            NSLog(@"I come here");
             cell.textLabel.text = @"No comments for this book";
             return cell;
         }
