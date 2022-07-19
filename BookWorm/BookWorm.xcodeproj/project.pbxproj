@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2FFBD02885DBA200F766AC /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFBCF2885DBA200F766AC /* CommentCell.m */; };
+		4F2FFBD62885F69400F766AC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFBD52885F69400F766AC /* Comment.m */; };
+		4F2FFBD92885F90300F766AC /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFBD82885F90300F766AC /* ComposeViewController.m */; };
 		4F80F5A72876730500B93E31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5A62876730500B93E31 /* AppDelegate.m */; };
 		4F80F5AA2876730500B93E31 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5A92876730500B93E31 /* SceneDelegate.m */; };
 		4F80F5B02876730500B93E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F80F5AE2876730500B93E31 /* Main.storyboard */; };
@@ -28,6 +31,7 @@
 		4F80F601287895C500B93E31 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F600287895C500B93E31 /* SearchViewController.m */; };
 		4F80F6052878981200B93E31 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F6042878981200B93E31 /* Book.m */; };
 		4F80F60A28789E6100B93E31 /* BookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F60928789E6100B93E31 /* BookCell.m */; };
+		4F87DF0A28872B2C00CC74BA /* OtherProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF0928872B2C00CC74BA /* OtherProfileViewController.m */; };
 		4FC276572878CD2800ED3ACA /* GenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC276562878CD2800ED3ACA /* GenreCell.m */; };
 		4FC2765A2878E58900ED3ACA /* RecommendationsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC276592878E58900ED3ACA /* RecommendationsDetailViewController.m */; };
 		4FC27660287C9E3500ED3ACA /* GoogleBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2765F287C9E3500ED3ACA /* GoogleBook.m */; };
@@ -59,6 +63,12 @@
 		25E6B1B3D109AEA0F30C266B /* Pods_BookWorm_BookWormUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookWorm_BookWormUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DE3E9FB85F82FFDD3C2C059 /* Pods-BookWorm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWorm.debug.xcconfig"; path = "Target Support Files/Pods-BookWorm/Pods-BookWorm.debug.xcconfig"; sourceTree = "<group>"; };
 		3F1E7F284A00C4C5A74D16F1 /* Pods-BookWorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookWorm.release.xcconfig"; path = "Target Support Files/Pods-BookWorm/Pods-BookWorm.release.xcconfig"; sourceTree = "<group>"; };
+		4F2FFBCE2885DBA200F766AC /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		4F2FFBCF2885DBA200F766AC /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		4F2FFBD42885F69400F766AC /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		4F2FFBD52885F69400F766AC /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		4F2FFBD72885F90300F766AC /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		4F2FFBD82885F90300F766AC /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		4F80F5A22876730500B93E31 /* BookWorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookWorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F80F5A52876730500B93E31 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F80F5A62876730500B93E31 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -97,6 +107,8 @@
 		4F80F6062878982300B93E31 /* Book.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		4F80F60828789E6100B93E31 /* BookCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookCell.h; sourceTree = "<group>"; };
 		4F80F60928789E6100B93E31 /* BookCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookCell.m; sourceTree = "<group>"; };
+		4F87DF0828872B2C00CC74BA /* OtherProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherProfileViewController.h; sourceTree = "<group>"; };
+		4F87DF0928872B2C00CC74BA /* OtherProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherProfileViewController.m; sourceTree = "<group>"; };
 		4FC276552878CD2800ED3ACA /* GenreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenreCell.h; sourceTree = "<group>"; };
 		4FC276562878CD2800ED3ACA /* GenreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenreCell.m; sourceTree = "<group>"; };
 		4FC276582878E58900ED3ACA /* RecommendationsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationsDetailViewController.h; sourceTree = "<group>"; };
@@ -188,6 +200,8 @@
 				4FC276562878CD2800ED3ACA /* GenreCell.m */,
 				4F80F60928789E6100B93E31 /* BookCell.m */,
 				4F80F5AE2876730500B93E31 /* Main.storyboard */,
+				4F2FFBCE2885DBA200F766AC /* CommentCell.h */,
+				4F2FFBCF2885DBA200F766AC /* CommentCell.m */,
 				4F80F5DD287674DB00B93E31 /* View Controllers */,
 				4F80F5B12876730500B93E31 /* Assets.xcassets */,
 				4F80F5B32876730500B93E31 /* LaunchScreen.storyboard */,
@@ -241,6 +255,10 @@
 				4FC276592878E58900ED3ACA /* RecommendationsDetailViewController.m */,
 				4FC27666287DE64A00ED3ACA /* SearchDetailsViewController.h */,
 				4FC27667287DE64A00ED3ACA /* SearchDetailsViewController.m */,
+				4F2FFBD72885F90300F766AC /* ComposeViewController.h */,
+				4F2FFBD82885F90300F766AC /* ComposeViewController.m */,
+				4F87DF0828872B2C00CC74BA /* OtherProfileViewController.h */,
+				4F87DF0928872B2C00CC74BA /* OtherProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -252,6 +270,8 @@
 				4F80F6062878982300B93E31 /* Book.h */,
 				4FC2765E287C9E3500ED3ACA /* GoogleBook.h */,
 				4FC2765F287C9E3500ED3ACA /* GoogleBook.m */,
+				4F2FFBD42885F69400F766AC /* Comment.h */,
+				4F2FFBD52885F69400F766AC /* Comment.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,8 +537,11 @@
 				4F80F6052878981200B93E31 /* Book.m in Sources */,
 				4F80F5A72876730500B93E31 /* AppDelegate.m in Sources */,
 				4F80F5E9287675C000B93E31 /* RecommendationsViewController.m in Sources */,
+				4F2FFBD62885F69400F766AC /* Comment.m in Sources */,
+				4F2FFBD02885DBA200F766AC /* CommentCell.m in Sources */,
 				4F80F5B82876730500B93E31 /* main.m in Sources */,
 				4F80F5E32876752800B93E31 /* SignUpViewController.m in Sources */,
+				4F87DF0A28872B2C00CC74BA /* OtherProfileViewController.m in Sources */,
 				4F80F5E62876758B00B93E31 /* GenrePickerViewController.m in Sources */,
 				4FC276572878CD2800ED3ACA /* GenreCell.m in Sources */,
 				4F80F5AA2876730500B93E31 /* SceneDelegate.m in Sources */,
@@ -530,6 +553,7 @@
 				4FC27668287DE64A00ED3ACA /* SearchDetailsViewController.m in Sources */,
 				4F80F5F2287675F700B93E31 /* ProfileViewController.m in Sources */,
 				4F80F5E02876751700B93E31 /* LoginViewController.m in Sources */,
+				4F2FFBD92885F90300F766AC /* ComposeViewController.m in Sources */,
 				4F80F601287895C500B93E31 /* SearchViewController.m in Sources */,
 				4F80F5EF287675E800B93E31 /* BookTalkViewController.m in Sources */,
 			);
@@ -706,7 +730,7 @@
 				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = CSJ58387Y7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookWorm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -735,7 +759,7 @@
 				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = CSJ58387Y7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookWorm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

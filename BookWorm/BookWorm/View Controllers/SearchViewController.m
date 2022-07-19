@@ -66,7 +66,6 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *googleKey = [dict objectForKey: @"GoogleBooksAPIKey"];
     NSString *finalURL = [isbnString stringByAppendingFormat:@"%@%@", @"&key=", googleKey];
-    // NSString *finalURL = [isbnString stringByAppendingString:@"&key=AIzaSyCjEvM7q5U2YBifQv82XnAy687T4NUee9A"];
     NSURL *url = [NSURL URLWithString:finalURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -76,7 +75,6 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               // NSLog(@"%@", dataDictionary);
                
                [self.arrayOfBooks removeAllObjects];
                NSArray *itemsArray = dataDictionary[@"items"];
@@ -105,8 +103,6 @@
         result = [result stringByAppendingString:@"+"];
     }
     
-    // NSLog(@"Word");
-    // NSLog(@"%@", result);
     return result;
 }
 
