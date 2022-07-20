@@ -16,15 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bookworm" translatesAutoresizingMaskIntoConstraints="NO" id="PZj-mq-ob1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bookworm" translatesAutoresizingMaskIntoConstraints="NO" id="j0G-wE-AS1">
                                 <rect key="frame" x="95" y="341" width="224" height="224"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PZj-mq-ob1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2b1-4s-e1K"/>
-                            <constraint firstItem="PZj-mq-ob1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="rcF-Ck-yqM"/>
+                            <constraint firstItem="j0G-wE-AS1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="3lv-CT-beZ"/>
+                            <constraint firstItem="j0G-wE-AS1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="i0R-md-ZBS"/>
                         </constraints>
                     </view>
                 </viewController>

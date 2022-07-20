@@ -6,10 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parse/Parse.h"
+#import "PFImageView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BookTalkViewController : UIViewController
+@interface BookTalkViewController : UIViewController <UITableViewDataSource>
 
 @end
 

@@ -33,6 +33,9 @@
 		4F80F60A28789E6100B93E31 /* BookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F60928789E6100B93E31 /* BookCell.m */; };
 		4F87DF0A28872B2C00CC74BA /* OtherProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF0928872B2C00CC74BA /* OtherProfileViewController.m */; };
 		4F87DF0D28874DA000CC74BA /* CommentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF0C28874DA000CC74BA /* CommentDetailsViewController.m */; };
+		4F87DF13288874AB00CC74BA /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF12288874AB00CC74BA /* ChatCell.m */; };
+		4F87DF162888781900CC74BA /* IndividualChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF152888781900CC74BA /* IndividualChatViewController.m */; };
+		4F87DF192888A17900CC74BA /* InnerChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF182888A17900CC74BA /* InnerChatCell.m */; };
 		4FC276572878CD2800ED3ACA /* GenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC276562878CD2800ED3ACA /* GenreCell.m */; };
 		4FC2765A2878E58900ED3ACA /* RecommendationsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC276592878E58900ED3ACA /* RecommendationsDetailViewController.m */; };
 		4FC27660287C9E3500ED3ACA /* GoogleBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2765F287C9E3500ED3ACA /* GoogleBook.m */; };
@@ -112,6 +115,12 @@
 		4F87DF0928872B2C00CC74BA /* OtherProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherProfileViewController.m; sourceTree = "<group>"; };
 		4F87DF0B28874DA000CC74BA /* CommentDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentDetailsViewController.h; sourceTree = "<group>"; };
 		4F87DF0C28874DA000CC74BA /* CommentDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentDetailsViewController.m; sourceTree = "<group>"; };
+		4F87DF11288874AB00CC74BA /* ChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		4F87DF12288874AB00CC74BA /* ChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
+		4F87DF142888781900CC74BA /* IndividualChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndividualChatViewController.h; sourceTree = "<group>"; };
+		4F87DF152888781900CC74BA /* IndividualChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndividualChatViewController.m; sourceTree = "<group>"; };
+		4F87DF172888A17900CC74BA /* InnerChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnerChatCell.h; sourceTree = "<group>"; };
+		4F87DF182888A17900CC74BA /* InnerChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnerChatCell.m; sourceTree = "<group>"; };
 		4FC276552878CD2800ED3ACA /* GenreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenreCell.h; sourceTree = "<group>"; };
 		4FC276562878CD2800ED3ACA /* GenreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenreCell.m; sourceTree = "<group>"; };
 		4FC276582878E58900ED3ACA /* RecommendationsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationsDetailViewController.h; sourceTree = "<group>"; };
@@ -198,16 +207,9 @@
 				4F80F5A62876730500B93E31 /* AppDelegate.m */,
 				4F80F5A82876730500B93E31 /* SceneDelegate.h */,
 				4F80F5A92876730500B93E31 /* SceneDelegate.m */,
-				4F80F60828789E6100B93E31 /* BookCell.h */,
-				4FC276552878CD2800ED3ACA /* GenreCell.h */,
-				4FC276562878CD2800ED3ACA /* GenreCell.m */,
-				4F80F60928789E6100B93E31 /* BookCell.m */,
-				4F80F5AE2876730500B93E31 /* Main.storyboard */,
-				4F2FFBCE2885DBA200F766AC /* CommentCell.h */,
-				4F2FFBCF2885DBA200F766AC /* CommentCell.m */,
+				4F87DF102888744D00CC74BA /* TableViewCells */,
 				4F80F5DD287674DB00B93E31 /* View Controllers */,
-				4F80F5B12876730500B93E31 /* Assets.xcassets */,
-				4F80F5B32876730500B93E31 /* LaunchScreen.storyboard */,
+				4F87DF0E28886B2700CC74BA /* Views */,
 				4F80F5B62876730500B93E31 /* Info.plist */,
 				4FC27661287DD82400ED3ACA /* Keys.plist */,
 				4F80F5B72876730500B93E31 /* main.m */,
@@ -264,6 +266,8 @@
 				4F87DF0928872B2C00CC74BA /* OtherProfileViewController.m */,
 				4F87DF0B28874DA000CC74BA /* CommentDetailsViewController.h */,
 				4F87DF0C28874DA000CC74BA /* CommentDetailsViewController.m */,
+				4F87DF142888781900CC74BA /* IndividualChatViewController.h */,
+				4F87DF152888781900CC74BA /* IndividualChatViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -279,6 +283,41 @@
 				4F2FFBD52885F69400F766AC /* Comment.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4F87DF0E28886B2700CC74BA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F80F5B12876730500B93E31 /* Assets.xcassets */,
+				4F87DF0F28886B4500CC74BA /* Storyboards */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4F87DF0F28886B4500CC74BA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4F80F5AE2876730500B93E31 /* Main.storyboard */,
+				4F80F5B32876730500B93E31 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		4F87DF102888744D00CC74BA /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				4F80F60828789E6100B93E31 /* BookCell.h */,
+				4FC276552878CD2800ED3ACA /* GenreCell.h */,
+				4FC276562878CD2800ED3ACA /* GenreCell.m */,
+				4F80F60928789E6100B93E31 /* BookCell.m */,
+				4F87DF11288874AB00CC74BA /* ChatCell.h */,
+				4F87DF12288874AB00CC74BA /* ChatCell.m */,
+				4F2FFBCE2885DBA200F766AC /* CommentCell.h */,
+				4F2FFBCF2885DBA200F766AC /* CommentCell.m */,
+				4F87DF172888A17900CC74BA /* InnerChatCell.h */,
+				4F87DF182888A17900CC74BA /* InnerChatCell.m */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		B8E2D9372452FD074C16E9BF /* Pods */ = {
@@ -539,12 +578,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F87DF192888A17900CC74BA /* InnerChatCell.m in Sources */,
 				4F80F6052878981200B93E31 /* Book.m in Sources */,
 				4F80F5A72876730500B93E31 /* AppDelegate.m in Sources */,
 				4F80F5E9287675C000B93E31 /* RecommendationsViewController.m in Sources */,
 				4F2FFBD62885F69400F766AC /* Comment.m in Sources */,
 				4F87DF0D28874DA000CC74BA /* CommentDetailsViewController.m in Sources */,
 				4F2FFBD02885DBA200F766AC /* CommentCell.m in Sources */,
+				4F87DF162888781900CC74BA /* IndividualChatViewController.m in Sources */,
 				4F80F5B82876730500B93E31 /* main.m in Sources */,
 				4F80F5E32876752800B93E31 /* SignUpViewController.m in Sources */,
 				4F87DF0A28872B2C00CC74BA /* OtherProfileViewController.m in Sources */,
@@ -560,6 +601,7 @@
 				4F80F5F2287675F700B93E31 /* ProfileViewController.m in Sources */,
 				4F80F5E02876751700B93E31 /* LoginViewController.m in Sources */,
 				4F2FFBD92885F90300F766AC /* ComposeViewController.m in Sources */,
+				4F87DF13288874AB00CC74BA /* ChatCell.m in Sources */,
 				4F80F601287895C500B93E31 /* SearchViewController.m in Sources */,
 				4F80F5EF287675E800B93E31 /* BookTalkViewController.m in Sources */,
 			);
