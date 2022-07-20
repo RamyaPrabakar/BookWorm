@@ -7,7 +7,7 @@
 
 #import "BookTalkViewController.h"
 #import "ChatCell.h"
-#import "OtherProfileViewController.h"
+#import "IndividualChatViewController.h"
 
 @interface BookTalkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *outerChatTableView;
@@ -50,7 +50,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"number of rows in section");
     if (tableView == self.outerChatTableView) {
-        return 10;
+        return 0;
     } else if (tableView == self.searchTableView) {
         return self.arrayOfUsers.count;
     }
@@ -86,6 +86,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"personalChatSegue"]) {
+        PFUser *userToPass = self.arrayOfUsers[[self.searchTableView indexPathForCell:sender].row];
+        IndividualChatViewController *chatVC = [segue destinationViewController];
+        chatVC.userPassed = userToPass;
+    }
 }
 
 @end

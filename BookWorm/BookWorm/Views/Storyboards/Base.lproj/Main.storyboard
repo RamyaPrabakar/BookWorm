@@ -559,7 +559,7 @@
                                         <connections>
                                             <outlet property="chatProfilePicture" destination="NoH-Ca-1oo" id="cRl-OQ-yQu"/>
                                             <outlet property="chatUsername" destination="5dl-4Z-Z0A" id="cNR-i2-ceI"/>
-                                            <segue destination="NNo-Jm-0Vc" kind="show" id="7N5-Dl-EwE"/>
+                                            <segue destination="NNo-Jm-0Vc" kind="show" identifier="" id="7N5-Dl-EwE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -605,7 +605,7 @@
                                         <connections>
                                             <outlet property="chatProfilePicture" destination="BVC-n3-jAP" id="HZI-gU-zVA"/>
                                             <outlet property="chatUsername" destination="iu8-GP-RVF" id="eXk-RL-I50"/>
-                                            <segue destination="NNo-Jm-0Vc" kind="show" id="dAC-pl-T32"/>
+                                            <segue destination="NNo-Jm-0Vc" kind="show" identifier="personalChatSegue" id="dAC-pl-T32"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -817,13 +817,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DY4-lH-gU6">
-                        <rightBarButtonItems>
-                            <barButtonItem title="username" id="KwF-DY-4Dd"/>
-                            <barButtonItem title="Item" image="person" catalog="system" id="3YW-Iu-t5K"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="username" id="KwF-DY-4Dd"/>
                     </navigationItem>
                     <connections>
                         <outlet property="privateChatViewController" destination="6QI-vU-mgu" id="Vcc-rv-hAi"/>
+                        <outlet property="usernameTop" destination="KwF-DY-4Dd" id="ZhQ-ge-Wie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XmE-d3-jal" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1629,7 +1627,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7N5-Dl-EwE"/>
+        <segue reference="dAC-pl-T32"/>
         <segue reference="XlD-ZX-ZkQ"/>
         <segue reference="7QM-sK-AMr"/>
     </inferredMetricsTieBreakers>

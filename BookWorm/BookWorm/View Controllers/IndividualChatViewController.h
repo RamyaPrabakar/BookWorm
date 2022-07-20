@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parse/Parse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IndividualChatViewController : UIViewController <UITableViewDataSource>
-
+@property (nonatomic, strong) PFUser *userPassed;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,6 +10,7 @@
 
 @interface IndividualChatViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *privateChatViewController;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *usernameTop;
 @end
 
 @implementation IndividualChatViewController
@@ -17,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.privateChatViewController.dataSource = self;
+    self.usernameTop.title = self.userPassed[@"username"];
     // Do any additional setup after loading the view.
 }
 
@@ -27,7 +29,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 0;
 }
 
 /*
