@@ -33,7 +33,6 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (tableView == self.searchTableView) {
-        NSLog(@"cell for row at index path");
         PFUser *user = self.arrayOfUsers[indexPath.row];
         cell.chatUsername.text = user[@"username"];
         cell.chatProfilePicture.file = user[@"profilePicture"];
@@ -48,7 +47,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"number of rows in section");
     if (tableView == self.outerChatTableView) {
         return 0;
     } else if (tableView == self.searchTableView) {
@@ -59,7 +57,6 @@
 }
 
 - (IBAction)searchPressed:(id)sender {
-    NSLog(@"search is pressed");
     self.searchTableView.hidden = NO;
     
     NSString *searchString = self.searchBar.text;
@@ -68,17 +65,13 @@
     [query whereKey:@"username" containsString:searchString];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
-          NSLog(@"No errors");
           self.arrayOfUsers = objects;
-          NSLog(@"%lu", (unsigned long)objects.count);
-          NSLog(@"%lu", (unsigned long)self.arrayOfUsers.count);
           [self.searchTableView reloadData];
       }
     }];
 }
 
 - (IBAction)exitSearch:(id)sender {
-    NSLog(@"Exiting search");
     self.searchTableView.hidden = YES;
 }
 

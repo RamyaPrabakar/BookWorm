@@ -36,6 +36,8 @@
 		4F87DF13288874AB00CC74BA /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF12288874AB00CC74BA /* ChatCell.m */; };
 		4F87DF162888781900CC74BA /* IndividualChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF152888781900CC74BA /* IndividualChatViewController.m */; };
 		4F87DF192888A17900CC74BA /* InnerChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF182888A17900CC74BA /* InnerChatCell.m */; };
+		4F87DF1C2889CAB000CC74BA /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF1B2889CAB000CC74BA /* Chat.m */; };
+		4F87DF1F2889E4E600CC74BA /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87DF1E2889E4E600CC74BA /* Conversation.m */; };
 		4FC276572878CD2800ED3ACA /* GenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC276562878CD2800ED3ACA /* GenreCell.m */; };
 		4FC2765A2878E58900ED3ACA /* RecommendationsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC276592878E58900ED3ACA /* RecommendationsDetailViewController.m */; };
 		4FC27660287C9E3500ED3ACA /* GoogleBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2765F287C9E3500ED3ACA /* GoogleBook.m */; };
@@ -121,6 +123,10 @@
 		4F87DF152888781900CC74BA /* IndividualChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndividualChatViewController.m; sourceTree = "<group>"; };
 		4F87DF172888A17900CC74BA /* InnerChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnerChatCell.h; sourceTree = "<group>"; };
 		4F87DF182888A17900CC74BA /* InnerChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnerChatCell.m; sourceTree = "<group>"; };
+		4F87DF1A2889CAB000CC74BA /* Chat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		4F87DF1B2889CAB000CC74BA /* Chat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		4F87DF1D2889E4E600CC74BA /* Conversation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		4F87DF1E2889E4E600CC74BA /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		4FC276552878CD2800ED3ACA /* GenreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenreCell.h; sourceTree = "<group>"; };
 		4FC276562878CD2800ED3ACA /* GenreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenreCell.m; sourceTree = "<group>"; };
 		4FC276582878E58900ED3ACA /* RecommendationsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationsDetailViewController.h; sourceTree = "<group>"; };
@@ -281,6 +287,10 @@
 				4FC2765F287C9E3500ED3ACA /* GoogleBook.m */,
 				4F2FFBD42885F69400F766AC /* Comment.h */,
 				4F2FFBD52885F69400F766AC /* Comment.m */,
+				4F87DF1A2889CAB000CC74BA /* Chat.h */,
+				4F87DF1B2889CAB000CC74BA /* Chat.m */,
+				4F87DF1D2889E4E600CC74BA /* Conversation.h */,
+				4F87DF1E2889E4E600CC74BA /* Conversation.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -598,8 +608,10 @@
 				4FC2765A2878E58900ED3ACA /* RecommendationsDetailViewController.m in Sources */,
 				4F80F5DC287674D300B93E31 /* FirstViewController.m in Sources */,
 				4FC27668287DE64A00ED3ACA /* SearchDetailsViewController.m in Sources */,
+				4F87DF1F2889E4E600CC74BA /* Conversation.m in Sources */,
 				4F80F5F2287675F700B93E31 /* ProfileViewController.m in Sources */,
 				4F80F5E02876751700B93E31 /* LoginViewController.m in Sources */,
+				4F87DF1C2889CAB000CC74BA /* Chat.m in Sources */,
 				4F2FFBD92885F90300F766AC /* ComposeViewController.m in Sources */,
 				4F87DF13288874AB00CC74BA /* ChatCell.m in Sources */,
 				4F80F601287895C500B93E31 /* SearchViewController.m in Sources */,

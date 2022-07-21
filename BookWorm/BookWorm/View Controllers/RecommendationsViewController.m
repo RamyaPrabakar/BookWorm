@@ -109,7 +109,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"%lu", (unsigned long)self.arrayOfBooks.count);
     return self.arrayOfBooks.count;
 }
 
