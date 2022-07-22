@@ -13,19 +13,21 @@
 @interface IndividualChatViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *privateChatTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *usernameTop;
-@property (nonatomic, strong) NSArray *arrayOfMessagesForIndividualChat;
-@property (nonatomic, strong) NSArray *totalArrayOfChatsForThisUser;
+@property (nonatomic, strong) NSMutableArray *arrayOfMessagesForIndividualChat;
 @property (nonatomic) bool conversationAlreadyExists;
 @property (weak, nonatomic) IBOutlet UITextField *typingBar;
+@property (nonatomic, strong) PFLiveQueryClient *liveQueryClient;
+@property (nonatomic, strong) PFLiveQuerySubscription *subscription;
 @end
 
 @implementation IndividualChatViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.privateChatTableView.dataSource = self;
     self.usernameTop.title = self.userPassed[@"username"];
-    self.arrayOfMessagesForIndividualChat = [[NSArray alloc] init];
+    self.arrayOfMessagesForIndividualChat = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
     
     PFUser *currUser = [PFUser currentUser];
@@ -39,6 +41,9 @@
     [query includeKey:@"user1"];
     [query includeKey:@"user2"];
     [query includeKey:@"chats"];
+    
+    // Finding all the conversations where either the user1 or the user2 is the
+    // current user
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           for (Conversation *conversation in objects) {
@@ -55,8 +60,25 @@
           [self.privateChatTableView reloadData];
       }
     }];
-
+    
+    // using live query to immediately show the change
+    self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:@"wss://bookworm.b4a.io" applicationId:@"cfEqijsSr9AS03FR76DJYM374KHH5GddQSQvIU7H" clientKey:@"F9dLUvMhb8D7aMCAukUDMFae630qhhlYTki6dGxP"];
+    PFQuery *chatQuery = [PFQuery queryWithClassName:@"Chat"];
+    self.subscription = [self.liveQueryClient subscribeToQuery:chatQuery];
+    
+    __unsafe_unretained typeof(self) weakSelf = self;
+    
+    [self.subscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
+        __strong typeof (self) strongSelf = weakSelf;
+        [strongSelf.arrayOfMessagesForIndividualChat insertObject:object atIndex:strongSelf.arrayOfMessagesForIndividualChat.count];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"object:%@", object);
+            NSLog(@"new message:%@", strongSelf.arrayOfMessagesForIndividualChat);
+            [strongSelf.privateChatTableView reloadData];
+        });
+    }];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InnerChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"innerChatCell"];
@@ -112,6 +134,9 @@
     
     __block int flag = 0;
     
+    // updating the Conversation table by either creating a new row (when there is
+    // no previous conversation between the two users) or updating the old conversation
+    // row by adding this new chat
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           for (Conversation *conversation in objects) {
@@ -127,7 +152,7 @@
               }
           }
           
-          // If there is no conversation between the cu      rrent user and
+          // If there is no conversation between the current user and
           // the passed in user, then create a create a new Conversation
           // object and save it to the database
           if (flag == 0) {
@@ -148,6 +173,8 @@
           }
       }
     }];
+    
+    self.typingBar.text = nil;
 }
 
 

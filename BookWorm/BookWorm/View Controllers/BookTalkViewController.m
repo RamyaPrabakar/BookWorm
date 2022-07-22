@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSArray *arrayOfUsers;
 @property (nonatomic, strong) NSMutableArray *namesOfUsersWithConversations;
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
+@property (nonatomic, strong) PFLiveQueryClient *liveQueryClient;
+@property (nonatomic, strong) PFLiveQuerySubscription *subscription;
 @end
 
 @implementation BookTalkViewController
@@ -76,9 +78,105 @@
       }
     }];
     
+    /* // using live query to immediately show the change
+    self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:@"wss://bookworm.b4a.io" applicationId:@"cfEqijsSr9AS03FR76DJYM374KHH5GddQSQvIU7H" clientKey:@"F9dLUvMhb8D7aMCAukUDMFae630qhhlYTki6dGxP"];
+    self.subscription = [self.liveQueryClient subscribeToQuery:query];
+    
+    __unsafe_unretained typeof(self) weakSelf = self;
+    
+    [self.subscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
+        __strong typeof (self) strongSelf = weakSelf;
+        
+        Conversation *conversation = object;
+        
+        NSString *username;
+            if ([conversation.user1 isEqualToString:currUser.username]) {
+                username = conversation.user2;
+                // [self.namesOfUsersWithConversations addObject:conversation.user2];
+            } else {
+                username = conversation.user1;
+                // [self.namesOfUsersWithConversations addObject:conversation.user1];
+            }
+        
+        //NSLog(@"Name of users with conversations");
+        // NSLog(@"%@", self.namesOfUsersWithConversations);
+        
+        // for (NSString *username in self.namesOfUsersWithConversations) {
+            PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
+            [userQuery whereKey:@"username" equalTo:username];
+            
+            [userQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+              if (!error) {
+                  [strongSelf.usersWithConversations addObject:objects[0]];
+              }
+                
+              NSLog(@"Actual users with conversations");
+              NSLog(@"%@", strongSelf.usersWithConversations);
+            
+              // [self.outerChatTableView reloadData];
+            }];
+        //}
+        
+        
+        // [strongSelf.usersWithConversations insertObject:object atIndex:0];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // NSLog(@"object:%@", object);
+            // NSLog(@"new message:%@", strongSelf.arrayOfMessagesForIndividualChat);
+            [strongSelf.outerChatTableView reloadData];
+        });
+    }];*/
+    
     
     // Do any additional setup after loading the view.
 }
+/*
+- (void)viewWillAppear:(BOOL)animated {
+    [self.namesOfUsersWithConversations removeAllObjects];
+    [self.usersWithConversations removeAllObjects];
+
+    PFUser *currUser = [PFUser currentUser];
+    PFQuery *query1 = [PFQuery queryWithClassName:@"Conversation"];
+    [query1 whereKey:@"user1" equalTo:currUser.username];
+
+    PFQuery *query2 = [PFQuery queryWithClassName:@"Conversation"];
+    [query2 whereKey:@"user2" equalTo:currUser.username];
+
+    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
+    [query includeKey:@"user1"];
+    [query includeKey:@"user2"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+          for (Conversation *conversation in objects) {
+              // creating an array of all the users that the current user has a
+              // conversation with
+              if ([conversation.user1 isEqualToString:currUser.username]) {
+                  [self.namesOfUsersWithConversations addObject:conversation.user2];
+              } else {
+                  [self.namesOfUsersWithConversations addObject:conversation.user1];
+              }
+          }
+          
+          NSLog(@"Name of users with conversations");
+          NSLog(@"%@", self.namesOfUsersWithConversations);
+          
+          for (NSString *username in self.namesOfUsersWithConversations) {
+              PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+              [query whereKey:@"username" equalTo:username];
+              
+              [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    [self.usersWithConversations addObject:objects[0]];
+                }
+                  
+                NSLog(@"Actual users with conversations");
+                NSLog(@"%@", self.usersWithConversations);
+              
+                [self.outerChatTableView reloadData];
+              }];
+          }
+      }
+    }];
+}*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.searchTableView) {
