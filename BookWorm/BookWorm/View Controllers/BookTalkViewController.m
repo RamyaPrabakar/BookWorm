@@ -9,6 +9,7 @@
 #import "ChatCell.h"
 #import "IndividualChatViewController.h"
 #import "Conversation.h"
+#import "OuterChatCell.h"
 
 @interface BookTalkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *outerChatTableView;
@@ -80,27 +81,30 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ChatCell *cell = [self.searchTableView dequeueReusableCellWithIdentifier:@"outerChatCell"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     if (tableView == self.searchTableView) {
+        ChatCell *cell = [self.searchTableView dequeueReusableCellWithIdentifier:@"outerChatCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         PFUser *user = self.arrayOfUsers[indexPath.row];
         cell.chatUsername.text = user[@"username"];
         cell.chatProfilePicture.file = user[@"profilePicture"];
         [cell.chatProfilePicture loadInBackground];
         cell.chatProfilePicture.layer.cornerRadius = cell.chatProfilePicture.frame.size.height / 2;
         cell.chatProfilePicture.layer.masksToBounds = YES;
+        return cell;
     } else if (tableView == self.outerChatTableView) {
         // Case when the table view is the outer chat table view
+        OuterChatCell *cell = [self.outerChatTableView dequeueReusableCellWithIdentifier:@"chatDetailsCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         PFUser *user = self.usersWithConversations[indexPath.row];
-        cell.chatUsername.text = user[@"username"];
-        cell.chatProfilePicture.file = user[@"profilePicture"];
-        [cell.chatProfilePicture loadInBackground];
-        cell.chatProfilePicture.layer.cornerRadius = cell.chatProfilePicture.frame.size.height / 2;
-        cell.chatProfilePicture.layer.masksToBounds = YES;
+        cell.usernameLabel.text = user[@"username"];
+        cell.profilePicture.file = user[@"profilePicture"];
+        [cell.profilePicture loadInBackground];
+        cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height / 2;
+        cell.profilePicture.layer.masksToBounds = YES;
+        return cell;
     }
     
-    return cell;
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -524,41 +524,40 @@
                                 <rect key="frame" x="0.0" y="330" width="414" height="512"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="outerChatCell" rowHeight="93" id="KMc-xN-DgI" customClass="ChatCell">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatDetailsCell" rowHeight="98" id="emD-9T-L6a" customClass="OuterChatCell">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KMc-xN-DgI" id="ZMq-04-IQz">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="emD-9T-L6a" id="dJj-fe-R2N">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NoH-Ca-1oo" customClass="PFImageView">
-                                                    <rect key="frame" x="28" y="20.5" width="50" height="47.5"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yDO-Q9-viH" customClass="PFImageView">
+                                                    <rect key="frame" x="30" y="22.5" width="60" height="53.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="VVD-GW-Oc9"/>
-                                                        <constraint firstAttribute="height" constant="50" id="VWz-vR-ApT"/>
+                                                        <constraint firstAttribute="width" constant="60" id="Pje-WY-sFi"/>
+                                                        <constraint firstAttribute="height" constant="60" id="cLI-hG-N8H"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dl-4Z-Z0A">
-                                                    <rect key="frame" x="98" y="34" width="288" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7w-az-HIp">
+                                                    <rect key="frame" x="120" y="39" width="76" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="NoH-Ca-1oo" firstAttribute="top" secondItem="ZMq-04-IQz" secondAttribute="topMargin" constant="8" id="6oU-Bt-QvT"/>
-                                                <constraint firstItem="5dl-4Z-Z0A" firstAttribute="leading" secondItem="NoH-Ca-1oo" secondAttribute="trailing" constant="20" id="RvP-VW-jge"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="5dl-4Z-Z0A" secondAttribute="bottom" constant="8" id="W1d-A8-0LG"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="5dl-4Z-Z0A" secondAttribute="trailing" constant="8" id="XWd-Ov-j2y"/>
-                                                <constraint firstItem="5dl-4Z-Z0A" firstAttribute="centerY" secondItem="NoH-Ca-1oo" secondAttribute="centerY" id="hKI-Jt-EyA"/>
-                                                <constraint firstItem="NoH-Ca-1oo" firstAttribute="leading" secondItem="ZMq-04-IQz" secondAttribute="leadingMargin" constant="8" id="jqL-wQ-uL2"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="NoH-Ca-1oo" secondAttribute="bottom" constant="8" id="qOY-Gd-8OJ"/>
+                                                <constraint firstItem="yDO-Q9-viH" firstAttribute="leading" secondItem="dJj-fe-R2N" secondAttribute="leadingMargin" constant="10" id="8xO-sg-bkb"/>
+                                                <constraint firstItem="d7w-az-HIp" firstAttribute="leading" secondItem="yDO-Q9-viH" secondAttribute="trailing" constant="30" id="eIC-Rk-m4V"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yDO-Q9-viH" secondAttribute="bottom" constant="10" id="l0E-ON-azf"/>
+                                                <constraint firstItem="yDO-Q9-viH" firstAttribute="top" secondItem="dJj-fe-R2N" secondAttribute="topMargin" constant="10" id="oUj-4h-SZW"/>
+                                                <constraint firstItem="d7w-az-HIp" firstAttribute="centerY" secondItem="yDO-Q9-viH" secondAttribute="centerY" id="vNJ-r5-f1x"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="d7w-az-HIp" secondAttribute="bottom" constant="10" id="vhc-sc-gMc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="chatProfilePicture" destination="NoH-Ca-1oo" id="cRl-OQ-yQu"/>
-                                            <outlet property="chatUsername" destination="5dl-4Z-Z0A" id="cNR-i2-ceI"/>
-                                            <segue destination="NNo-Jm-0Vc" kind="show" identifier="chatDetailsSegue" id="euF-2m-znk"/>
+                                            <outlet property="profilePicture" destination="yDO-Q9-viH" id="W7U-Qc-CYU"/>
+                                            <outlet property="usernameLabel" destination="d7w-az-HIp" id="cu5-Bw-1vh"/>
+                                            <segue destination="NNo-Jm-0Vc" kind="show" identifier="chatDetailsSegue" id="W6g-8A-aZ8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1656,7 +1655,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="euF-2m-znk"/>
+        <segue reference="W6g-8A-aZ8"/>
         <segue reference="XlD-ZX-ZkQ"/>
         <segue reference="7QM-sK-AMr"/>
     </inferredMetricsTieBreakers>
