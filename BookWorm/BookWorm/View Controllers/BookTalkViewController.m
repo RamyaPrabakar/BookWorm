@@ -57,9 +57,6 @@
               }
           }
           
-          NSLog(@"Name of users with conversations");
-          NSLog(@"%@", self.namesOfUsersWithConversations);
-          
           for (NSString *username in self.namesOfUsersWithConversations) {
               PFQuery *query = [PFQuery queryWithClassName:@"_User"];
               [query whereKey:@"username" equalTo:username];
@@ -68,9 +65,6 @@
                 if (!error) {
                     [self.usersWithConversations addObject:objects[0]];
                 }
-                  
-                NSLog(@"Actual users with conversations");
-                NSLog(@"%@", self.usersWithConversations);
               
                 [self.outerChatTableView reloadData];
               }];

@@ -56,7 +56,6 @@
               }
           }
           
-          NSLog(@"%@", self.arrayOfMessagesForIndividualChat);
           [self.privateChatTableView reloadData];
       }
     }];
@@ -72,8 +71,6 @@
         __strong typeof (self) strongSelf = weakSelf;
         [strongSelf.arrayOfMessagesForIndividualChat insertObject:object atIndex:strongSelf.arrayOfMessagesForIndividualChat.count];
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"object:%@", object);
-            NSLog(@"new message:%@", strongSelf.arrayOfMessagesForIndividualChat);
             [strongSelf.privateChatTableView reloadData];
         });
     }];
