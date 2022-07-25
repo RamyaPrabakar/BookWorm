@@ -11,7 +11,7 @@
 #import "ComposeViewController.h"
 #import "Comment.h"
 #import "CommentCell.h"
-#import "OtherProfileViewController.h"
+#import "CommentDetailsViewController.h"
 
 @interface SearchDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
@@ -229,10 +229,10 @@
         GoogleBook *bookToPass = self.bookPassed;
         ComposeViewController *composeVC = [segue destinationViewController];
         composeVC.bookPassed = bookToPass;
-    } else if ([[segue identifier] isEqualToString:@"otherProfileSegue"]) {
-        PFUser *userToPass = self.commentsArray[[self.commentsTableView indexPathForCell:sender].row][@"author"];
-        OtherProfileViewController *profileViewController = [segue destinationViewController];
-        profileViewController.userPassed = userToPass;
+    } else if ([[segue identifier] isEqualToString:@"commentDetailsSegue"]) {
+        Comment *commentToPass = self.commentsArray[[self.commentsTableView indexPathForCell:sender].row];
+        CommentDetailsViewController *commentDetails = [segue destinationViewController];
+        commentDetails.commentPassed = commentToPass;
     }
 }
 
