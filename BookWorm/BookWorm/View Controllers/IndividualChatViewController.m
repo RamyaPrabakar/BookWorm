@@ -69,10 +69,13 @@
     
     [self.subscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
         __strong typeof (self) strongSelf = weakSelf;
-        [strongSelf.arrayOfMessagesForIndividualChat insertObject:object atIndex:strongSelf.arrayOfMessagesForIndividualChat.count];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [strongSelf.privateChatTableView reloadData];
-        });
+        
+        if (strongSelf != nil) {
+            [strongSelf.arrayOfMessagesForIndividualChat insertObject:object atIndex:strongSelf.arrayOfMessagesForIndividualChat.count];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.privateChatTableView reloadData];
+            });
+        }
     }];
 }
 
@@ -129,7 +132,7 @@
     [query includeKey:@"user2"];
     [query includeKey:@"chats"];
     
-    __block int flag = 0;
+    __block Boolean shouldCreateNewConversion = true;
     
     // updating the Conversation table by either creating a new row (when there is
     // no previous conversation between the two users) or updating the old conversation
@@ -144,7 +147,7 @@
                   [conversation.user2 isEqualToString:self.userPassed.username]) {
                   [conversation addObject:chat forKey:@"chats"];
                   [conversation saveInBackground];
-                  flag = -1;
+                  shouldCreateNewConversion = false;
                   break;
               }
           }
@@ -152,7 +155,7 @@
           // If there is no conversation between the current user and
           // the passed in user, then create a create a new Conversation
           // object and save it to the database
-          if (flag == 0) {
+          if (shouldCreateNewConversion) {
               // Creating a new conversation object
               PFObject *conversation = [PFObject objectWithClassName:@"Conversation"];
               PFUser *currUser = [PFUser currentUser];
@@ -173,16 +176,5 @@
     
     self.typingBar.text = nil;
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
