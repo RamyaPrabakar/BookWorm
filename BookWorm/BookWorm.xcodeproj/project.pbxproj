@@ -796,7 +796,7 @@
 				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CSJ58387Y7;
+				DEVELOPMENT_TEAM = THD2CHN55T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookWorm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -825,7 +825,7 @@
 				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CSJ58387Y7;
+				DEVELOPMENT_TEAM = THD2CHN55T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookWorm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfBooks;
+@property (nonatomic, strong) NSMutableArray *autocompleteTitles;
+@property (weak, nonatomic) IBOutlet UITableView *titleTableView;
 @end
 
 @implementation SearchViewController
@@ -27,7 +29,90 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.arrayOfBooks = [[NSMutableArray alloc] init];
+    self.autocompleteTitles = [[NSMutableArray alloc] init];
+    self.searchTitle.delegate = self;
     // Do any additional setup after loading the view.
+    
+    self.titleTableView.dataSource = self;
+    self.titleTableView.scrollEnabled = YES;
+    self.titleTableView.hidden = YES;
+}
+
+- (IBAction)checkMarkPressed:(id)sender {
+    self.titleTableView.hidden = YES;
+}
+
+- (BOOL)textField:(UITextField *)textField
+    shouldChangeCharactersInRange:(NSRange)range
+    replacementString:(NSString *)string {
+     
+    if (textField == self.searchTitle) {
+        NSString *substring = [NSString stringWithString:self.searchTitle.text];
+        substring = [substring
+          stringByReplacingCharactersInRange:range withString:string];
+        [self searchAutocompleteEntriesWithSubstring:substring];
+    }
+    
+  return YES;
+}
+
+- (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
+    [self.autocompleteTitles removeAllObjects];
+    
+    NSString *baseURL = @"https://www.googleapis.com/books/v1/volumes?q=";
+    NSString *titleString;
+    if ([self.searchTitle.text length] != 0) {
+        titleString = [baseURL stringByAppendingFormat:@"%@%@", @"+intitle:", [self splitSearchWords:self.searchTitle.text]];
+    }
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+    NSString *googleKey = [dict objectForKey: @"GoogleBooksAPIKey"];
+    NSString *finalURL = [titleString stringByAppendingFormat:@"%@%@", @"&key=", googleKey];
+    NSURL *url = [NSURL URLWithString:finalURL];
+    NSLog(@"Final URL");
+    NSLog(@"%@", finalURL);
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@", [error localizedDescription]);
+           }
+           else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               NSLog(@"%@", dataDictionary);
+               [self.autocompleteTitles removeAllObjects];
+               NSArray *itemsArray = dataDictionary[@"items"];
+               
+               for (NSDictionary *item in itemsArray) {
+                   // Get the volumeInfo dictionary
+                   NSString *title = item[@"volumeInfo"][@"title"];
+                   if (title != nil && [title hasPrefix:substring]) {
+                       [self.autocompleteTitles addObject:item[@"volumeInfo"][@"title"]];
+                   }
+               }
+               
+               // Reload your table view data
+               if ([self.autocompleteTitles count] > 0) {
+                   self.titleTableView.hidden = NO;
+                   [self.titleTableView reloadData];
+               }
+           }
+        
+        // The reloading table data was here before this
+        
+        
+       }];
+    [task resume];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (tableView == self.titleTableView) {
+        UITableViewCell *cell = [self.titleTableView cellForRowAtIndexPath:indexPath];
+        self.searchTitle.text = cell.textLabel.text;
+        self.titleTableView.hidden = YES;
+    }
 }
 
 - (IBAction)clickedSearch:(id)sender {
@@ -75,7 +160,7 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               
+               NSLog(@"%@", dataDictionary);
                [self.arrayOfBooks removeAllObjects];
                NSArray *itemsArray = dataDictionary[@"items"];
                
@@ -107,32 +192,51 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BookCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BookCell"];
-    // Configuring the BookCell
-    GoogleBook *book = self.arrayOfBooks[indexPath.row];
-    cell.title.text = book.title;
     
-    NSString *authors = @"";
-    int i;
-    
-    for (i = 0; i < [book.authors count] - 1; i++) {
-        authors = [authors stringByAppendingFormat:@"%@%@", [book.authors objectAtIndex:i], @", "];
+    if (tableView == self.tableView) {
+        BookCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BookCell"];
+        // Configuring the BookCell
+        GoogleBook *book = self.arrayOfBooks[indexPath.row];
+        cell.title.text = book.title;
+        
+        NSString *authors = @"";
+        int i;
+        
+        for (i = 0; i < [book.authors count] - 1; i++) {
+            authors = [authors stringByAppendingFormat:@"%@%@", [book.authors objectAtIndex:i], @", "];
+        }
+        
+        authors = [authors stringByAppendingFormat:@"%@", [book.authors objectAtIndex:i]];
+        
+        cell.author.text = authors;
+        cell.bookDescription.text = book.subtitle;
+
+        NSURL *bookPosterURL = [NSURL URLWithString:book.bookImageLink];
+        [cell.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else if (tableView == self.titleTableView) {
+        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        if (self.autocompleteTitles.count == 0) {
+            return cell;
+        }
+        cell.textLabel.text = self.autocompleteTitles[indexPath.row];
+        return cell;
     }
     
-    authors = [authors stringByAppendingFormat:@"%@", [book.authors objectAtIndex:i]];
-    
-    cell.author.text = authors;
-    cell.bookDescription.text = book.subtitle;
-
-    NSURL *bookPosterURL = [NSURL URLWithString:book.bookImageLink];
-    [cell.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.arrayOfBooks.count;
+    
+    if (tableView == self.tableView) {
+        return self.arrayOfBooks.count;
+    } else if (tableView == self.titleTableView) {
+        return self.autocompleteTitles.count;
+    }
+    
+    return 0;
 }
 
 #pragma mark - Navigation

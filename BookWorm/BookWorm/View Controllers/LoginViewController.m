@@ -7,9 +7,6 @@
 
 #import "LoginViewController.h"
 #import "RecommendationsViewController.h"
-// Frameworks
-#import <FBSDKCoreKit/FBSDKCoreKit.h>//
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -18,17 +15,10 @@
 @end
 
 @implementation LoginViewController
-@synthesize fbLoginButtonView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.delegate = self;
-    loginButton.center = fbLoginButtonView.center;
-    loginButton.permissions = @[@"public_profile", @"email"];
-    [self.view addSubview:loginButton];
 }
 
 - (IBAction)loginUser:(id)sender {
