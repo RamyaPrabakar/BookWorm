@@ -10,6 +10,7 @@
 		4F2FFBD02885DBA200F766AC /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFBCF2885DBA200F766AC /* CommentCell.m */; };
 		4F2FFBD62885F69400F766AC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFBD52885F69400F766AC /* Comment.m */; };
 		4F2FFBD92885F90300F766AC /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFBD82885F90300F766AC /* ComposeViewController.m */; };
+		4F5E72D22890A8970006AFF3 /* ConfettiAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E72D12890A8970006AFF3 /* ConfettiAnimation.swift */; };
 		4F80F5A72876730500B93E31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5A62876730500B93E31 /* AppDelegate.m */; };
 		4F80F5AA2876730500B93E31 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5A92876730500B93E31 /* SceneDelegate.m */; };
 		4F80F5B02876730500B93E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F80F5AE2876730500B93E31 /* Main.storyboard */; };
@@ -76,6 +77,8 @@
 		4F2FFBD52885F69400F766AC /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		4F2FFBD72885F90300F766AC /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		4F2FFBD82885F90300F766AC /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		4F5E72D02890A8970006AFF3 /* BookWorm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BookWorm-Bridging-Header.h"; sourceTree = "<group>"; };
+		4F5E72D12890A8970006AFF3 /* ConfettiAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiAnimation.swift; sourceTree = "<group>"; };
 		4F80F5A22876730500B93E31 /* BookWorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookWorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F80F5A52876730500B93E31 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F80F5A62876730500B93E31 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -186,6 +189,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4F5E72D32890A89F0006AFF3 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				4F5E72D12890A8970006AFF3 /* ConfettiAnimation.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		4F80F5992876730500B93E31 = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +233,9 @@
 				4F80F5B62876730500B93E31 /* Info.plist */,
 				4FC27661287DD82400ED3ACA /* Keys.plist */,
 				4F80F5B72876730500B93E31 /* main.m */,
+				4F5E72D32890A89F0006AFF3 /* Animations */,
 				4F80F6072878982900B93E31 /* Models */,
+				4F5E72D02890A8970006AFF3 /* BookWorm-Bridging-Header.h */,
 			);
 			path = BookWorm;
 			sourceTree = "<group>";
@@ -423,6 +436,7 @@
 				TargetAttributes = {
 					4F80F5A12876730500B93E31 = {
 						CreatedOnToolsVersion = 13.4;
+						LastSwiftMigration = 1340;
 					};
 					4F80F5BC2876730600B93E31 = {
 						CreatedOnToolsVersion = 13.4;
@@ -613,6 +627,7 @@
 				4FC2765A2878E58900ED3ACA /* RecommendationsDetailViewController.m in Sources */,
 				4F87DF22288B10E400CC74BA /* OuterChatCell.m in Sources */,
 				4F80F5DC287674D300B93E31 /* FirstViewController.m in Sources */,
+				4F5E72D22890A8970006AFF3 /* ConfettiAnimation.swift in Sources */,
 				4FC27668287DE64A00ED3ACA /* SearchDetailsViewController.m in Sources */,
 				4F87DF1F2889E4E600CC74BA /* Conversation.m in Sources */,
 				4F80F5F2287675F700B93E31 /* ProfileViewController.m in Sources */,
@@ -793,6 +808,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -812,6 +828,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWorm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "BookWorm/BookWorm-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -822,6 +841,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -841,6 +861,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWorm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "BookWorm/BookWorm-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -849,6 +871,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 852401C44F12B736CF67DA6D /* Pods-BookWormTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -867,6 +890,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A728864D74B46C577C789F32 /* Pods-BookWormTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -885,6 +909,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9D4331481710718B70D4FD1C /* Pods-BookWorm-BookWormUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -901,6 +926,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BC433AB0B67EC44E11C26FC0 /* Pods-BookWorm-BookWormUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

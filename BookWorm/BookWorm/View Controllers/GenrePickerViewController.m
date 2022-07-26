@@ -6,6 +6,7 @@
 //
 
 #import "GenrePickerViewController.h"
+#import "BookWorm-Swift.h"
 
 @interface GenrePickerViewController ()
 @end
@@ -16,6 +17,13 @@ NSArray *data;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self confettiAnimation];
+}
+
+
+- (void)confettiAnimation {
+    ConfettiAnimation *confettiAnimation = [[ConfettiAnimation alloc] init];
+    [confettiAnimation playMatchAnimationForView:self.view];
 }
 
 /*
