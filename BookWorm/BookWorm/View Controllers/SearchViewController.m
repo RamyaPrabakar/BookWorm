@@ -42,10 +42,15 @@
     // self.shouldMakeAPIRequest = true;
 }
 
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
+}
+
 - (IBAction)checkMarkPressed:(id)sender {
     self.titleTableView.hidden = YES;
 }
 
+// Turning off autocomplete for now
 - (BOOL)textField:(UITextField *)textField
     shouldChangeCharactersInRange:(NSRange)range
     replacementString:(NSString *)string {
@@ -117,6 +122,14 @@
         self.searchTitle.text = cell.textLabel.text;
         self.titleTableView.hidden = YES;
     }
+}
+
+- (IBAction)clear:(id)sender {
+    self.searchTitle.text = @"";
+    self.searchAuthor.text = @"";
+    self.searchISBN.text = @"";
+    self.searchPublisher.text = @"";
+    self.titleTableView.hidden = YES;
 }
 
 - (IBAction)clickedSearch:(id)sender {

@@ -36,6 +36,10 @@
     [[self.bioTextView layer] setCornerRadius:15];
 }
 
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
+}
+
 - (IBAction)takePicture:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;

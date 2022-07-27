@@ -28,7 +28,6 @@
 		4F80F5EC287675D600B93E31 /* MyBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5EB287675D600B93E31 /* MyBooksViewController.m */; };
 		4F80F5EF287675E800B93E31 /* BookTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5EE287675E800B93E31 /* BookTalkViewController.m */; };
 		4F80F5F2287675F700B93E31 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5F1287675F700B93E31 /* ProfileViewController.m */; };
-		4F80F5F528768EDF00B93E31 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4F80F5F428768EDF00B93E31 /* FacebookLogin */; };
 		4F80F601287895C500B93E31 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F600287895C500B93E31 /* SearchViewController.m */; };
 		4F80F6052878981200B93E31 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F6042878981200B93E31 /* Book.m */; };
 		4F80F60A28789E6100B93E31 /* BookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F60928789E6100B93E31 /* BookCell.m */; };
@@ -155,7 +154,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F80F5F528768EDF00B93E31 /* FacebookLogin in Frameworks */,
 				6C194A797230C582E171B5D3 /* Pods_BookWorm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,7 +378,6 @@
 			);
 			name = BookWorm;
 			packageProductDependencies = (
-				4F80F5F428768EDF00B93E31 /* FacebookLogin */,
 			);
 			productName = BookWorm;
 			productReference = 4F80F5A22876730500B93E31 /* BookWorm.app */;
@@ -458,7 +455,6 @@
 			);
 			mainGroup = 4F80F5992876730500B93E31;
 			packageReferences = (
-				4F80F5F328768EDF00B93E31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 4F80F5A32876730500B93E31 /* Products */;
 			projectDirPath = "";
@@ -810,11 +806,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = THD2CHN55T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookWorm/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take pictures";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need library access to upload images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -825,8 +824,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWorm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "BookWorm/BookWorm-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -843,11 +844,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BookWorm/BookWorm.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = THD2CHN55T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookWorm/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take pictures";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need library access to upload images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -858,8 +862,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.BookWorm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "BookWorm/BookWorm-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -979,25 +985,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4F80F5F328768EDF00B93E31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 14.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4F80F5F428768EDF00B93E31 /* FacebookLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4F80F5F328768EDF00B93E31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookLogin;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4F80F59A2876730500B93E31 /* Project object */;
 }

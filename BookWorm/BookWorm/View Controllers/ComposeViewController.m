@@ -26,6 +26,10 @@
     [[self.commentSpace layer] setCornerRadius:15];
 }
 
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
+}
+
 - (void)textViewDidChange:(UITextView *)textView {
     NSString *substring = [NSString stringWithString:textView.text];
     

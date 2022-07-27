@@ -79,6 +79,9 @@
     }];
 }
 
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InnerChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"innerChatCell"];

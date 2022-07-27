@@ -28,14 +28,15 @@ public class ConfettiAnimation : NSObject {
             .systemPurple
         ]
         
-        let cells: [CAEmitterCell] = colors.compactMap {_ in
+        let cells: [CAEmitterCell] = colors.compactMap {
             let cell = CAEmitterCell()
-            cell.scale = 0.02
+            cell.scale = 0.01
             cell.birthRate = 50
             cell.emissionRange = .pi * 2
             cell.lifetime = 10
             cell.velocity = 150
-            cell.contents = UIImage(named: "white square")!.cgImage
+            cell.contents = UIImage(named: "square")!.cgImage
+            cell.color = $0.cgColor;
             return cell
         }
         

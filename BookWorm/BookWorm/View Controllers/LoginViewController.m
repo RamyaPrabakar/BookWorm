@@ -21,6 +21,10 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
+}
+
 - (IBAction)loginUser:(id)sender {
     // checking to make sure that the user inputted both the username and the password
     if ([self.usernameField.text isEqual:@""]) {
