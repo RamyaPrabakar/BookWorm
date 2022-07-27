@@ -61,7 +61,19 @@
     
     // using live query to immediately show the change
     self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:@"wss://bookworm.b4a.io" applicationId:@"cfEqijsSr9AS03FR76DJYM374KHH5GddQSQvIU7H" clientKey:@"F9dLUvMhb8D7aMCAukUDMFae630qhhlYTki6dGxP"];
-    PFQuery *chatQuery = [PFQuery queryWithClassName:@"Chat"];
+    
+    
+    // Query for (When the author is currUser AND the "to" is passedUser.username)
+    // OR (When the author is passedUser and the "to" is currUser.username)
+    PFQuery *chatQuery1 = [PFQuery queryWithClassName:@"Chat"];
+    [chatQuery1 whereKey:@"author" equalTo:currUser];
+    [chatQuery1 whereKey:@"to" equalTo:self.userPassed.username];
+
+    PFQuery *chatQuery2 = [PFQuery queryWithClassName:@"Chat"];
+    [chatQuery2 whereKey:@"author" equalTo:self.userPassed];
+    [chatQuery2 whereKey:@"to" equalTo:currUser.username];
+    PFQuery *chatQuery = [PFQuery orQueryWithSubqueries:@[chatQuery1, chatQuery2]];
+    
     self.subscription = [self.liveQueryClient subscribeToQuery:chatQuery];
     
     __unsafe_unretained typeof(self) weakSelf = self;
@@ -114,6 +126,7 @@
     PFUser *currUser = [PFUser currentUser];
     chat[@"author"] = currUser;
     chat[@"message"] = self.typingBar.text;
+    chat[@"to"] = self.userPassed.username;
     
     [chat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
