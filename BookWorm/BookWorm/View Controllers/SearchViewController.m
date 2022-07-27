@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfBooks;
+// @property Boolean shouldMakeAPIRequest;
 @property (nonatomic, strong) NSMutableArray *autocompleteTitles;
 @property (weak, nonatomic) IBOutlet UITableView *titleTableView;
 @end
@@ -34,8 +35,11 @@
     // Do any additional setup after loading the view.
     
     self.titleTableView.dataSource = self;
+    self.titleTableView.delegate = self;
     self.titleTableView.scrollEnabled = YES;
     self.titleTableView.hidden = YES;
+    
+    // self.shouldMakeAPIRequest = true;
 }
 
 - (IBAction)checkMarkPressed:(id)sender {
@@ -57,8 +61,10 @@
 }
 
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
-    [self.autocompleteTitles removeAllObjects];
     
+    // if (self.shouldMakeAPIRequest) {
+    [self.autocompleteTitles removeAllObjects];
+    // self.shouldMakeAPIRequest = false;
     NSString *baseURL = @"https://www.googleapis.com/books/v1/volumes?q=";
     NSString *titleString;
     if ([self.searchTitle.text length] != 0) {
@@ -80,7 +86,7 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSLog(@"%@", dataDictionary);
+               // NSLog(@"%@", dataDictionary);
                [self.autocompleteTitles removeAllObjects];
                NSArray *itemsArray = dataDictionary[@"items"];
                
@@ -97,11 +103,9 @@
                    self.titleTableView.hidden = NO;
                    [self.titleTableView reloadData];
                }
+               
+               // self.shouldMakeAPIRequest = true;
            }
-        
-        // The reloading table data was here before this
-        
-        
        }];
     [task resume];
 }
