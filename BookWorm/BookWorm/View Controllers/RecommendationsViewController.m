@@ -15,8 +15,6 @@
 #import "Parse/Parse.h"
 #import "PFImageView.h"
 
-// Frameworks
-#import <FBSDKCoreKit/FBSDKProfile.h>
 @interface RecommendationsViewController ()
 @property (nonatomic, strong) NSMutableArray *arrayOfBooks;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -31,14 +29,6 @@
     
     [self getBooks];
     self.arrayOfBooks = [[NSMutableArray alloc] init];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
-            if (profile) {
-                // get users profile name
-                self.navigationItem.title = [NSString stringWithFormat:@"Hello %@ %@", profile.firstName, profile.lastName];
-            }
-        }];
-    });
 }
 
 - (void) getBooks {
@@ -59,8 +49,6 @@
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                
-               // NSLog(@"%@", dataDictionary);
-               
                // Get the results dictionary
                NSDictionary *resultsDictionary = dataDictionary[@"results"];
                
@@ -79,8 +67,6 @@
                            //do something if object is equals to [NSNull null]
                            break;
                        }
-                       // NSString *text = book.title;
-                       // NSLog(@"%@", text);
                        
                        [self.arrayOfBooks addObject:book];
                    }

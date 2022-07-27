@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfBooks;
-// @property Boolean shouldMakeAPIRequest;
 @property (nonatomic, strong) NSMutableArray *autocompleteTitles;
 @property (weak, nonatomic) IBOutlet UITableView *titleTableView;
 @end
@@ -32,14 +31,11 @@
     self.arrayOfBooks = [[NSMutableArray alloc] init];
     self.autocompleteTitles = [[NSMutableArray alloc] init];
     self.searchTitle.delegate = self;
-    // Do any additional setup after loading the view.
     
     self.titleTableView.dataSource = self;
     self.titleTableView.delegate = self;
     self.titleTableView.scrollEnabled = YES;
     self.titleTableView.hidden = YES;
-    
-    // self.shouldMakeAPIRequest = true;
 }
 
 - (IBAction)onTap:(id)sender {
@@ -50,7 +46,7 @@
     self.titleTableView.hidden = YES;
 }
 
-// Turning off autocomplete for now
+// If the text field changes, we trigger the autocomplete function
 - (BOOL)textField:(UITextField *)textField
     shouldChangeCharactersInRange:(NSRange)range
     replacementString:(NSString *)string {
@@ -66,10 +62,7 @@
 }
 
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
-    
-    // if (self.shouldMakeAPIRequest) {
     [self.autocompleteTitles removeAllObjects];
-    // self.shouldMakeAPIRequest = false;
     NSString *baseURL = @"https://www.googleapis.com/books/v1/volumes?q=";
     NSString *titleString;
     if ([self.searchTitle.text length] != 0) {
@@ -81,8 +74,6 @@
     NSString *googleKey = [dict objectForKey: @"GoogleBooksAPIKey"];
     NSString *finalURL = [titleString stringByAppendingFormat:@"%@%@", @"&key=", googleKey];
     NSURL *url = [NSURL URLWithString:finalURL];
-    NSLog(@"Final URL");
-    NSLog(@"%@", finalURL);
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -91,27 +82,23 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               // NSLog(@"%@", dataDictionary);
                [self.autocompleteTitles removeAllObjects];
                NSArray *itemsArray = dataDictionary[@"items"];
                
                for (NSDictionary *item in itemsArray) {
-                   // Get the volumeInfo dictionary
                    NSString *title = item[@"volumeInfo"][@"title"];
                    if (title != nil && [title hasPrefix:substring]) {
                        [self.autocompleteTitles addObject:item[@"volumeInfo"][@"title"]];
                    }
                }
-               
-               // Reload your table view data
-               if ([self.autocompleteTitles count] > 0) {
-                   self.titleTableView.hidden = NO;
-                   [self.titleTableView reloadData];
-               }
-               
-               // self.shouldMakeAPIRequest = true;
            }
-       }];
+        
+        // Reload your table view data
+        if ([self.autocompleteTitles count] > 0) {
+            self.titleTableView.hidden = NO;
+            [self.titleTableView reloadData];
+        }
+    }];
     [task resume];
 }
 
@@ -177,7 +164,6 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSLog(@"%@", dataDictionary);
                [self.arrayOfBooks removeAllObjects];
                NSArray *itemsArray = dataDictionary[@"items"];
                

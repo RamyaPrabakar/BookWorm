@@ -28,7 +28,6 @@
     self.privateChatTableView.dataSource = self;
     self.usernameTop.title = self.userPassed[@"username"];
     self.arrayOfMessagesForIndividualChat = [[NSMutableArray alloc] init];
-    // Do any additional setup after loading the view.
     
     PFUser *currUser = [PFUser currentUser];
     PFQuery *query1 = [PFQuery queryWithClassName:@"Conversation"];

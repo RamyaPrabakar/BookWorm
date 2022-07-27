@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [[self.commentSpace layer] setBorderColor:[[UIColor grayColor] CGColor]];
     [[self.commentSpace layer] setBorderWidth:2.3];
     [[self.commentSpace layer] setCornerRadius:15];
@@ -72,7 +71,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
         // The find succeeded.
-          NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
           
           // Case when there is no Google book with the current bookId
           // in the database
@@ -103,16 +101,5 @@
 -(void)hideLabel:(NSTimer *)timer {
     [self.commentSaved setHidden:YES];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
