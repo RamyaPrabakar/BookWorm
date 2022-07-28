@@ -103,6 +103,7 @@
     // fetching all the comments for the current book
     PFQuery *query = [PFQuery queryWithClassName:@"GoogleBook"];
     [query whereKey:@"bookId" equalTo:self.bookPassed.bookId];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           

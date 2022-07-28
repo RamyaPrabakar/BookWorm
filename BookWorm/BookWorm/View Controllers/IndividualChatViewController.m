@@ -40,6 +40,7 @@
     [query includeKey:@"user1"];
     [query includeKey:@"user2"];
     [query includeKey:@"chats"];
+    [query orderByDescending:@"createdAt"];
     
     // Finding all the conversations where either the user1 or the user2 is the
     // current user

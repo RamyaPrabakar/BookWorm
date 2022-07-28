@@ -54,6 +54,7 @@
     PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
     [query includeKey:@"user1"];
     [query includeKey:@"user2"];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           for (Conversation *conversation in objects) {
