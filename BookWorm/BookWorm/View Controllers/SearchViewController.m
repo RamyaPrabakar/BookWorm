@@ -50,12 +50,16 @@
 - (BOOL)textField:(UITextField *)textField
     shouldChangeCharactersInRange:(NSRange)range
     replacementString:(NSString *)string {
-     
+    
     if (textField == self.searchTitle) {
         NSString *substring = [NSString stringWithString:self.searchTitle.text];
         substring = [substring
           stringByReplacingCharactersInRange:range withString:string];
-        [self searchAutocompleteEntriesWithSubstring:substring];
+        
+        // Debouncing API calls
+        // to limit API calls, we trigger the API request half a second after last key press
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(searchAutocompleteEntriesWithSubstring:) object:substring];
+        [self performSelector:@selector(searchAutocompleteEntriesWithSubstring:) withObject:substring afterDelay:0.5];
     }
     
   return YES;
@@ -73,6 +77,8 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *googleKey = [dict objectForKey: @"GoogleBooksAPIKey"];
     NSString *finalURL = [titleString stringByAppendingFormat:@"%@%@", @"&key=", googleKey];
+    NSLog(@"Final URL");
+    NSLog(@"%@", finalURL);
     NSURL *url = [NSURL URLWithString:finalURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
