@@ -77,8 +77,6 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *googleKey = [dict objectForKey: @"GoogleBooksAPIKey"];
     NSString *finalURL = [titleString stringByAppendingFormat:@"%@%@", @"&key=", googleKey];
-    NSLog(@"Final URL");
-    NSLog(@"%@", finalURL);
     NSURL *url = [NSURL URLWithString:finalURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
