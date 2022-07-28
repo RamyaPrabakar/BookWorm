@@ -96,6 +96,7 @@
         [cell.chatProfilePicture loadInBackground];
         cell.chatProfilePicture.layer.cornerRadius = cell.chatProfilePicture.frame.size.height / 2;
         cell.chatProfilePicture.layer.masksToBounds = YES;
+        cell.backgroundColor = [UIColor systemGreenColor];
         return cell;
     } else if (tableView == self.outerChatTableView) {
         // Case when the table view is the outer chat table view
