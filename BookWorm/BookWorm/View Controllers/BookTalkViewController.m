@@ -71,8 +71,10 @@
           }
       }
     }];
-    
-    // Do any additional setup after loading the view.
+}
+
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

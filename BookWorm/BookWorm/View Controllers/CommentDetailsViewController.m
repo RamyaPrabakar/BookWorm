@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     self.usernameLabel.text = self.commentPassed[@"author"][@"username"];
     self.commentLabel.text = self.commentPassed.comment;

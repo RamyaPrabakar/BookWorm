@@ -32,7 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view.
     self.bookTitle.text = self.bookPassed.title;
     self.bookSubtitle.text = self.bookPassed.subtitle;
     self.bookDesciption.text = self.bookPassed.bookDescription;
@@ -102,7 +101,6 @@
               // adding all the comment objects to the commentsArray
               for (Comment *comment in objects[0][@"comments"]) {
                   [comment fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                      NSLog(@"%@", comment);
                       [self.commentsArray addObject:comment];
                   }];
               }
