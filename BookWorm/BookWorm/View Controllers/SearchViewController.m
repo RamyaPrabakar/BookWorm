@@ -202,14 +202,7 @@
         GoogleBook *book = self.arrayOfBooks[indexPath.row];
         cell.title.text = book.title;
         
-        NSString *authors = @"";
-        int i;
-        
-        for (i = 0; i < [book.authors count] - 1; i++) {
-            authors = [authors stringByAppendingFormat:@"%@%@", [book.authors objectAtIndex:i], @", "];
-        }
-        
-        authors = [authors stringByAppendingFormat:@"%@", [book.authors objectAtIndex:i]];
+        NSString *authors  = [self createAuthorString:book];
         
         cell.author.text = authors;
         cell.bookDescription.text = book.subtitle;
@@ -229,6 +222,19 @@
     }
     
     return nil;
+}
+
+-(NSString *)createAuthorString:(GoogleBook *)book{
+    NSString *authors = @"";
+    int i;
+    
+    for (i = 0; i < [book.authors count] - 1; i++) {
+        authors = [authors stringByAppendingFormat:@"%@%@", [book.authors objectAtIndex:i], @", "];
+    }
+    
+    authors = [authors stringByAppendingFormat:@"%@", [book.authors objectAtIndex:i]];
+    
+    return authors;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
