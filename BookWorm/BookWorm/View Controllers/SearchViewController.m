@@ -10,6 +10,7 @@
 #import "GoogleBook.h"
 #import "UIImageView+AFNetworking.h"
 #import "SearchDetailsViewController.h"
+#import "MarkingCell.h"
 
 @interface SearchViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *searchTitle;
@@ -109,8 +110,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (tableView == self.titleTableView) {
-        UITableViewCell *cell = [self.titleTableView cellForRowAtIndexPath:indexPath];
-        self.searchTitle.text = cell.textLabel.text;
+        MarkingCell *cell = [self.titleTableView cellForRowAtIndexPath:indexPath];
+        self.searchTitle.text = cell.bookTitle.text;
         self.titleTableView.hidden = YES;
     }
 }
@@ -217,11 +218,11 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else if (tableView == self.titleTableView) {
-        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        MarkingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarkingCell"];
         if (self.autocompleteTitles.count == 0) {
             return cell;
         }
-        cell.textLabel.text = self.autocompleteTitles[indexPath.row];
+        cell.bookTitle.text = self.autocompleteTitles[indexPath.row];
         return cell;
     }
     

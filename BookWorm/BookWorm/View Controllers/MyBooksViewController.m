@@ -8,6 +8,7 @@
 #import "MyBooksViewController.h"
 #import "Parse/Parse.h"
 #import "GoogleBook.h"
+#import "MarkingCell.h"
 
 @interface MyBooksViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *toReadButton;
@@ -81,35 +82,31 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = nil;
-    
+    MarkingCell *markingCell = [tableView dequeueReusableCellWithIdentifier:@"MarkingCell"];
     if (tableView == self.readingTableView) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if ([self.readingBooks count] == 0) {
-            cell.textLabel.text = @"No books in your reading list";
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            return cell;
+            markingCell.bookTitle.text = @"No books in your reading list";
+            markingCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return markingCell;
         }
-        cell.textLabel.text = self.readingBooks[indexPath.row][@"title"];
+        markingCell.bookTitle.text = self.readingBooks[indexPath.row][@"title"];
     } else if (tableView == self.readTableView) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if ([self.readBooks count] == 0) {
-            cell.textLabel.text = @"No books in your read list";
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            return cell;
+            markingCell.bookTitle.text = @"No books in your read list";
+            markingCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return markingCell;
         }
-        cell.textLabel.text = self.readBooks[indexPath.row][@"title"];
+        markingCell.bookTitle.text = self.readBooks[indexPath.row][@"title"];
     } else if (tableView == self.toReadTableView) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if ([self.toReadBooks count] == 0) {
-            cell.textLabel.text = @"No books in your to read list";
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            return cell;
+            markingCell.bookTitle.text = @"No books in your to read list";
+            markingCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return markingCell;
         }
-        cell.textLabel.text = self.toReadBooks[indexPath.row][@"title"];
+        markingCell.bookTitle.text = self.toReadBooks[indexPath.row][@"title"];
     }
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    return cell;
+    markingCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return markingCell;
 }
 
 - (IBAction)toReadButtonPressed:(id)sender {
