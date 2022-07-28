@@ -29,12 +29,21 @@
     self.outerChatTableView.dataSource = self;
     
     self.searchTableView.dataSource = self;
-    self.searchTableView.hidden = YES;
     
     self.arrayOfUsers = [[NSArray alloc] init];
     self.usersWithConversations = [[NSMutableArray alloc] init];
     self.namesOfUsersWithConversations = [[NSMutableArray alloc] init];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.searchTableView.hidden = YES;
+    [self.namesOfUsersWithConversations removeAllObjects];
+    [self.usersWithConversations removeAllObjects];
+    [self fetchFromParse];
+    [self.outerChatTableView reloadData];
+}
+
+- (void)fetchFromParse {
     PFUser *currUser = [PFUser currentUser];
     PFQuery *query1 = [PFQuery queryWithClassName:@"Conversation"];
     [query1 whereKey:@"user1" equalTo:currUser.username];
@@ -72,7 +81,6 @@
       }
     }];
 }
-
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:true];
 }
