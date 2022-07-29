@@ -53,12 +53,21 @@
     self.optionsData = [[NSArray alloc] initWithObjects:@"To Read", @"Reading", @"Read", @"Mark this book", nil];
     self.optionsTableView.delegate = self;
     self.optionsTableView.dataSource = self;
-    self.optionsTableView.hidden = YES;
+    
     
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.optionsTableView.hidden = YES;
     self.commentsTableView.hidden = YES;
-    
+    [self.commentsArray removeAllObjects];
+    [self fetchFromParse];
+    [self.commentsTableView reloadData];
+}
+
+- (void) fetchFromParse {
     PFUser *currUser = [PFUser currentUser];
     
     // Fetching books from the user's "reading" list
@@ -94,6 +103,7 @@
     // fetching all the comments for the current book
     PFQuery *query = [PFQuery queryWithClassName:@"GoogleBook"];
     [query whereKey:@"bookId" equalTo:self.bookPassed.bookId];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           

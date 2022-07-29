@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RecommendationsDetailViewController : UIViewController
+@interface RecommendationsDetailViewController : UIViewController <UIGestureRecognizerDelegate>
 @property (nonatomic, strong) Book *bookPassed;
 @end
 

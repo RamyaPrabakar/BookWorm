@@ -10,6 +10,7 @@
 #import "GoogleBook.h"
 #import "UIImageView+AFNetworking.h"
 #import "SearchDetailsViewController.h"
+#import "MarkingCell.h"
 
 @interface SearchViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *searchTitle;
@@ -36,6 +37,12 @@
     self.titleTableView.delegate = self;
     self.titleTableView.scrollEnabled = YES;
     self.titleTableView.hidden = YES;
+    
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    
+    // A little trick for removing the cell separators
+    self.tableView.tableFooterView = [UIView new];
 }
 
 - (IBAction)onTap:(id)sender {
@@ -50,12 +57,16 @@
 - (BOOL)textField:(UITextField *)textField
     shouldChangeCharactersInRange:(NSRange)range
     replacementString:(NSString *)string {
-     
+    
     if (textField == self.searchTitle) {
         NSString *substring = [NSString stringWithString:self.searchTitle.text];
         substring = [substring
           stringByReplacingCharactersInRange:range withString:string];
-        [self searchAutocompleteEntriesWithSubstring:substring];
+        
+        // Debouncing API calls
+        // to limit API calls, we trigger the API request half a second after last key press
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(searchAutocompleteEntriesWithSubstring:) object:substring];
+        [self performSelector:@selector(searchAutocompleteEntriesWithSubstring:) withObject:substring afterDelay:0.5];
     }
     
   return YES;
@@ -105,8 +116,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (tableView == self.titleTableView) {
-        UITableViewCell *cell = [self.titleTableView cellForRowAtIndexPath:indexPath];
-        self.searchTitle.text = cell.textLabel.text;
+        MarkingCell *cell = [self.titleTableView cellForRowAtIndexPath:indexPath];
+        self.searchTitle.text = cell.bookTitle.text;
         self.titleTableView.hidden = YES;
     }
 }
@@ -213,11 +224,11 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else if (tableView == self.titleTableView) {
-        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        MarkingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarkingCell"];
         if (self.autocompleteTitles.count == 0) {
             return cell;
         }
-        cell.textLabel.text = self.autocompleteTitles[indexPath.row];
+        cell.bookTitle.text = self.autocompleteTitles[indexPath.row];
         return cell;
     }
     
@@ -246,6 +257,50 @@
     }
     
     return 0;
+}
+
+// Empty state methods
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"searchingIcon"];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"No book search has been made";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"Search for books by entering the title, author, publisher or ISBN";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+                                 
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView {
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+    return YES;
+}
+
+- (BOOL) emptyDataSetShouldAllowImageViewAnimate:(UIScrollView *)scrollView {
+    return YES;
 }
 
 #pragma mark - Navigation

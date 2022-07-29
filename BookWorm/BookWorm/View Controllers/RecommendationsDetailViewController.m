@@ -18,6 +18,8 @@
 
 @implementation RecommendationsDetailViewController
 
+CGFloat lastScale;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -31,6 +33,38 @@
     
     NSURL *bookPosterURL = [NSURL URLWithString:self.bookPassed.bookImageLink];
     [self.bigBookImage setImageWithURL:bookPosterURL placeholderImage:nil];
+    
+    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc]
+        initWithTarget:self action:@selector(handlePinchGesture:)];
+    pinchGestureRecognizer.delegate = self;
+    [self.bigBookImage addGestureRecognizer:pinchGestureRecognizer];
+}
+
+- (void)handlePinchGesture:(UIPinchGestureRecognizer *)gestureRecognizer {
+
+     if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+         // Reset the last scale, necessary if there are multiple objects with different scales.
+         lastScale = [gestureRecognizer scale];
+     }
+
+     if ([gestureRecognizer state] == UIGestureRecognizerStateBegan ||
+         [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
+         CGFloat currentScale = [[[gestureRecognizer view].layer valueForKeyPath:@"transform.scale"] floatValue];
+         
+         // Constants to adjust the max/min values of zoom.
+         const CGFloat kMaxScale = 2.0;
+         const CGFloat kMinScale = 1.0;
+         
+         // new scale is in the range (0-1)
+         CGFloat newScale = 1 -  (lastScale - [gestureRecognizer scale]);
+         newScale = MIN(newScale, kMaxScale / currentScale);
+         newScale = MAX(newScale, kMinScale / currentScale);
+         CGAffineTransform transform = CGAffineTransformScale([[gestureRecognizer view] transform], newScale, newScale);
+         [gestureRecognizer view].transform = transform;
+         
+         // Store the previous. scale factor for the next pinch gesture call
+         lastScale = [gestureRecognizer scale];
+      }
 }
 
 @end

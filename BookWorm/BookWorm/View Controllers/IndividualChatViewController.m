@@ -9,6 +9,7 @@
 #import "InnerChatCell.h"
 #import "Conversation.h"
 #import "Chat.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface IndividualChatViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *privateChatTableView;
@@ -29,6 +30,9 @@
     self.usernameTop.title = self.userPassed[@"username"];
     self.arrayOfMessagesForIndividualChat = [[NSMutableArray alloc] init];
     
+    // A little trick for removing the cell separators
+    self.privateChatTableView.separatorColor = [UIColor clearColor];
+    
     PFUser *currUser = [PFUser currentUser];
     PFQuery *query1 = [PFQuery queryWithClassName:@"Conversation"];
     [query1 whereKey:@"user1" equalTo:currUser.username];
@@ -40,6 +44,7 @@
     [query includeKey:@"user1"];
     [query includeKey:@"user2"];
     [query includeKey:@"chats"];
+    [query orderByDescending:@"createdAt"];
     
     // Finding all the conversations where either the user1 or the user2 is the
     // current user
@@ -52,6 +57,7 @@
               if ([conversation.user1 isEqualToString:self.userPassed.username] ||
                   [conversation.user2 isEqualToString:self.userPassed.username]) {
                   self.arrayOfMessagesForIndividualChat = conversation[@"chats"];
+                  
               }
           }
           
@@ -95,24 +101,75 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    InnerChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"innerChatCell"];
-    
+    InnerChatCell *otherCell = [tableView dequeueReusableCellWithIdentifier:@"OtherInnerChatCell"];
+    InnerChatCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"MyInnerChatCell"];
     Chat *chat = self.arrayOfMessagesForIndividualChat[indexPath.row];
-    cell.privateChatMessage.text = chat.message;
+    
     
     PFUser *author = chat[@"author"];
+    PFUser *currUser = [PFUser currentUser];
+    [author fetchIfNeeded];
     
-    [author fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        cell.privateChatUsername.text = chat.author.username;
-        cell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
-        [cell.privateChatProfilePicture loadInBackground];
-        cell.privateChatProfilePicture.layer.cornerRadius = cell.privateChatProfilePicture.frame.size.height / 2;
-        cell.privateChatProfilePicture.layer.masksToBounds = YES;
-    }];
+    if ([author.username isEqualToString:currUser.username]) {
+        myCell.privateChatMessage.text = chat.message;
+        myCell.privateChatUsername.text = chat.author.username;
+        myCell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
+        [myCell.privateChatProfilePicture loadInBackground];
+        myCell.privateChatProfilePicture.layer.cornerRadius = myCell.privateChatProfilePicture.frame.size.height / 2;
+        myCell.privateChatProfilePicture.layer.masksToBounds = YES;
+        
+        NSDate *createdAt = chat.createdAt;
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        
+        // Configure the input format to parse the date string
+        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        
+        // Configure output format
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
+        
+        // Convert Date to String
+        myCell.messageTimeStamp.text = [formatter stringFromDate:createdAt];
+        
+        myCell.viewAroundMessage.backgroundColor = [UIColor systemGreenColor];
+        myCell.viewAroundMessage.layer.cornerRadius = 5;
+        myCell.viewAroundMessage.layer.masksToBounds = true;
+        myCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return myCell;
+    } else {
+        otherCell.privateChatMessage.text = chat.message;
+        otherCell.privateChatUsername.text = chat.author.username;
+        otherCell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
+        [otherCell.privateChatProfilePicture loadInBackground];
+        otherCell.privateChatProfilePicture.layer.cornerRadius = otherCell.privateChatProfilePicture.frame.size.height / 2;
+        otherCell.privateChatProfilePicture.layer.masksToBounds = YES;
+        
+        NSDate *createdAt = chat.createdAt;
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        
+        // Configure the input format to parse the date string
+        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        
+        // Configure output format
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
+        
+        // Convert Date to String
+        otherCell.messageTimeStamp.text = [formatter stringFromDate:createdAt];
+        
+        otherCell.viewAroundMessage.backgroundColor = [UIColor whiteColor];
+        otherCell.viewAroundMessage.layer.cornerRadius = 5;
+        otherCell.viewAroundMessage.layer.masksToBounds = true;
+        otherCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return otherCell;
+    }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    return otherCell;
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.arrayOfMessagesForIndividualChat.count;
@@ -190,6 +247,37 @@
     }];
     
     self.typingBar.text = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+#pragma mark - keyboard movements
+- (void)keyboardWillShow:(NSNotification *)notification {
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y = -keyboardSize.height;
+        self.view.frame = f;
+    }];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification {
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y = 0.0f;
+        self.view.frame = f;
+    }];
 }
 
 @end

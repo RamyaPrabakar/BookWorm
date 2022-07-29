@@ -29,12 +29,27 @@
     self.outerChatTableView.dataSource = self;
     
     self.searchTableView.dataSource = self;
-    self.searchTableView.hidden = YES;
     
     self.arrayOfUsers = [[NSArray alloc] init];
     self.usersWithConversations = [[NSMutableArray alloc] init];
     self.namesOfUsersWithConversations = [[NSMutableArray alloc] init];
     
+    self.outerChatTableView.emptyDataSetSource = self;
+    self.outerChatTableView.emptyDataSetDelegate = self;
+    
+    // A little trick for removing the cell separators
+    self.outerChatTableView.tableFooterView = [UIView new];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.searchTableView.hidden = YES;
+    [self.namesOfUsersWithConversations removeAllObjects];
+    [self.usersWithConversations removeAllObjects];
+    [self fetchFromParse];
+    [self.outerChatTableView reloadData];
+}
+
+- (void)fetchFromParse {
     PFUser *currUser = [PFUser currentUser];
     PFQuery *query1 = [PFQuery queryWithClassName:@"Conversation"];
     [query1 whereKey:@"user1" equalTo:currUser.username];
@@ -45,6 +60,7 @@
     PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
     [query includeKey:@"user1"];
     [query includeKey:@"user2"];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           for (Conversation *conversation in objects) {
@@ -72,7 +88,6 @@
       }
     }];
 }
-
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:true];
 }
@@ -87,6 +102,7 @@
         [cell.chatProfilePicture loadInBackground];
         cell.chatProfilePicture.layer.cornerRadius = cell.chatProfilePicture.frame.size.height / 2;
         cell.chatProfilePicture.layer.masksToBounds = YES;
+        cell.backgroundColor = [UIColor systemGreenColor];
         return cell;
     } else if (tableView == self.outerChatTableView) {
         // Case when the table view is the outer chat table view
@@ -132,6 +148,50 @@
 - (IBAction)exitSearch:(id)sender {
     self.searchTableView.hidden = YES;
     self.searchBar.text = nil;
+}
+
+// Empty state methods
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"messageIcon"];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"No chats yet";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"Search for users that you want to chat with!";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+                                 
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView {
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+    return YES;
+}
+
+- (BOOL) emptyDataSetShouldAllowImageViewAnimate:(UIScrollView *)scrollView {
+    return YES;
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
