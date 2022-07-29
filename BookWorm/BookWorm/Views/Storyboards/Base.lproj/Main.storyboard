@@ -463,7 +463,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fKA-eE-AVg">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fKA-eE-AVg">
                                 <rect key="frame" x="87" y="86" width="240" height="293"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="4SW-xw-kvk"/>
@@ -490,7 +490,6 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="buyLink" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W3u-xj-5tc">
                                 <rect key="frame" x="10" y="511" width="394" height="100"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="seV-xX-RMC"/>
                                 </constraints>
@@ -655,7 +654,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IBD-uX-i7G">
-                                <rect key="frame" x="0.0" y="197" width="414" height="645"/>
+                                <rect key="frame" x="0.0" y="162" width="414" height="680"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatDetailsCell" rowHeight="98" id="emD-9T-L6a" customClass="OuterChatCell">
@@ -696,8 +695,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Cba-9Y-5V9">
-                                <rect key="frame" x="0.0" y="197" width="414" height="166"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Cba-9Y-5V9">
+                                <rect key="frame" x="0.0" y="162" width="414" height="113"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="113" id="3Dy-LN-Lv4"/>
@@ -745,7 +744,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ql8-TO-Aj0">
-                                <rect key="frame" x="0.0" y="91" width="414" height="106"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="106"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for users with username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y88-cP-vNh">
                                         <rect key="frame" x="32" y="15" width="350" height="34"/>
@@ -800,7 +799,7 @@
                             <constraint firstItem="IBD-uX-i7G" firstAttribute="leading" secondItem="ihB-bt-vmx" secondAttribute="leading" id="VhG-al-g4i"/>
                             <constraint firstItem="ql8-TO-Aj0" firstAttribute="leading" secondItem="ihB-bt-vmx" secondAttribute="leading" id="gWz-TX-QOP"/>
                             <constraint firstItem="Cba-9Y-5V9" firstAttribute="trailing" secondItem="ihB-bt-vmx" secondAttribute="trailing" id="mfy-4X-01g"/>
-                            <constraint firstItem="ql8-TO-Aj0" firstAttribute="top" secondItem="ihB-bt-vmx" secondAttribute="top" constant="35" id="n5O-Y0-dGV"/>
+                            <constraint firstItem="ql8-TO-Aj0" firstAttribute="top" secondItem="ihB-bt-vmx" secondAttribute="top" id="n5O-Y0-dGV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sYM-cK-iH6">
