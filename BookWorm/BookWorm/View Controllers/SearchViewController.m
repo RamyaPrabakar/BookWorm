@@ -261,7 +261,7 @@
 
 // Empty state methods
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"empty_placeholder"];
+    return [UIImage imageNamed:@"searchingIcon"];
 }
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {

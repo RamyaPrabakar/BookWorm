@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IndividualChatViewController : UIViewController <UITableViewDataSource>
+@interface IndividualChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) PFUser *userPassed;
 @end
 

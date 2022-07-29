@@ -9,11 +9,13 @@
 #import "InnerChatCell.h"
 #import "Conversation.h"
 #import "Chat.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface IndividualChatViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *privateChatTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *usernameTop;
 @property (nonatomic, strong) NSMutableArray *arrayOfMessagesForIndividualChat;
+// @property (nonatomic, strong) NSMutableArray *arrayOfUsers;
 @property (nonatomic) bool conversationAlreadyExists;
 @property (weak, nonatomic) IBOutlet UITextField *typingBar;
 @property (nonatomic, strong) PFLiveQueryClient *liveQueryClient;
@@ -28,6 +30,10 @@
     self.privateChatTableView.dataSource = self;
     self.usernameTop.title = self.userPassed[@"username"];
     self.arrayOfMessagesForIndividualChat = [[NSMutableArray alloc] init];
+    // self.arrayOfUsers = [[NSMutableArray alloc] init];
+    
+    // A little trick for removing the cell separators
+    self.privateChatTableView.separatorColor = [UIColor clearColor];
     
     PFUser *currUser = [PFUser currentUser];
     PFQuery *query1 = [PFQuery queryWithClassName:@"Conversation"];
@@ -53,8 +59,23 @@
               if ([conversation.user1 isEqualToString:self.userPassed.username] ||
                   [conversation.user2 isEqualToString:self.userPassed.username]) {
                   self.arrayOfMessagesForIndividualChat = conversation[@"chats"];
+                  
               }
           }
+          
+          // To try to pre fetch the author information
+          /* for (Chat *chat in self.arrayOfMessagesForIndividualChat) {
+              PFQuery *authorQuery = [PFQuery queryWithClassName:@"_User"];
+              [authorQuery whereKey:@"objectId" equalTo:chat.author.objectId];
+              [authorQuery includeKey:@"username"];
+              
+              [authorQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                  if (!error) {
+                      NSLog(@"%@", objects[0]);
+                      [self.arrayOfUsers addObject:objects[0]];
+                  }
+              }];
+          } */
           
           [self.privateChatTableView reloadData];
       }
@@ -96,24 +117,90 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    InnerChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"innerChatCell"];
-    
+    InnerChatCell *otherCell = [tableView dequeueReusableCellWithIdentifier:@"OtherInnerChatCell"];
+    // InnerChatCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"MyInnerChatCell"];
+    // InnerChatCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"MyInnerChatCell"];
     Chat *chat = self.arrayOfMessagesForIndividualChat[indexPath.row];
-    cell.privateChatMessage.text = chat.message;
+    
     
     PFUser *author = chat[@"author"];
+    // PFUser *author = self.arrayOfUsers[indexPath.row];
+    PFUser *currUser = [PFUser currentUser];
+    // __block Boolean isMe = false;;
+    
+    /* if ([author.username isEqualToString:currUser.username]) {
+        myCell.privateChatMessage.text = chat.message;
+        myCell.privateChatUsername.text = chat.author.username;
+        myCell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
+        [myCell.privateChatProfilePicture loadInBackground];
+        myCell.privateChatProfilePicture.layer.cornerRadius = myCell.privateChatProfilePicture.frame.size.height / 2;
+        myCell.privateChatProfilePicture.layer.masksToBounds = YES;
+        
+        myCell.viewAroundMessage.backgroundColor = [UIColor systemGreenColor];
+        myCell.viewAroundMessage.layer.cornerRadius = 5;
+        myCell.viewAroundMessage.layer.masksToBounds = true;
+        myCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        isMe = true;
+    } else {
+        otherCell.privateChatMessage.text = chat.message;
+        otherCell.privateChatUsername.text = chat.author.username;
+        otherCell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
+        [otherCell.privateChatProfilePicture loadInBackground];
+        otherCell.privateChatProfilePicture.layer.cornerRadius = otherCell.privateChatProfilePicture.frame.size.height / 2;
+        otherCell.privateChatProfilePicture.layer.masksToBounds = YES;
+        otherCell.viewAroundMessage.backgroundColor = [UIColor whiteColor];
+        otherCell.viewAroundMessage.layer.cornerRadius = 5;
+        otherCell.viewAroundMessage.layer.masksToBounds = true;
+        otherCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        isMe = false;
+    }*/
     
     [author fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        cell.privateChatUsername.text = chat.author.username;
-        cell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
-        [cell.privateChatProfilePicture loadInBackground];
-        cell.privateChatProfilePicture.layer.cornerRadius = cell.privateChatProfilePicture.frame.size.height / 2;
-        cell.privateChatProfilePicture.layer.masksToBounds = YES;
+        // isMe = false;
+        
+        if ([author.username isEqualToString:currUser.username]) {
+            otherCell.privateChatMessage.text = chat.message;
+            otherCell.privateChatUsername.text = chat.author.username;
+            otherCell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
+            [otherCell.privateChatProfilePicture loadInBackground];
+            otherCell.privateChatProfilePicture.layer.cornerRadius = otherCell.privateChatProfilePicture.frame.size.height / 2;
+            otherCell.privateChatProfilePicture.layer.masksToBounds = YES;
+            
+            otherCell.viewAroundMessage.backgroundColor = [UIColor systemGreenColor];
+            otherCell.viewAroundMessage.layer.cornerRadius = 5;
+            otherCell.viewAroundMessage.layer.masksToBounds = true;
+            otherCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            // isMe = true;
+        } else {
+            otherCell.privateChatMessage.text = chat.message;
+            otherCell.privateChatUsername.text = chat.author.username;
+            otherCell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
+            [otherCell.privateChatProfilePicture loadInBackground];
+            otherCell.privateChatProfilePicture.layer.cornerRadius = otherCell.privateChatProfilePicture.frame.size.height / 2;
+            otherCell.privateChatProfilePicture.layer.masksToBounds = YES;
+            otherCell.viewAroundMessage.backgroundColor = [UIColor whiteColor];
+            otherCell.viewAroundMessage.layer.cornerRadius = 5;
+            otherCell.viewAroundMessage.layer.masksToBounds = true;
+            otherCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            // isMe = false;
+        }
     }];
+        
+        
+    // }];
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    /* if (isMe) {
+        return myCell;
+    } else {
+        return otherCell;
+    } */
+    
+    return otherCell;
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.arrayOfMessagesForIndividualChat.count;
