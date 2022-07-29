@@ -118,6 +118,20 @@
         myCell.privateChatProfilePicture.layer.cornerRadius = myCell.privateChatProfilePicture.frame.size.height / 2;
         myCell.privateChatProfilePicture.layer.masksToBounds = YES;
         
+        NSDate *createdAt = chat.createdAt;
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        
+        // Configure the input format to parse the date string
+        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        
+        // Configure output format
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
+        
+        // Convert Date to String
+        myCell.messageTimeStamp.text = [formatter stringFromDate:createdAt];
+        
         myCell.viewAroundMessage.backgroundColor = [UIColor systemGreenColor];
         myCell.viewAroundMessage.layer.cornerRadius = 5;
         myCell.viewAroundMessage.layer.masksToBounds = true;
@@ -130,6 +144,21 @@
         [otherCell.privateChatProfilePicture loadInBackground];
         otherCell.privateChatProfilePicture.layer.cornerRadius = otherCell.privateChatProfilePicture.frame.size.height / 2;
         otherCell.privateChatProfilePicture.layer.masksToBounds = YES;
+        
+        NSDate *createdAt = chat.createdAt;
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        
+        // Configure the input format to parse the date string
+        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        
+        // Configure output format
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
+        
+        // Convert Date to String
+        otherCell.messageTimeStamp.text = [formatter stringFromDate:createdAt];
+        
         otherCell.viewAroundMessage.backgroundColor = [UIColor whiteColor];
         otherCell.viewAroundMessage.layer.cornerRadius = 5;
         otherCell.viewAroundMessage.layer.masksToBounds = true;
