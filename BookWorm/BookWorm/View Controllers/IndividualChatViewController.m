@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *privateChatTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *usernameTop;
 @property (nonatomic, strong) NSMutableArray *arrayOfMessagesForIndividualChat;
-// @property (nonatomic, strong) NSMutableArray *arrayOfUsers;
 @property (nonatomic) bool conversationAlreadyExists;
 @property (weak, nonatomic) IBOutlet UITextField *typingBar;
 @property (nonatomic, strong) PFLiveQueryClient *liveQueryClient;
@@ -30,7 +29,6 @@
     self.privateChatTableView.dataSource = self;
     self.usernameTop.title = self.userPassed[@"username"];
     self.arrayOfMessagesForIndividualChat = [[NSMutableArray alloc] init];
-    // self.arrayOfUsers = [[NSMutableArray alloc] init];
     
     // A little trick for removing the cell separators
     self.privateChatTableView.separatorColor = [UIColor clearColor];
@@ -62,20 +60,6 @@
                   
               }
           }
-          
-          // To try to pre fetch the author information
-          /* for (Chat *chat in self.arrayOfMessagesForIndividualChat) {
-              PFQuery *authorQuery = [PFQuery queryWithClassName:@"_User"];
-              [authorQuery whereKey:@"objectId" equalTo:chat.author.objectId];
-              [authorQuery includeKey:@"username"];
-              
-              [authorQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                  if (!error) {
-                      NSLog(@"%@", objects[0]);
-                      [self.arrayOfUsers addObject:objects[0]];
-                  }
-              }];
-          } */
           
           [self.privateChatTableView reloadData];
       }
@@ -118,17 +102,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InnerChatCell *otherCell = [tableView dequeueReusableCellWithIdentifier:@"OtherInnerChatCell"];
-    // InnerChatCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"MyInnerChatCell"];
-    // InnerChatCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"MyInnerChatCell"];
+    InnerChatCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"MyInnerChatCell"];
     Chat *chat = self.arrayOfMessagesForIndividualChat[indexPath.row];
     
     
     PFUser *author = chat[@"author"];
-    // PFUser *author = self.arrayOfUsers[indexPath.row];
     PFUser *currUser = [PFUser currentUser];
-    // __block Boolean isMe = false;;
+    [author fetchIfNeeded];
     
-    /* if ([author.username isEqualToString:currUser.username]) {
+    if ([author.username isEqualToString:currUser.username]) {
         myCell.privateChatMessage.text = chat.message;
         myCell.privateChatUsername.text = chat.author.username;
         myCell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
@@ -140,7 +122,7 @@
         myCell.viewAroundMessage.layer.cornerRadius = 5;
         myCell.viewAroundMessage.layer.masksToBounds = true;
         myCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        isMe = true;
+        return myCell;
     } else {
         otherCell.privateChatMessage.text = chat.message;
         otherCell.privateChatUsername.text = chat.author.username;
@@ -152,50 +134,8 @@
         otherCell.viewAroundMessage.layer.cornerRadius = 5;
         otherCell.viewAroundMessage.layer.masksToBounds = true;
         otherCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        isMe = false;
-    }*/
-    
-    [author fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        // isMe = false;
-        
-        if ([author.username isEqualToString:currUser.username]) {
-            otherCell.privateChatMessage.text = chat.message;
-            otherCell.privateChatUsername.text = chat.author.username;
-            otherCell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
-            [otherCell.privateChatProfilePicture loadInBackground];
-            otherCell.privateChatProfilePicture.layer.cornerRadius = otherCell.privateChatProfilePicture.frame.size.height / 2;
-            otherCell.privateChatProfilePicture.layer.masksToBounds = YES;
-            
-            otherCell.viewAroundMessage.backgroundColor = [UIColor systemGreenColor];
-            otherCell.viewAroundMessage.layer.cornerRadius = 5;
-            otherCell.viewAroundMessage.layer.masksToBounds = true;
-            otherCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            // isMe = true;
-        } else {
-            otherCell.privateChatMessage.text = chat.message;
-            otherCell.privateChatUsername.text = chat.author.username;
-            otherCell.privateChatProfilePicture.file = chat.author[@"profilePicture"];
-            [otherCell.privateChatProfilePicture loadInBackground];
-            otherCell.privateChatProfilePicture.layer.cornerRadius = otherCell.privateChatProfilePicture.frame.size.height / 2;
-            otherCell.privateChatProfilePicture.layer.masksToBounds = YES;
-            otherCell.viewAroundMessage.backgroundColor = [UIColor whiteColor];
-            otherCell.viewAroundMessage.layer.cornerRadius = 5;
-            otherCell.viewAroundMessage.layer.masksToBounds = true;
-            otherCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            // isMe = false;
-        }
-    }];
-        
-        
-    // }];
-    
-    /* if (isMe) {
-        return myCell;
-    } else {
         return otherCell;
-    } */
+    }
     
     return otherCell;
 }
