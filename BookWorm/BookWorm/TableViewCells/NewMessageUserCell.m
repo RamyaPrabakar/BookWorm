@@ -20,15 +20,4 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)checkButtonPressed:(id)sender {
-    if (self.checkButton.selected) {
-        [self.checkButton setImage:[UIImage imageNamed:@"circle.fill"] forState:UIControlStateNormal];
-    } else {
-        [self.checkButton setImage:[UIImage imageNamed:@"circle"] forState:UIControlStateNormal];
-    }
-    
-    self.checkButton.selected = !self.checkButton.selected;
-}
-
-
 @end

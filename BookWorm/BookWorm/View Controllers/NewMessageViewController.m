@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *userToAddBar;
 @property (nonatomic, strong) NSArray *arrayOfUsers;
 @property (nonatomic, strong) NSMutableArray *usersToAddToGroup;
+@property (nonatomic, strong) NSMutableArray *cellSelectedState;
 @end
 
 @implementation NewMessageViewController
@@ -22,11 +23,21 @@
     [super viewDidLoad];
     self.arrayOfUsers = [[NSArray alloc] init];
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
-    
     // A little trick for removing the cell separators
     self.tableView.tableFooterView = [UIView new];
+
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    [query whereKey:@"username" containsString:@""];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+          self.arrayOfUsers = objects;
+          [self.tableView reloadData];
+          
+      }
+    }];
 }
 
 - (IBAction)searchPressed:(id)sender {
@@ -41,8 +52,6 @@
           
       }
     }];
-    
-    NSLog(@"%@", self.arrayOfUsers);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,6 +62,13 @@
     [cell.profileImage loadInBackground];
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.height / 2;
     cell.profileImage.layer.masksToBounds = YES;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if ([self.userToAddBar.text rangeOfString:user.username].location == NSNotFound) {
+        cell.checkmark.hidden = YES;
+    } else {
+        cell.checkmark.hidden = NO;
+    }
     
     return cell;
 }
@@ -61,22 +77,49 @@
     return self.arrayOfUsers.count;
 }
 
-- (IBAction)clearSearch:(id)sender {
-    self.searchBar.text = @"";
-}
-
-- (IBAction)userChosen:(id)sender {
-    PFUser *currUser = self.arrayOfUsers[[self.tableView indexPathForCell:sender].row];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PFUser *currUser = self.arrayOfUsers[indexPath.row];
     NSString *oldText = self.userToAddBar.text;
     NSString *newText;
-    NSLog(@"%@", currUser.username);
-    if ([oldText length] == 0) {
-        newText = currUser.username;
+    
+    NewMessageUserCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (cell.checkmark.hidden == YES) {
+        cell.checkmark.hidden = NO;
+        
+        if ([oldText length] == 0) {
+            newText = currUser.username;
+        } else {
+            newText = [NSString stringWithFormat:@"%@%@%@", oldText, @", ", currUser.username];
+        }
+        
     } else {
-        newText = [NSString stringWithFormat:@"%@%@%@", oldText, @", ", currUser.username];
+        cell.checkmark.hidden = YES;
+        NSString *stringToRemove = [NSString stringWithFormat:@"%@%@", currUser.username, @", "];
+        NSString *otherStringToRemove = [NSString stringWithFormat:@"%@%@", @", ", currUser.username];
+        newText = [oldText stringByReplacingOccurrencesOfString:stringToRemove withString:@""];
+        newText = [newText stringByReplacingOccurrencesOfString:otherStringToRemove withString:@""];
+        newText = [newText stringByReplacingOccurrencesOfString:currUser.username withString:@""];
     }
     
     self.userToAddBar.text = newText;
+}
+
+- (IBAction)clearSearch:(id)sender {
+    self.searchBar.text = @"";
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    [query whereKey:@"username" containsString:@""];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+          self.arrayOfUsers = objects;
+          [self.tableView reloadData];
+          
+      }
+    }];
+}
+
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
 }
 
 // Empty state methods
@@ -121,6 +164,19 @@
 
 - (BOOL) emptyDataSetShouldAllowImageViewAnimate:(UIScrollView *)scrollView {
     return YES;
+}
+
+#pragma mark UIGestureRecognizerDelegate methods
+    
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+  if (![touch.view isEqual: self.tableView] && [touch.view isDescendantOfView:self.tableView]) {
+            
+    // Don't let selections of auto-complete entries fire the
+    // gesture recognizer
+    return NO;
+  }
+        
+  return YES;
 }
 
 @end
