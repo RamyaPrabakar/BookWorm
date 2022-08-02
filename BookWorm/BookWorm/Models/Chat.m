@@ -10,8 +10,8 @@
 @implementation Chat
 
 @dynamic message;
-@dynamic receiver;
 @dynamic author;
+@dynamic to;
 
 + (nonnull NSString *)parseClassName {
     return @"Chat";

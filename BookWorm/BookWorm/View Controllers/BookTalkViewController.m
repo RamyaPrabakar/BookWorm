@@ -10,11 +10,12 @@
 #import "IndividualChatViewController.h"
 #import "Conversation.h"
 #import "OuterChatCell.h"
+#import "GroupConversation.h"
 
 @interface BookTalkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *outerChatTableView;
 @property (weak, nonatomic) IBOutlet UITableView *searchTableView;
-@property (nonatomic, strong) NSMutableArray *usersWithConversations;
+@property (nonatomic, strong) NSMutableArray *conversations;
 @property (nonatomic, strong) NSArray *arrayOfUsers;
 @property (nonatomic, strong) NSMutableArray *namesOfUsersWithConversations;
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
@@ -31,7 +32,7 @@
     self.searchTableView.dataSource = self;
     
     self.arrayOfUsers = [[NSArray alloc] init];
-    self.usersWithConversations = [[NSMutableArray alloc] init];
+    self.conversations = [[NSMutableArray alloc] init];
     self.namesOfUsersWithConversations = [[NSMutableArray alloc] init];
     
     self.outerChatTableView.emptyDataSetSource = self;
@@ -44,7 +45,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.searchTableView.hidden = YES;
     [self.namesOfUsersWithConversations removeAllObjects];
-    [self.usersWithConversations removeAllObjects];
+    [self.conversations removeAllObjects];
     [self fetchFromParse];
     [self.outerChatTableView reloadData];
 }
@@ -79,7 +80,7 @@
               
               [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
-                    [self.usersWithConversations addObject:objects[0]];
+                    [self.conversations addObject:objects[0]];
                 }
               
                 [self.outerChatTableView reloadData];
@@ -87,6 +88,17 @@
           }
       }
     }];
+    
+    /* PFQuery *groupQuery = [PFQuery queryWithClassName:@"GroupConversation"];
+    [groupQuery whereKey:@"users" containsAllObjectsInArray:@[currUser.username]];
+    
+    [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+          for (GroupConversation *grpConversation in objects) {
+              [self.conversations addObject:grpConversation.groupName];
+          }
+      }
+    }]; */
 }
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:true];
@@ -108,12 +120,20 @@
         // Case when the table view is the outer chat table view
         OuterChatCell *cell = [self.outerChatTableView dequeueReusableCellWithIdentifier:@"chatDetailsCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        PFUser *user = self.usersWithConversations[indexPath.row];
-        cell.usernameLabel.text = user[@"username"];
-        cell.profilePicture.file = user[@"profilePicture"];
-        [cell.profilePicture loadInBackground];
-        cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height / 2;
-        cell.profilePicture.layer.masksToBounds = YES;
+        
+        // checking if the entry if a PFUser
+        if ([self.conversations[indexPath.row] isKindOfClass:[PFUser class]]) {
+            PFUser *user = self.conversations[indexPath.row];
+            cell.usernameLabel.text = user[@"username"];
+            cell.profilePicture.file = user[@"profilePicture"];
+            [cell.profilePicture loadInBackground];
+            cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height / 2;
+            cell.profilePicture.layer.masksToBounds = YES;
+        } /* else {
+            cell.usernameLabel.text = self.conversations[indexPath.row];
+            cell.profilePicture = nil;
+        } */
+        
         return cell;
     }
     
@@ -122,7 +142,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.outerChatTableView) {
-        return self.usersWithConversations.count;
+        return self.conversations.count;
     } else if (tableView == self.searchTableView) {
         return self.arrayOfUsers.count;
     }
@@ -144,6 +164,7 @@
       }
     }];
 }
+
 
 - (IBAction)exitSearch:(id)sender {
     self.searchTableView.hidden = YES;
@@ -200,7 +221,7 @@
     // Pass the selected object to the new view controller.
     
     if ([[segue identifier] isEqualToString:@"chatDetailsSegue"]) {
-        PFUser *userToPass = self.usersWithConversations[[self.outerChatTableView indexPathForCell:sender].row];
+        PFUser *userToPass = self.conversations[[self.outerChatTableView indexPathForCell:sender].row];
         IndividualChatViewController *chatVC = [segue destinationViewController];
         chatVC.userPassed = userToPass;
     } else if ([[segue identifier] isEqualToString:@"searchChatDetailsSegue"]) {

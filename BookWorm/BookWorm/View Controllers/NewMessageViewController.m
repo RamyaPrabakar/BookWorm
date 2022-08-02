@@ -7,6 +7,7 @@
 
 #import "NewMessageViewController.h"
 #import "NewMessageUserCell.h"
+#import "GroupChatViewController.h"
 
 @interface NewMessageViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -14,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *userToAddBar;
 @property (nonatomic, strong) NSArray *arrayOfUsers;
 @property (nonatomic, strong) NSMutableArray *usersToAddToGroup;
-@property (nonatomic, strong) NSMutableArray *cellSelectedState;
+@property (weak, nonatomic) IBOutlet UITextField *groupNameTextField;
 @end
 
 @implementation NewMessageViewController
@@ -22,10 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.arrayOfUsers = [[NSArray alloc] init];
+    self.usersToAddToGroup = [[NSMutableArray alloc] init];
+    PFUser *currUser = [PFUser currentUser];
+    [self.usersToAddToGroup addObject:currUser.username];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
+    
     // A little trick for removing the cell separators
     self.tableView.tableFooterView = [UIView new];
 
@@ -92,6 +98,7 @@
             newText = [NSString stringWithFormat:@"%@%@%@", oldText, @", ", currUser.username];
         }
         
+        [self.usersToAddToGroup addObject:currUser.username];
     } else {
         cell.checkmark.hidden = YES;
         NSString *stringToRemove = [NSString stringWithFormat:@"%@%@", currUser.username, @", "];
@@ -99,6 +106,8 @@
         newText = [oldText stringByReplacingOccurrencesOfString:stringToRemove withString:@""];
         newText = [newText stringByReplacingOccurrencesOfString:otherStringToRemove withString:@""];
         newText = [newText stringByReplacingOccurrencesOfString:currUser.username withString:@""];
+        
+        [self.usersToAddToGroup removeObject:currUser.username];
     }
     
     self.userToAddBar.text = newText;
@@ -116,6 +125,46 @@
           
       }
     }];
+}
+
+- (IBAction)createGroupChat:(id)sender {
+    if ([self.usersToAddToGroup count] == 0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No users chosen"
+                                    message:@"You can't create group chat with no members!"
+                                     preferredStyle:(UIAlertControllerStyleAlert)];
+       // create an OK action
+       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * _Nonnull action) {
+                                    // handle response here.
+                                  }];
+        
+       // add the OK action to the alert controller
+       [alert addAction:okAction];
+       
+       [self presentViewController:alert animated:YES completion:^{
+           // optional code for what happens after the alert controller has finished presenting
+       }];
+    } else if ([self.usersToAddToGroup count] == 1) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Only one user chosen"
+                                    message:@"You can't create group chat with only one other member! Search their username on the previous page and private message them instead"
+                                    preferredStyle:(UIAlertControllerStyleAlert)];
+       // create an OK action
+       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * _Nonnull action) {
+                                    // handle response here.
+                                  }];
+        
+       // add the OK action to the alert controller
+       [alert addAction:okAction];
+       
+       [self presentViewController:alert animated:YES completion:^{
+           // optional code for what happens after the alert controller has finished presenting
+       }];
+    } else {
+        [self performSegueWithIdentifier:@"groupChatSegue" sender:nil];
+    }
 }
 
 - (IBAction)onTap:(id)sender {
@@ -178,5 +227,20 @@
         
   return YES;
 }
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"groupChatSegue"]) {
+        NSArray *userToPass = self.usersToAddToGroup;
+        NSString *groupNameToPass = self.groupNameTextField.text;
+        GroupChatViewController *groupChatVC = [segue destinationViewController];
+        groupChatVC.groupChatUsers = userToPass;
+        groupChatVC.groupNameString = groupNameToPass;
+    }
+}
+
 
 @end

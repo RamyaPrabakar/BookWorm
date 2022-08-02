@@ -14,6 +14,9 @@
 		4F5E72D82892F5620006AFF3 /* MarkingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E72D72892F5620006AFF3 /* MarkingCell.m */; };
 		4F5E72DB289475580006AFF3 /* NewMessageUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E72DA289475580006AFF3 /* NewMessageUserCell.m */; };
 		4F5E72DE289476500006AFF3 /* NewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E72DD289476500006AFF3 /* NewMessageViewController.m */; };
+		4F5E72E42899A0940006AFF3 /* GroupConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E72E32899A0940006AFF3 /* GroupConversation.m */; };
+		4F5E72E72899A3C60006AFF3 /* GroupChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E72E62899A3C60006AFF3 /* GroupChat.m */; };
+		4F5E72EA2899AB8A0006AFF3 /* GroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E72E92899AB8A0006AFF3 /* GroupChatViewController.m */; };
 		4F80F5A72876730500B93E31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5A62876730500B93E31 /* AppDelegate.m */; };
 		4F80F5AA2876730500B93E31 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80F5A92876730500B93E31 /* SceneDelegate.m */; };
 		4F80F5B02876730500B93E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F80F5AE2876730500B93E31 /* Main.storyboard */; };
@@ -87,6 +90,12 @@
 		4F5E72DA289475580006AFF3 /* NewMessageUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NewMessageUserCell.m; path = BookWorm/TableViewCells/NewMessageUserCell.m; sourceTree = SOURCE_ROOT; };
 		4F5E72DC289476500006AFF3 /* NewMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewMessageViewController.h; sourceTree = "<group>"; };
 		4F5E72DD289476500006AFF3 /* NewMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewMessageViewController.m; sourceTree = "<group>"; };
+		4F5E72E22899A0940006AFF3 /* GroupConversation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupConversation.h; sourceTree = "<group>"; };
+		4F5E72E32899A0940006AFF3 /* GroupConversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupConversation.m; sourceTree = "<group>"; };
+		4F5E72E52899A3C60006AFF3 /* GroupChat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupChat.h; sourceTree = "<group>"; };
+		4F5E72E62899A3C60006AFF3 /* GroupChat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupChat.m; sourceTree = "<group>"; };
+		4F5E72E82899AB8A0006AFF3 /* GroupChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupChatViewController.h; sourceTree = "<group>"; };
+		4F5E72E92899AB8A0006AFF3 /* GroupChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupChatViewController.m; sourceTree = "<group>"; };
 		4F80F5A22876730500B93E31 /* BookWorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookWorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F80F5A52876730500B93E31 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F80F5A62876730500B93E31 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -299,6 +308,8 @@
 				4F87DF152888781900CC74BA /* IndividualChatViewController.m */,
 				4F5E72DC289476500006AFF3 /* NewMessageViewController.h */,
 				4F5E72DD289476500006AFF3 /* NewMessageViewController.m */,
+				4F5E72E82899AB8A0006AFF3 /* GroupChatViewController.h */,
+				4F5E72E92899AB8A0006AFF3 /* GroupChatViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -316,6 +327,10 @@
 				4F87DF1B2889CAB000CC74BA /* Chat.m */,
 				4F87DF1D2889E4E600CC74BA /* Conversation.h */,
 				4F87DF1E2889E4E600CC74BA /* Conversation.m */,
+				4F5E72E22899A0940006AFF3 /* GroupConversation.h */,
+				4F5E72E32899A0940006AFF3 /* GroupConversation.m */,
+				4F5E72E52899A3C60006AFF3 /* GroupChat.h */,
+				4F5E72E62899A3C60006AFF3 /* GroupChat.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -621,7 +636,9 @@
 				4F87DF192888A17900CC74BA /* InnerChatCell.m in Sources */,
 				4F80F6052878981200B93E31 /* Book.m in Sources */,
 				4F80F5A72876730500B93E31 /* AppDelegate.m in Sources */,
+				4F5E72E72899A3C60006AFF3 /* GroupChat.m in Sources */,
 				4F80F5E9287675C000B93E31 /* RecommendationsViewController.m in Sources */,
+				4F5E72E42899A0940006AFF3 /* GroupConversation.m in Sources */,
 				4F2FFBD62885F69400F766AC /* Comment.m in Sources */,
 				4F87DF0D28874DA000CC74BA /* CommentDetailsViewController.m in Sources */,
 				4F2FFBD02885DBA200F766AC /* CommentCell.m in Sources */,
@@ -640,6 +657,7 @@
 				4F87DF22288B10E400CC74BA /* OuterChatCell.m in Sources */,
 				4F80F5DC287674D300B93E31 /* FirstViewController.m in Sources */,
 				4F5E72D22890A8970006AFF3 /* ConfettiAnimation.swift in Sources */,
+				4F5E72EA2899AB8A0006AFF3 /* GroupChatViewController.m in Sources */,
 				4FC27668287DE64A00ED3ACA /* SearchDetailsViewController.m in Sources */,
 				4F87DF1F2889E4E600CC74BA /* Conversation.m in Sources */,
 				4F5E72DE289476500006AFF3 /* NewMessageViewController.m in Sources */,
