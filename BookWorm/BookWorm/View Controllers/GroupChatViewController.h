@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GroupChatViewController : UIViewController
 @property (nonatomic, strong) NSArray *groupChatUsers;
 @property (nonatomic, strong) NSString *groupNameString;
+@property (nonatomic, strong) NSString *groupChatId;
 @end
 
 NS_ASSUME_NONNULL_END

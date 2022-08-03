@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSArray *arrayOfUsers;
 @property (nonatomic, strong) NSMutableArray *usersToAddToGroup;
 @property (weak, nonatomic) IBOutlet UITextField *groupNameTextField;
+@property NSString* objectId;
 @end
 
 @implementation NewMessageViewController
@@ -165,8 +166,37 @@
        [self presentViewController:alert animated:YES completion:^{
            // optional code for what happens after the alert controller has finished presenting
        }];
+    } else if ([self.groupNameTextField.text length] == 0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No group name"
+                                    message:@"Add name for your groupchat!"
+                                    preferredStyle:(UIAlertControllerStyleAlert)];
+       // create an OK action
+       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * _Nonnull action) {
+                                    // handle response here.
+                                  }];
+        
+       // add the OK action to the alert controller
+       [alert addAction:okAction];
+       
+       [self presentViewController:alert animated:YES completion:^{
+           // optional code for what happens after the alert controller has finished presenting
+       }];
     } else {
-        [self performSegueWithIdentifier:@"groupChatSegue" sender:nil];
+        // Creating a new conversation object
+        PFObject *groupConversation = [PFObject objectWithClassName:@"GroupConversation"];
+        groupConversation[@"groupName"] = self.groupNameTextField.text;
+        groupConversation[@"users"] = self.usersToAddToGroup;
+        
+        [groupConversation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+           if (succeeded) {
+               self.objectId = groupConversation.objectId;
+               [self performSegueWithIdentifier:@"groupChatSegue" sender:nil];
+           } else {
+               NSLog(@"Failed to save group conversation");
+           }
+        }];
     }
 }
 
@@ -242,6 +272,7 @@
         GroupChatViewController *groupChatVC = [segue destinationViewController];
         groupChatVC.groupChatUsers = userToPass;
         groupChatVC.groupNameString = groupNameToPass;
+        groupChatVC.groupChatId = self.objectId;
     }
 }
 

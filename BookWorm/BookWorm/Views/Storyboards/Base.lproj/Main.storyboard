@@ -58,13 +58,13 @@
         <!--Login View Controller-->
         <scene sceneID="QGN-ds-8sd">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="nwK-dw-2qn" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="nwK-dw-2qn" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h1T-h8-cp3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bc0-B5-Nl3">
-                                <rect key="frame" x="132" y="382" width="150" height="34"/>
+                                <rect key="frame" x="132" y="372" width="150" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="54R-BU-HeE"/>
                                 </constraints>
@@ -72,18 +72,18 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Bi-Cu-3Y4">
-                                <rect key="frame" x="132" y="436" width="150" height="34"/>
+                                <rect key="frame" x="132" y="426" width="150" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2F-k6-sgD">
-                                <rect key="frame" x="186" y="341" width="42" height="21"/>
+                                <rect key="frame" x="186" y="331" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4F-M3-lWZ">
-                                <rect key="frame" x="132" y="490" width="150" height="31"/>
+                                <rect key="frame" x="132" y="480" width="150" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Login"/>
                                 <connections>
@@ -340,13 +340,13 @@
         <!--Sign Up View Controller-->
         <scene sceneID="5F3-8R-hBZ">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="NHi-It-iqu" customClass="SignUpViewController" sceneMemberID="viewController">
+                <viewController id="NHi-It-iqu" customClass="SignUpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OMu-k8-Vnu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3R-3u-7L3">
-                                <rect key="frame" x="132" y="382" width="150" height="34"/>
+                                <rect key="frame" x="132" y="372" width="150" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="A8M-3T-3Fq"/>
                                 </constraints>
@@ -354,18 +354,18 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="retype password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vdm-8X-FWH">
-                                <rect key="frame" x="131.5" y="490" width="151" height="34"/>
+                                <rect key="frame" x="131.5" y="480" width="151" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijM-j2-aV4">
-                                <rect key="frame" x="177" y="341" width="60" height="21"/>
+                                <rect key="frame" x="177" y="331" width="60" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKR-wj-AFc">
-                                <rect key="frame" x="132" y="544" width="150" height="31"/>
+                                <rect key="frame" x="132" y="534" width="150" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign up"/>
                                 <connections>
@@ -373,7 +373,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tar-kA-24b">
-                                <rect key="frame" x="132" y="436" width="150" height="34"/>
+                                <rect key="frame" x="132" y="426" width="150" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
@@ -2354,7 +2354,7 @@
         <segue reference="Bgg-2R-SWY"/>
         <segue reference="Q1n-b7-RYp"/>
         <segue reference="XlD-ZX-ZkQ"/>
-        <segue reference="7QM-sK-AMr"/>
+        <segue reference="2f5-gL-dBk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="99"/>
