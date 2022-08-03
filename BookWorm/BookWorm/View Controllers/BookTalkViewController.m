@@ -11,14 +11,17 @@
 #import "Conversation.h"
 #import "OuterChatCell.h"
 #import "GroupConversation.h"
+#import "GroupChatViewController.h"
 
 @interface BookTalkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *outerChatTableView;
 @property (weak, nonatomic) IBOutlet UITableView *searchTableView;
 @property (nonatomic, strong) NSMutableArray *conversations;
+@property (nonatomic, strong) NSMutableArray *groupConversations;
 @property (nonatomic, strong) NSArray *arrayOfUsers;
 @property (nonatomic, strong) NSMutableArray *namesOfUsersWithConversations;
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
+@property (weak, nonatomic) IBOutlet UITableView *groupChatTableView;
 @property (nonatomic, strong) PFLiveQueryClient *liveQueryClient;
 @property (nonatomic, strong) PFLiveQuerySubscription *subscription;
 @end
@@ -28,26 +31,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.outerChatTableView.dataSource = self;
-    
     self.searchTableView.dataSource = self;
+    self.groupChatTableView.dataSource = self;
     
     self.arrayOfUsers = [[NSArray alloc] init];
     self.conversations = [[NSMutableArray alloc] init];
     self.namesOfUsersWithConversations = [[NSMutableArray alloc] init];
+    self.groupConversations = [[NSMutableArray alloc] init];
     
     self.outerChatTableView.emptyDataSetSource = self;
     self.outerChatTableView.emptyDataSetDelegate = self;
+    self.groupChatTableView.emptyDataSetSource = self;
+    self.groupChatTableView.emptyDataSetDelegate = self;
     
     // A little trick for removing the cell separators
     self.outerChatTableView.tableFooterView = [UIView new];
+    self.groupChatTableView.tableFooterView = [UIView new];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.searchTableView.hidden = YES;
     [self.namesOfUsersWithConversations removeAllObjects];
     [self.conversations removeAllObjects];
+    [self.groupConversations removeAllObjects];
     [self fetchFromParse];
     [self.outerChatTableView reloadData];
+    [self.groupChatTableView reloadData];
 }
 
 - (void)fetchFromParse {
@@ -89,17 +98,20 @@
       }
     }];
     
-    /* PFQuery *groupQuery = [PFQuery queryWithClassName:@"GroupConversation"];
+    PFQuery *groupQuery = [PFQuery queryWithClassName:@"GroupConversation"];
     [groupQuery whereKey:@"users" containsAllObjectsInArray:@[currUser.username]];
     
     [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           for (GroupConversation *grpConversation in objects) {
-              [self.conversations addObject:grpConversation.groupName];
+              [self.groupConversations addObject:grpConversation.groupName];
           }
+          
+          [self.groupChatTableView reloadData];
       }
-    }]; */
+    }];
 }
+
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:true];
 }
@@ -120,20 +132,17 @@
         // Case when the table view is the outer chat table view
         OuterChatCell *cell = [self.outerChatTableView dequeueReusableCellWithIdentifier:@"chatDetailsCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        // checking if the entry if a PFUser
-        if ([self.conversations[indexPath.row] isKindOfClass:[PFUser class]]) {
-            PFUser *user = self.conversations[indexPath.row];
-            cell.usernameLabel.text = user[@"username"];
-            cell.profilePicture.file = user[@"profilePicture"];
-            [cell.profilePicture loadInBackground];
-            cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height / 2;
-            cell.profilePicture.layer.masksToBounds = YES;
-        } /* else {
-            cell.usernameLabel.text = self.conversations[indexPath.row];
-            cell.profilePicture = nil;
-        } */
-        
+        PFUser *user = self.conversations[indexPath.row];
+        cell.usernameLabel.text = user[@"username"];
+        cell.profilePicture.file = user[@"profilePicture"];
+        [cell.profilePicture loadInBackground];
+        cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height / 2;
+        cell.profilePicture.layer.masksToBounds = YES;
+        return cell;
+    } else if (tableView == self.groupChatTableView) {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.textLabel.text = self.groupConversations[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -145,6 +154,8 @@
         return self.conversations.count;
     } else if (tableView == self.searchTableView) {
         return self.arrayOfUsers.count;
+    } else if (tableView == self.groupChatTableView) {
+        return self.groupConversations.count;
     }
     
     return 0;
@@ -173,7 +184,7 @@
 
 // Empty state methods
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"messageIcon"];
+    return [UIImage imageNamed:@"empty_placeholder"];
 }
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
@@ -228,6 +239,10 @@
         PFUser *userToPass = self.arrayOfUsers[[self.searchTableView indexPathForCell:sender].row];
         IndividualChatViewController *chatVC = [segue destinationViewController];
         chatVC.userPassed = userToPass;
+    } else if ([[segue identifier] isEqualToString:@"groupChatSegue"]) {
+        NSString *groupNameToPass = self.groupConversations[[self.groupChatTableView indexPathForCell:sender].row];
+        GroupChatViewController *groupChatVC = [segue destinationViewController];
+        groupChatVC.groupNameString = groupNameToPass;
     }
 }
 

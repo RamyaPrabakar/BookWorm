@@ -693,7 +693,7 @@
                                         <connections>
                                             <outlet property="profilePicture" destination="yDO-Q9-viH" id="W7U-Qc-CYU"/>
                                             <outlet property="usernameLabel" destination="d7w-az-HIp" id="cu5-Bw-1vh"/>
-                                            <segue destination="NNo-Jm-0Vc" kind="show" identifier="chatDetailsSegue" id="kwe-2i-nOS"/>
+                                            <segue destination="NNo-Jm-0Vc" kind="show" identifier="chatDetailsSegue" id="Q1n-b7-RYp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -789,7 +789,7 @@
                                         <connections>
                                             <outlet property="chatProfilePicture" destination="BVC-n3-jAP" id="HZI-gU-zVA"/>
                                             <outlet property="chatUsername" destination="iu8-GP-RVF" id="eXk-RL-I50"/>
-                                            <segue destination="NNo-Jm-0Vc" kind="show" identifier="searchChatDetailsSegue" id="9EZ-bl-Uue"/>
+                                            <segue destination="NNo-Jm-0Vc" kind="show" identifier="searchChatDetailsSegue" id="8nm-Ue-BV4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -842,7 +842,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="outerChatTableView" destination="IBD-uX-i7G" id="xiJ-wL-BFI"/>
+                        <outlet property="groupChatTableView" destination="TpP-Wa-kVv" id="N6K-ql-Pht"/>
+                        <outlet property="outerChatTableView" destination="IBD-uX-i7G" id="sNQ-G2-MMN"/>
                         <outlet property="searchBar" destination="y88-cP-vNh" id="XrT-Yi-ATt"/>
                         <outlet property="searchTableView" destination="Cba-9Y-5V9" id="u9D-Tc-cK8"/>
                     </connections>
@@ -1305,30 +1306,30 @@
             <objects>
                 <viewController id="wdg-NR-0pI" customClass="OtherProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nZz-Zb-qPg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6EE-eI-z6O" customClass="PFImageView">
-                                <rect key="frame" x="107" y="118" width="200" height="200"/>
+                                <rect key="frame" x="107" y="86" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="TZk-Pp-Qbj"/>
                                     <constraint firstAttribute="width" constant="200" id="pQK-qq-FAZ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fullName" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gc6-mp-RoT">
-                                <rect key="frame" x="10" y="328" width="394" height="20.5"/>
+                                <rect key="frame" x="10" y="296" width="394" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lw8-t5-7NI">
-                                <rect key="frame" x="10" y="358.5" width="394" height="20.5"/>
+                                <rect key="frame" x="10" y="326.5" width="394" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWQ-Dz-RgJ">
-                                <rect key="frame" x="14.5" y="399" width="385" height="200"/>
+                                <rect key="frame" x="14.5" y="367" width="385" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="Bko-xz-x5u"/>
@@ -2276,8 +2277,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Fsk-Y8-cUZ"/>
-        <segue reference="kwe-2i-nOS"/>
+        <segue reference="Bgg-2R-SWY"/>
+        <segue reference="Q1n-b7-RYp"/>
         <segue reference="XlD-ZX-ZkQ"/>
         <segue reference="7QM-sK-AMr"/>
     </inferredMetricsTieBreakers>
