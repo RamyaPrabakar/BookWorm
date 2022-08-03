@@ -12,18 +12,21 @@
 #import "OuterChatCell.h"
 #import "GroupConversation.h"
 #import "GroupChatViewController.h"
+#import "MarkingCell.h"
 
 @interface BookTalkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *outerChatTableView;
 @property (weak, nonatomic) IBOutlet UITableView *searchTableView;
 @property (nonatomic, strong) NSMutableArray *conversations;
 @property (nonatomic, strong) NSMutableArray *groupConversations;
+@property (nonatomic, strong) NSMutableArray *groupConversationUsers;
 @property (nonatomic, strong) NSArray *arrayOfUsers;
 @property (nonatomic, strong) NSMutableArray *namesOfUsersWithConversations;
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *groupChatTableView;
 @property (nonatomic, strong) PFLiveQueryClient *liveQueryClient;
 @property (nonatomic, strong) PFLiveQuerySubscription *subscription;
+@property NSInteger lastClickedRow;
 @end
 
 @implementation BookTalkViewController
@@ -33,11 +36,13 @@
     self.outerChatTableView.dataSource = self;
     self.searchTableView.dataSource = self;
     self.groupChatTableView.dataSource = self;
+    self.groupChatTableView.delegate = self;
     
     self.arrayOfUsers = [[NSArray alloc] init];
     self.conversations = [[NSMutableArray alloc] init];
     self.namesOfUsersWithConversations = [[NSMutableArray alloc] init];
     self.groupConversations = [[NSMutableArray alloc] init];
+    self.groupConversationUsers = [[NSMutableArray alloc] init];
     
     self.outerChatTableView.emptyDataSetSource = self;
     self.outerChatTableView.emptyDataSetDelegate = self;
@@ -60,6 +65,7 @@
 }
 
 - (void)fetchFromParse {
+    // Fetching all the private conversations that the user is part of
     PFUser *currUser = [PFUser currentUser];
     PFQuery *query1 = [PFQuery queryWithClassName:@"Conversation"];
     [query1 whereKey:@"user1" equalTo:currUser.username];
@@ -98,6 +104,7 @@
       }
     }];
     
+    // fetching all the group conversations that the user is part of
     PFQuery *groupQuery = [PFQuery queryWithClassName:@"GroupConversation"];
     [groupQuery whereKey:@"users" containsAllObjectsInArray:@[currUser.username]];
     
@@ -105,6 +112,7 @@
       if (!error) {
           for (GroupConversation *grpConversation in objects) {
               [self.groupConversations addObject:grpConversation.groupName];
+              [self.groupConversationUsers addObject:grpConversation.users];
           }
           
           [self.groupChatTableView reloadData];
@@ -116,10 +124,26 @@
     [self.view endEditing:true];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == self.groupChatTableView) {
+        self.lastClickedRow = indexPath.row;
+        [self performSegueWithIdentifier:@"outerScreenToGroupChatSegue" sender:nil];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.searchTableView) {
         ChatCell *cell = [self.searchTableView dequeueReusableCellWithIdentifier:@"outerChatCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (self.arrayOfUsers.count == 0) {
+            UITableViewCell *noUsersCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            noUsersCell.textLabel.text = @"No user for that search";
+            noUsersCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            noUsersCell.backgroundColor = [UIColor systemGreenColor];
+            return noUsersCell;
+        }
+        
         PFUser *user = self.arrayOfUsers[indexPath.row];
         cell.chatUsername.text = user[@"username"];
         cell.chatProfilePicture.file = user[@"profilePicture"];
@@ -140,8 +164,8 @@
         cell.profilePicture.layer.masksToBounds = YES;
         return cell;
     } else if (tableView == self.groupChatTableView) {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.textLabel.text = self.groupConversations[indexPath.row];
+        MarkingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarkingCell"];
+        cell.bookTitle.text = self.groupConversations[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -153,9 +177,13 @@
     if (tableView == self.outerChatTableView) {
         return self.conversations.count;
     } else if (tableView == self.searchTableView) {
+        if (self.arrayOfUsers.count == 0) {
+            return 1;
+        }
         return self.arrayOfUsers.count;
     } else if (tableView == self.groupChatTableView) {
         return self.groupConversations.count;
+        
     }
     
     return 0;
@@ -165,9 +193,10 @@
     self.searchTableView.hidden = NO;
     
     NSString *searchString = self.searchBar.text;
-    
+    PFUser *currUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query whereKey:@"username" containsString:searchString];
+    [query whereKey:@"username" notEqualTo:currUser.username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           self.arrayOfUsers = objects;
@@ -239,10 +268,12 @@
         PFUser *userToPass = self.arrayOfUsers[[self.searchTableView indexPathForCell:sender].row];
         IndividualChatViewController *chatVC = [segue destinationViewController];
         chatVC.userPassed = userToPass;
-    } else if ([[segue identifier] isEqualToString:@"groupChatSegue"]) {
-        NSString *groupNameToPass = self.groupConversations[[self.groupChatTableView indexPathForCell:sender].row];
+    } else if ([[segue identifier] isEqualToString:@"outerScreenToGroupChatSegue"]) {
+        NSString *groupNameToPass = self.groupConversations[self.lastClickedRow];
+        NSArray *groupChatUsersToPass = self.groupConversationUsers[self.lastClickedRow];
         GroupChatViewController *groupChatVC = [segue destinationViewController];
         groupChatVC.groupNameString = groupNameToPass;
+        groupChatVC.groupChatUsers = groupChatUsersToPass;
     }
 }
 

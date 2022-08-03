@@ -8,6 +8,7 @@
 #import "GroupChatViewController.h"
 #import "GroupChat.h"
 #import "GroupConversation.h"
+#import "GroupMembersViewController.h"
 
 @interface GroupChatViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *groupName;
@@ -75,14 +76,14 @@
     [self.view endEditing:true];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSArray *groupMembersToPass = self.groupChatUsers;
+    GroupMembersViewController *groupMembersVC = [segue destinationViewController];
+    groupMembersVC.groupMembersPassed = groupMembersToPass;
 }
-*/
 
 @end

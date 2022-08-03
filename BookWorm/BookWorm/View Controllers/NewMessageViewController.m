@@ -37,6 +37,7 @@
 
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query whereKey:@"username" containsString:@""];
+    [query whereKey:@"username" notEqualTo:currUser.username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           self.arrayOfUsers = objects;
@@ -48,9 +49,10 @@
 
 - (IBAction)searchPressed:(id)sender {
     NSString *searchString = self.searchBar.text;
-    
+    PFUser *currUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query whereKey:@"username" containsString:searchString];
+    [query whereKey:@"username" notEqualTo:currUser.username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           self.arrayOfUsers = objects;
@@ -115,9 +117,10 @@
 
 - (IBAction)clearSearch:(id)sender {
     self.searchBar.text = @"";
-    
+    PFUser *currUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query whereKey:@"username" containsString:@""];
+    [query whereKey:@"username" notEqualTo:currUser.username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           self.arrayOfUsers = objects;
