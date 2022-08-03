@@ -132,7 +132,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.groupChatTableView) {
         self.lastClickedRow = indexPath.row;
-        NSLog(@"%ld", (long)self.lastClickedRow);
         [self performSegueWithIdentifier:@"outerScreenToGroupChatSegue" sender:nil];
     }
 }
@@ -276,12 +275,8 @@
         chatVC.userPassed = userToPass;
     } else if ([[segue identifier] isEqualToString:@"outerScreenToGroupChatSegue"]) {
         NSString *groupNameToPass = self.groupConversations[self.lastClickedRow];
-        NSLog(@"I am here");
-        NSLog(@"%@", groupNameToPass);
         NSArray *groupChatUsersToPass = self.groupConversationUsers[self.lastClickedRow];
-        NSLog(@"%@", groupChatUsersToPass);
         NSString *groupIdToPass = self.groupIds[self.lastClickedRow];
-        NSLog(@"%@", groupIdToPass);
         GroupChatViewController *groupChatVC = [segue destinationViewController];
         groupChatVC.groupNameString = groupNameToPass;
         groupChatVC.groupChatUsers = groupChatUsersToPass;

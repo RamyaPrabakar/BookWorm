@@ -15,8 +15,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@", self.groupMembersPassed);
     self.groupMembersTableView.dataSource = self;
+    
     // A little trick for removing the cell separators
     self.groupMembersTableView.separatorColor = [UIColor clearColor];
 }

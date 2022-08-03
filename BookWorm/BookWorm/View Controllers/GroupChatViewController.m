@@ -37,7 +37,6 @@
     
     // Live Query
     PFQuery *chatQuery = [PFQuery queryWithClassName:@"GroupChat"];
-    NSLog(@"%@", self.groupChatId);
     [chatQuery whereKey:@"groupConversationId" equalTo:self.groupChatId];
     self.subscription = [self.liveQueryClient subscribeToQuery:chatQuery];
     
@@ -78,12 +77,10 @@
 
 
 - (IBAction)pressedSend:(id)sender {
-    // __block NSString *objectId;
     
     // posting the chat to the group chat class
     PFObject *groupChat = [PFObject objectWithClassName:@"GroupChat"];
     PFUser *currUser = [PFUser currentUser];
-    NSLog(@"%@", self.groupChatId);
     groupChat[@"author"] = currUser;
     groupChat[@"message"] = self.messageBar.text;
     groupChat[@"groupConversationId"] = self.groupChatId;
@@ -95,59 +92,6 @@
             NSLog(@"Failed to save group chat");
         }
     }];
-    
-    /* if ([self.groupChatId isEqualToString:@"NewGroupChat"]) {
-        // Creating a new conversation object
-        PFObject *groupConversation = [PFObject objectWithClassName:@"GroupConversation"];
-        PFUser *currUser = [PFUser currentUser];
-        NSLog(@"Group name string: ");
-        NSLog(@"%@", self.groupNameString);
-        groupConversation[@"groupName"] = self.groupNameString;
-        groupConversation[@"users"] = self.groupChatUsers;
-        
-        [groupConversation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-           if (succeeded) {
-               objectId = groupConversation.objectId;
-               self.groupChatId = objectId;
-               
-               // posting the chat to the group chat class
-               PFObject *groupChat = [PFObject objectWithClassName:@"GroupChat"];
-               // PFUser *currUser = [PFUser currentUser];
-               groupChat[@"author"] = currUser;
-               groupChat[@"message"] = self.messageBar.text;
-               groupChat[@"groupConversationId"] = objectId;
-               
-               [groupChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                   if (succeeded) {
-                       NSLog(@"Group Chat Saved");
-                       self.groupChatId = objectId;
-                   } else {
-                       NSLog(@"Failed to save group chat");
-                   }
-                   self.messageBar.text = nil;
-               }];
-           } else {
-               NSLog(@"Failed to save group conversation");
-           }
-        }];
-        
-    } else {
-        // posting the chat to the group chat class
-        PFObject *groupChat = [PFObject objectWithClassName:@"GroupChat"];
-        PFUser *currUser = [PFUser currentUser];
-        NSLog(@"%@", self.groupChatId);
-        groupChat[@"author"] = currUser;
-        groupChat[@"message"] = self.messageBar.text;
-        groupChat[@"groupConversationId"] = self.groupChatId;
-        [groupChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                NSLog(@"Group Chat Saved");
-                self.messageBar.text = nil;
-            } else {
-                NSLog(@"Failed to save group chat");
-            }
-        }];
-    } */
 }
 
 - (IBAction)onTap:(id)sender {
@@ -229,6 +173,17 @@
     return self.arrayOfMessagesForGroupChat.count;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 
 #pragma mark - Navigation
 
@@ -237,6 +192,25 @@
     NSArray *groupMembersToPass = self.groupChatUsers;
     GroupMembersViewController *groupMembersVC = [segue destinationViewController];
     groupMembersVC.groupMembersPassed = groupMembersToPass;
+}
+
+#pragma mark - keyboard movements
+- (void)keyboardWillShow:(NSNotification *)notification {
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y = -keyboardSize.height;
+        self.view.frame = f;
+    }];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification {
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y = 0.0f;
+        self.view.frame = f;
+    }];
 }
 
      

@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *checkmark;
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) NSString *searchText;
-// @property (nonatomic, copy) void(^selectButtonTapHandler)(void);
 @end
 
 NS_ASSUME_NONNULL_END

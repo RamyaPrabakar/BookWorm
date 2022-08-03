@@ -2022,7 +2022,7 @@
         <scene sceneID="5Mq-kB-pku">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Cy-m8-eAR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Books" id="V6J-AF-VVg"/>
+                    <tabBarItem key="tabBarItem" title="My Books" image="books.vertical" catalog="system" id="V6J-AF-VVg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fcb-Uh-TxC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -2041,7 +2041,7 @@
         <scene sceneID="MSp-qk-JZi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bXh-Fd-8g0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Book Talk" id="bVP-tG-suF"/>
+                    <tabBarItem key="tabBarItem" title="Book Talk" image="message" catalog="system" id="bVP-tG-suF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dii-cb-h18">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -2060,7 +2060,7 @@
         <scene sceneID="F0L-VE-hXG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="3vK-Fc-M9D" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recs" id="8RJ-w7-ydB"/>
+                    <tabBarItem key="tabBarItem" title="Recs" image="book" catalog="system" id="8RJ-w7-ydB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0oQ-6w-nwy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -2079,7 +2079,7 @@
         <scene sceneID="w45-dY-hMF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UEE-e1-vq2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="5Bx-it-BIz"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="5Bx-it-BIz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qyU-Np-980">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -2358,7 +2358,10 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="99"/>
+        <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="message" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
