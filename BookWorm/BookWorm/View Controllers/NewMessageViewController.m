@@ -34,8 +34,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     PFUser *currUser = [PFUser currentUser];
-    [self.usersToAddToGroup addObject:currUser.username];
-    
     // A little trick for removing the cell separators
     self.tableView.tableFooterView = [UIView new];
 
@@ -50,6 +48,7 @@
     }];
     
     [self.usersToAddToGroup removeAllObjects];
+    [self.usersToAddToGroup addObject:currUser.username];
 }
 
 - (IBAction)searchPressed:(id)sender {

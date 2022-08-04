@@ -32,7 +32,7 @@
     [self fetchFromParse];
     
     // using live query to immediately show the change
-    self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:@"wss://bookworm.b4a.io" applicationId:@"cfEqijsSr9AS03FR76DJYM374KHH5GddQSQvIU7H" clientKey:@"F9dLUvMhb8D7aMCAukUDMFae630qhhlYTki6dGxP"];
+    self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:@"wss://bookwormnew.b4a.io" applicationId:@"uJmLEb8geUHYaMmMWTk3rBlYQJ0L2MzIfaCPwFrh" clientKey:@"4oKQmiYRyr49sVDqLo9TJDUIU9FYRwUfCgRKBKjW"];
     
     
     // Live Query
