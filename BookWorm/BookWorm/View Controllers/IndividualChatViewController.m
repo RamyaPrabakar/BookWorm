@@ -9,6 +9,7 @@
 #import "InnerChatCell.h"
 #import "Conversation.h"
 #import "Chat.h"
+#import "OtherProfileViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface IndividualChatViewController ()
@@ -278,6 +279,12 @@
         f.origin.y = 0.0f;
         self.view.frame = f;
     }];
+}
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    OtherProfileViewController *otherProfileVC = [segue destinationViewController];
+    otherProfileVC.userPassed = self.userPassed;
 }
 
 @end

@@ -1,13 +1,13 @@
 //
-//  MarkingCell.m
+//  NewMessageUserCell.m
 //  BookWorm
 //
-//  Created by Ramya Prabakar on 7/28/22.
+//  Created by Ramya Prabakar on 7/29/22.
 //
 
-#import "MarkingCell.h"
+#import "NewMessageUserCell.h"
 
-@implementation MarkingCell
+@implementation NewMessageUserCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
