@@ -25,14 +25,15 @@
     [super viewDidLoad];
     self.arrayOfUsers = [[NSArray alloc] init];
     self.usersToAddToGroup = [[NSMutableArray alloc] init];
-    PFUser *currUser = [PFUser currentUser];
-    [self.usersToAddToGroup addObject:currUser.username];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    PFUser *currUser = [PFUser currentUser];
     // A little trick for removing the cell separators
     self.tableView.tableFooterView = [UIView new];
 
@@ -43,9 +44,11 @@
       if (!error) {
           self.arrayOfUsers = objects;
           [self.tableView reloadData];
-          
       }
     }];
+    
+    [self.usersToAddToGroup removeAllObjects];
+    [self.usersToAddToGroup addObject:currUser.username];
 }
 
 - (IBAction)searchPressed:(id)sender {

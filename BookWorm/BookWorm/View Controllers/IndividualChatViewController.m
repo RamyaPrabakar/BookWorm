@@ -66,9 +66,14 @@
       }
     }];
     
-    // using live query to immediately show the change
-    self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:@"wss://bookworm.b4a.io" applicationId:@"cfEqijsSr9AS03FR76DJYM374KHH5GddQSQvIU7H" clientKey:@"F9dLUvMhb8D7aMCAukUDMFae630qhhlYTki6dGxP"];
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+    NSString *appId = [dict objectForKey: @"ParseAppId"];
+    NSString *clientKey = [dict objectForKey: @"ParseClientKey"];
+    NSString *parseServerName = [dict objectForKey: @"ParseServerName"];
     
+    // using live query to immediately show the change
+    self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:parseServerName applicationId:appId clientKey:clientKey];
     
     // Query for (When the author is currUser AND the "to" is passedUser.username)
     // OR (When the author is passedUser and the "to" is currUser.username)
