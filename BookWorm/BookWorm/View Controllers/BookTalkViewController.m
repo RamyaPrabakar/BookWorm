@@ -223,8 +223,22 @@
         }
     } else if (tableView == self.groupChatTableView) {
         if (editingStyle == UITableViewCellEditingStyleDelete) {
-           [self.groupConversations removeObjectAtIndex:indexPath.row];
-           [self.groupChatTableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            NSString *groupIdToDelete = self.groupIds[indexPath.row];
+            [self.groupConversations removeObjectAtIndex:indexPath.row];
+            [self.groupConversationUsers removeObjectAtIndex:indexPath.row];
+            [self.groupIds removeObjectAtIndex:indexPath.row];
+            [self.groupChatTableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+            PFQuery *query = [PFQuery queryWithClassName:@"GroupConversation"];
+            [query whereKey:@"objectId" equalTo:groupIdToDelete];
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+              if (!error) {
+                  for (GroupConversation *groupConversation in objects) {
+                      [groupConversation deleteInBackground];
+                  }
+              }
+            }];
         }
     }
 }
