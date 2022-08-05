@@ -31,8 +31,14 @@
     
     [self fetchFromParse];
     
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+    NSString *appId = [dict objectForKey: @"ParseAppId"];
+    NSString *clientKey = [dict objectForKey: @"ParseClientKey"];
+    NSString *parseServerName = [dict objectForKey: @"ParseServerName"];
+    
     // using live query to immediately show the change
-    self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:@"wss://bookwormnew.b4a.io" applicationId:@"uJmLEb8geUHYaMmMWTk3rBlYQJ0L2MzIfaCPwFrh" clientKey:@"4oKQmiYRyr49sVDqLo9TJDUIU9FYRwUfCgRKBKjW"];
+    self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:parseServerName applicationId:appId clientKey:clientKey];
     
     
     // Live Query
