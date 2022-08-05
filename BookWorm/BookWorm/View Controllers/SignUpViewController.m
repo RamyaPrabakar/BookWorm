@@ -28,7 +28,7 @@
     // initialize a user object
     PFUser *newUser = [PFUser user];
     
-    // checking if user inputted both the username and the password
+    // checking if user inputted the username
     if ([self.usernameField.text isEqual:@""]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Username Required"
                                                                                    message:@"Please make sure to enter your username"
@@ -46,6 +46,7 @@
             // optional code for what happens after the alert controller has finished presenting
         }];
     } else if ([self.passwordField.text isEqual:@""]) {
+        // checking if user inputted the password
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password Required"
                                                                                    message:@"Please make sure to enter your password"
                                                                             preferredStyle:(UIAlertControllerStyleAlert)];
@@ -62,6 +63,7 @@
             // optional code for what happens after the alert controller has finished presenting
         }];
     } else if (![self.passwordField.text isEqual:self.retypePasswordField.text]) {
+        // checking if the password field and the retype password field match
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Passwords don't match"
                                                                                    message:@"Please make sure that your passwords match"
                                                                             preferredStyle:(UIAlertControllerStyleAlert)];

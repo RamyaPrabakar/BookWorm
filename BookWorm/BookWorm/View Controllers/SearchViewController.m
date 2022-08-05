@@ -72,6 +72,7 @@
   return YES;
 }
 
+// API calls to autocomplete search results
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
     [self.autocompleteTitles removeAllObjects];
     NSString *baseURL = @"https://www.googleapis.com/books/v1/volumes?q=";
@@ -130,6 +131,7 @@
     self.titleTableView.hidden = YES;
 }
 
+// searching for books with the given search queries
 - (IBAction)clickedSearch:(id)sender {
     NSString *baseURL = @"https://www.googleapis.com/books/v1/volumes?q=";
     NSString *titleString;
@@ -191,6 +193,7 @@
     [task resume];
 }
 
+// splitting the search words to create an appropriate search request to the Google books API
 -(NSString *)splitSearchWords:(NSString *)wordsToSplit{
     NSArray *array = [wordsToSplit componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
@@ -235,6 +238,7 @@
     return nil;
 }
 
+// Creating a string of authors to display (UI)
 -(NSString *)createAuthorString:(GoogleBook *)book{
     NSString *authors = @"";
     int i;

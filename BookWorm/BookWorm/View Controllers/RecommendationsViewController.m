@@ -27,12 +27,13 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     
+    // getting bestselling books from the NYT API
     [self getBooks];
     self.arrayOfBooks = [[NSMutableArray alloc] init];
 }
 
+// Gets the weekly bestselling books from the NYT API
 - (void) getBooks {
-    
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *key = [dict objectForKey: @"NYtimesAPIKey"];
@@ -115,9 +116,6 @@
 
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     
      if ([[segue identifier] isEqualToString:@"recommendationsDetailSegue"]) {
          Book *bookToPass = self.arrayOfBooks[[self.tableView indexPathForCell:sender].row];
          RecommendationsDetailViewController *detailsVC = [segue destinationViewController];

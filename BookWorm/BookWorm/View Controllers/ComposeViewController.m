@@ -50,6 +50,7 @@
     }
 }
 
+// comment is posted to Parse
 - (IBAction)compose:(id)sender {
     PFObject *comment = [PFObject objectWithClassName:@"Comment"];
     PFUser *currUser = [PFUser currentUser];
