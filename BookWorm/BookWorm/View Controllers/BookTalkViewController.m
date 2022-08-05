@@ -194,6 +194,50 @@
     return 0;
 }
 
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.outerChatTableView) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            PFUser *otherUser = self.conversations[indexPath.row];
+            PFUser *currUser = [PFUser currentUser];
+            [self.conversations removeObjectAtIndex:indexPath.row];
+            [self.outerChatTableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+            PFQuery *query1 = [PFQuery queryWithClassName:@"Conversation"];
+            [query1 whereKey:@"user1" equalTo:currUser.username];
+            [query1 whereKey:@"user2" equalTo:otherUser.username];
+            
+            PFQuery *query2 = [PFQuery queryWithClassName:@"Conversation"];
+            [query2 whereKey:@"user2" equalTo:currUser.username];
+            [query2 whereKey:@"user1" equalTo:otherUser.username];
+            
+            PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+              if (!error) {
+                  for (Conversation *conversation in objects) {
+                      [conversation deleteInBackground];
+                  }
+              }
+            }];
+        }
+    } else if (tableView == self.groupChatTableView) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+           [self.groupConversations removeObjectAtIndex:indexPath.row];
+           [self.groupChatTableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.searchTableView) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
 - (IBAction)searchPressed:(id)sender {
     self.searchTableView.hidden = NO;
     
