@@ -52,6 +52,8 @@
     [self.readingBooks removeAllObjects];
     [self.readBooks removeAllObjects];
     [self.toReadBooks removeAllObjects];
+    
+    // making sure that fetching from Parse occurs whenever this view appears
     [self fetchFromParse];
     [self.readTableView reloadData];
     [self.readingTableView reloadData];
@@ -63,16 +65,22 @@
    
     if (tableView == self.readingTableView) {
         if ([self.readingBooks count] == 0) {
+            // returning 1 when there are no reading books
+            // This one row says "No books in reading list"
             return 1;
         }
         return [self.readingBooks count];
     } else if (tableView == self.readTableView) {
         if ([self.readBooks count] == 0) {
+            // returning 1 when there are no read books
+            // This one row says "No books in read list"
             return 1;
         }
         return [self.readBooks count];
     } else if (tableView == self.toReadTableView) {
         if ([self.toReadBooks count] == 0) {
+            // returning 1 when there are no toRead books
+            // This one row says "No books in to read list"
             return 1;
         }
         return [self.toReadBooks count];
@@ -82,6 +90,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    // Setting up the markingCell that is returned
     MarkingCell *markingCell = [tableView dequeueReusableCellWithIdentifier:@"MarkingCell"];
     if (tableView == self.readingTableView) {
         if ([self.readingBooks count] == 0) {
@@ -110,6 +119,7 @@
 }
 
 - (IBAction)toReadButtonPressed:(id)sender {
+    // Hiding and unhiding the toRead table view
     if (self.toReadTableView.hidden == YES) {
         self.toReadTableView.hidden = NO;
     } else {
@@ -118,6 +128,7 @@
 }
 
 - (IBAction)readingButtonPressed:(id)sender {
+    // Hiding and unhiding the reading table view
     if (self.readingTableView.hidden == YES) {
         self.readingTableView.hidden = NO;
     } else {
@@ -126,6 +137,7 @@
 }
 
 - (IBAction)readButtonPressed:(id)sender {
+    // Hiding and unhiding the read table view
     if (self.readTableView.hidden == YES) {
         self.readTableView.hidden = NO;
     } else {

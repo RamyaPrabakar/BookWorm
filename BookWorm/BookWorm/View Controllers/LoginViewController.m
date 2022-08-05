@@ -25,7 +25,7 @@
 }
 
 - (IBAction)loginUser:(id)sender {
-    // checking to make sure that the user inputted both the username and the password
+    // checking to make sure that the user inputted the username
     if ([self.usernameField.text isEqual:@""]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Username Required"
                                                                                    message:@"Please make sure to enter your username"
@@ -43,6 +43,7 @@
             // optional code for what happens after the alert controller has finished presenting
         }];
     } else if ([self.passwordField.text isEqual:@""]) {
+        // checking to make sure that the user inputted the password
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password Required"
                                                                                    message:@"Please make sure to enter your password"
                                                                             preferredStyle:(UIAlertControllerStyleAlert)];
@@ -62,7 +63,8 @@
     
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
-       
+    
+    // logging in the user
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);

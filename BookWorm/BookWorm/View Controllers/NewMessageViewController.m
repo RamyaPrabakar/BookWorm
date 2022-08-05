@@ -51,6 +51,7 @@
     [self.usersToAddToGroup addObject:currUser.username];
 }
 
+// searching for Users of the app
 - (IBAction)searchPressed:(id)sender {
     NSString *searchString = self.searchBar.text;
     PFUser *currUser = [PFUser currentUser];
@@ -89,6 +90,7 @@
     return self.arrayOfUsers.count;
 }
 
+ //selecting users to add to group
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PFUser *currUser = self.arrayOfUsers[indexPath.row];
     NSString *oldText = self.userToAddBar.text;
@@ -134,6 +136,7 @@
     }];
 }
 
+// creating group chat with the selected users
 - (IBAction)createGroupChat:(id)sender {
     if ([self.usersToAddToGroup count] == 0) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No users chosen"

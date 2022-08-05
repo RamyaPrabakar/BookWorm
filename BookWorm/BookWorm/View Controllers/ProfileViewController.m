@@ -64,6 +64,7 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
+// Saving the profile to Parse
 - (IBAction)savePressed:(id)sender {
     PFUser *currUser = [PFUser currentUser];
     currUser[@"fullName"] = self.fullName.text;

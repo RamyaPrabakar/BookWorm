@@ -40,6 +40,7 @@ CGFloat lastScale;
     [self.bigBookImage addGestureRecognizer:pinchGestureRecognizer];
 }
 
+// Pinch to zoom gesture
 - (void)handlePinchGesture:(UIPinchGestureRecognizer *)gestureRecognizer {
 
      if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {

@@ -63,6 +63,8 @@
     [self.groupConversations removeAllObjects];
     [self.groupConversationUsers removeAllObjects];
     [self.groupIds removeAllObjects];
+    
+    // fetching from parse every time the view appears
     [self fetchFromParse];
     [self.outerChatTableView reloadData];
     [self.groupChatTableView reloadData];
@@ -99,6 +101,7 @@
               
               [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
+                    // Finding all the PFUsers the current user has conversations with
                     [self.conversations addObject:objects[0]];
                 }
               
@@ -115,8 +118,13 @@
     [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
           for (GroupConversation *grpConversation in objects) {
+              // fetching all the group conversations the user is a part of
               [self.groupConversations addObject:grpConversation.groupName];
+              
+              // fetching the users in each of these group conversations
               [self.groupConversationUsers addObject:grpConversation.users];
+              
+              // fetching the objectId of each of these group conversations
               [self.groupIds addObject:grpConversation.objectId];
           }
           
@@ -194,7 +202,7 @@
     return 0;
 }
 
-
+// Delegate method of table view to swipe and delete chats
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.outerChatTableView) {
         if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -223,12 +231,27 @@
         }
     } else if (tableView == self.groupChatTableView) {
         if (editingStyle == UITableViewCellEditingStyleDelete) {
-           [self.groupConversations removeObjectAtIndex:indexPath.row];
-           [self.groupChatTableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            NSString *groupIdToDelete = self.groupIds[indexPath.row];
+            [self.groupConversations removeObjectAtIndex:indexPath.row];
+            [self.groupConversationUsers removeObjectAtIndex:indexPath.row];
+            [self.groupIds removeObjectAtIndex:indexPath.row];
+            [self.groupChatTableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+            PFQuery *query = [PFQuery queryWithClassName:@"GroupConversation"];
+            [query whereKey:@"objectId" equalTo:groupIdToDelete];
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+              if (!error) {
+                  for (GroupConversation *groupConversation in objects) {
+                      [groupConversation deleteInBackground];
+                  }
+              }
+            }];
         }
     }
 }
 
+// making the searchTableView uneditable (can't swipe to delete)
 - (BOOL)tableView:(UITableView *)tableView
 canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.searchTableView) {
@@ -238,6 +261,7 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     }
 }
 
+// Searches for users with the search string from the search bar
 - (IBAction)searchPressed:(id)sender {
     self.searchTableView.hidden = NO;
     
