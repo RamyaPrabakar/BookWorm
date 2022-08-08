@@ -77,10 +77,14 @@
     cell.profileImage.layer.masksToBounds = YES;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if ([self.userToAddBar.text rangeOfString:user.username].location == NSNotFound) {
-        cell.checkmark.hidden = YES;
-    } else {
+    NSRange range = [self.userToAddBar.text rangeOfString:user.username];
+    NSArray *array = [self.userToAddBar.text componentsSeparatedByString:@" "];
+    BOOL isTheObjectThere1 = [array containsObject: user.username];
+    BOOL isTheObjectThere2 = [array containsObject: [NSString stringWithFormat:@"%@%@", user.username, @","]];
+    if ([self.userToAddBar.text isEqualToString:user.username] || isTheObjectThere1 == YES || isTheObjectThere2 == YES) {
         cell.checkmark.hidden = NO;
+    } else {
+        cell.checkmark.hidden = YES;
     }
     
     return cell;
@@ -94,7 +98,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PFUser *currUser = self.arrayOfUsers[indexPath.row];
     NSString *oldText = self.userToAddBar.text;
-    NSString *newText;
+    NSArray *array = [oldText componentsSeparatedByString:@" "];
+    NSString *newText = @"";
     
     NewMessageUserCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if (cell.checkmark.hidden == YES) {
@@ -109,16 +114,19 @@
         [self.usersToAddToGroup addObject:currUser.username];
     } else {
         cell.checkmark.hidden = YES;
-        NSString *stringToRemove = [NSString stringWithFormat:@"%@%@", currUser.username, @", "];
-        NSString *otherStringToRemove = [NSString stringWithFormat:@"%@%@", @", ", currUser.username];
-        newText = [oldText stringByReplacingOccurrencesOfString:stringToRemove withString:@""];
-        newText = [newText stringByReplacingOccurrencesOfString:otherStringToRemove withString:@""];
-        newText = [newText stringByReplacingOccurrencesOfString:currUser.username withString:@""];
+        NSString *stringToRemove = [NSString stringWithFormat:@"%@%@", currUser.username, @","];
+        
+        for (int i = 0; i < [array count]; i++) {
+            if ([array[i] isEqualToString:currUser.username] == NO && [array[i] isEqualToString:stringToRemove] == NO) {
+                newText = [newText stringByAppendingString:[NSString stringWithFormat:@"%@%@", array[i], @" "]];
+            }
+        }
         
         [self.usersToAddToGroup removeObject:currUser.username];
     }
     
-    self.userToAddBar.text = newText;
+    NSString *trimmed = [newText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.userToAddBar.text = trimmed;
 }
 
 - (IBAction)clearSearch:(id)sender {
@@ -138,7 +146,7 @@
 
 // creating group chat with the selected users
 - (IBAction)createGroupChat:(id)sender {
-    if ([self.usersToAddToGroup count] == 0) {
+    if ([self.usersToAddToGroup count] == 1) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No users chosen"
                                     message:@"You can't create group chat with no members!"
                                      preferredStyle:(UIAlertControllerStyleAlert)];
@@ -155,7 +163,7 @@
        [self presentViewController:alert animated:YES completion:^{
            // optional code for what happens after the alert controller has finished presenting
        }];
-    } else if ([self.usersToAddToGroup count] == 1) {
+    } else if ([self.usersToAddToGroup count] == 2) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Only one user chosen"
                                     message:@"You can't create group chat with only one other member! Search their username on the previous page and private message them instead"
                                     preferredStyle:(UIAlertControllerStyleAlert)];
