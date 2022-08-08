@@ -28,6 +28,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"paper.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:image];
+    
     self.tableView.dataSource = self;
     self.arrayOfBooks = [[NSMutableArray alloc] init];
     self.autocompleteTitles = [[NSMutableArray alloc] init];
@@ -209,6 +217,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"paper.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
     if (tableView == self.tableView) {
         BookCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BookCell"];
@@ -225,6 +237,7 @@
         [cell.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor colorWithPatternImage:image];
         return cell;
     } else if (tableView == self.titleTableView) {
         MarkingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarkingCell"];

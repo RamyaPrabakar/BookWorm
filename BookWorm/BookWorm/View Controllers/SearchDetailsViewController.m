@@ -32,6 +32,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"paper.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    
     self.bookTitle.text = self.bookPassed.title;
     self.bookSubtitle.text = self.bookPassed.subtitle;
     self.bookDesciption.text = self.bookPassed.bookDescription;

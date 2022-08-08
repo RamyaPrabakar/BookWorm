@@ -34,6 +34,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"paper.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.outerChatTableView.backgroundColor = [UIColor colorWithPatternImage:image];
+    self.groupChatTableView.backgroundColor = [UIColor colorWithPatternImage:image];
+    
     self.outerChatTableView.dataSource = self;
     self.searchTableView.dataSource = self;
     self.groupChatTableView.dataSource = self;
@@ -145,6 +153,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"paper.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
     if (tableView == self.searchTableView) {
         ChatCell *cell = [self.searchTableView dequeueReusableCellWithIdentifier:@"outerChatCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -175,11 +188,13 @@
         [cell.profilePicture loadInBackground];
         cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height / 2;
         cell.profilePicture.layer.masksToBounds = YES;
+        cell.backgroundColor = [UIColor colorWithPatternImage:image];
         return cell;
     } else if (tableView == self.groupChatTableView) {
         MarkingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarkingCell"];
         cell.bookTitle.text = self.groupConversations[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor colorWithPatternImage:image];
         return cell;
     }
     

@@ -27,6 +27,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"paper.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+    // A little trick for removing the cell separators
+    self.readingTableView.separatorColor = [UIColor clearColor];
+    self.readTableView.separatorColor = [UIColor clearColor];
+    self.toReadTableView.separatorColor = [UIColor clearColor];
+    
     // initializing the list arrays
     self.readBooks = [[NSMutableArray alloc] init];
     self.readingBooks = [[NSMutableArray alloc] init];

@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [[self.commentSpace layer] setBorderColor:[[UIColor grayColor] CGColor]];
     [[self.commentSpace layer] setBorderWidth:2.3];
     [[self.commentSpace layer] setCornerRadius:15];

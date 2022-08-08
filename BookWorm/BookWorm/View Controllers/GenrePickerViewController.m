@@ -18,6 +18,12 @@ NSArray *data;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self confettiAnimation];
+    [super viewDidLoad];
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"bookDark.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 

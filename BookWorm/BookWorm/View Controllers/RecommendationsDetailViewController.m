@@ -27,6 +27,12 @@ CGFloat lastScale;
     self.bookTitle.text = self.bookPassed.title;
     self.bookDescription.text = self.bookPassed.bookDescription;
     
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"paper.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:@"Buy this book"
                                                                            attributes:@{ NSLinkAttributeName: [NSURL URLWithString:self.bookPassed.amazonProductURL] }];
     self.buyLink.attributedText = attributedString;
