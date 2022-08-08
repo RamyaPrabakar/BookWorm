@@ -437,9 +437,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congrats on becoming a worm!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vg-u1-Oln">
-                                <rect key="frame" x="41.5" y="440.5" width="331" height="25"/>
+                                <rect key="frame" x="41.5" y="438" width="331" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="mFm-bi-8WE"/>
+                                    <constraint firstAttribute="height" constant="30" id="e5u-U5-RLi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
