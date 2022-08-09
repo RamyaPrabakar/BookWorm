@@ -16,9 +16,6 @@ PODS:
     - AFNetworking/NSURLSession
   - Bolts-Swift (1.5.0)
   - Bolts/Tasks (1.9.1)
-  - ChameleonFramework (2.1.0):
-    - ChameleonFramework/Default (= 2.1.0)
-  - ChameleonFramework/Default (2.1.0)
   - DZNEmptyDataSet (1.8.1)
   - FBAEMKit (14.1.0):
     - FBSDKCoreKit_Basics (= 14.1.0)
@@ -38,23 +35,23 @@ PODS:
     - Bolts-Swift (~> 1.5.0)
     - Parse (~> 1.19.0)
     - Starscream (~> 4.0.4)
+  - SCLAlertView-Objective-C (1.2.0)
   - Starscream (4.0.4)
 
 DEPENDENCIES:
   - AFNetworking
-  - ChameleonFramework
   - DZNEmptyDataSet
   - FBSDKLoginKit
   - Parse
   - Parse/UI
   - ParseLiveQuery
+  - SCLAlertView-Objective-C
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - Bolts
     - Bolts-Swift
-    - ChameleonFramework
     - DZNEmptyDataSet
     - FBAEMKit
     - FBSDKCoreKit
@@ -62,13 +59,13 @@ SPEC REPOS:
     - FBSDKLoginKit
     - Parse
     - ParseLiveQuery
+    - SCLAlertView-Objective-C
     - Starscream
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Bolts-Swift: afbbaf8c8186e7f769be4afa656949c14087ba44
-  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FBAEMKit: a899515e45476027f73aef377b5cffadcd56ca3a
   FBSDKCoreKit: 24f8bc8d3b5b2a8c5c656a1329492a12e8efa792
@@ -76,8 +73,9 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 787de205d524c3a4b17d527916f1d066e4361660
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
   ParseLiveQuery: 7bc437c3b986880ffe5f241a9921e37f45df0677
+  SCLAlertView-Objective-C: 84f12f66d779dadad7f293e5e8b7697ba4254ee0
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
 
-PODFILE CHECKSUM: 2663266329804427260fabce372c70dc7ebc977a
+PODFILE CHECKSUM: 84072ee6afde1d2954e000e5c60aaed9fbd78f06
 
 COCOAPODS: 1.11.3

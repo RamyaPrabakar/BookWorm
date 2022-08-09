@@ -8,6 +8,7 @@
 #import "NewMessageViewController.h"
 #import "NewMessageUserCell.h"
 #import "GroupChatViewController.h"
+#import "SCLAlertView.h"
 
 @interface NewMessageViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -147,56 +148,18 @@
 // creating group chat with the selected users
 - (IBAction)createGroupChat:(id)sender {
     if ([self.usersToAddToGroup count] == 1) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No users chosen"
-                                    message:@"You can't create group chat with no members!"
-                                     preferredStyle:(UIAlertControllerStyleAlert)];
-       // create an OK action
-       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * _Nonnull action) {
-                                    // handle response here.
-                                  }];
         
-       // add the OK action to the alert controller
-       [alert addAction:okAction];
-       
-       [self presentViewController:alert animated:YES completion:^{
-           // optional code for what happens after the alert controller has finished presenting
-       }];
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        alert.customViewColor = [UIColor systemGreenColor];
+        [alert showWarning:self title:@"No users chosen" subTitle:@"You can't create group chat with no members!" closeButtonTitle:@"Ok" duration:0.0f]; // Warning
     } else if ([self.usersToAddToGroup count] == 2) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Only one user chosen"
-                                    message:@"You can't create group chat with only one other member! Search their username on the previous page and private message them instead"
-                                    preferredStyle:(UIAlertControllerStyleAlert)];
-       // create an OK action
-       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * _Nonnull action) {
-                                    // handle response here.
-                                  }];
-        
-       // add the OK action to the alert controller
-       [alert addAction:okAction];
-       
-       [self presentViewController:alert animated:YES completion:^{
-           // optional code for what happens after the alert controller has finished presenting
-       }];
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        alert.customViewColor = [UIColor systemGreenColor];
+        [alert showWarning:self title:@"Only one user chosen" subTitle:@"You can't create group chat with only one other member! Search their username on the previous page and private message them instead" closeButtonTitle:@"Ok" duration:0.0f]; // Warning
     } else if ([self.groupNameTextField.text length] == 0) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No group name"
-                                    message:@"Add name for your groupchat!"
-                                    preferredStyle:(UIAlertControllerStyleAlert)];
-       // create an OK action
-       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * _Nonnull action) {
-                                    // handle response here.
-                                  }];
-        
-       // add the OK action to the alert controller
-       [alert addAction:okAction];
-       
-       [self presentViewController:alert animated:YES completion:^{
-           // optional code for what happens after the alert controller has finished presenting
-       }];
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        alert.customViewColor = [UIColor systemGreenColor];
+        [alert showWarning:self title:@"No group name" subTitle:@"Add name for your groupchat!" closeButtonTitle:@"Ok" duration:0.0f]; // Warning
     } else {
         // Creating a new conversation object
         PFObject *groupConversation = [PFObject objectWithClassName:@"GroupConversation"];

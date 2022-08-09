@@ -12,7 +12,7 @@ target 'BookWorm' do
   pod 'AFNetworking'
   pod 'ParseLiveQuery'
   pod 'DZNEmptyDataSet'
-  pod 'ChameleonFramework'
+  pod 'SCLAlertView-Objective-C'
 
   target 'BookWormTests' do
     inherit! :search_paths

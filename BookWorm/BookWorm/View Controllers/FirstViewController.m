@@ -6,7 +6,6 @@
 //
 
 #import "FirstViewController.h"
-#import <ChameleonFramework/Chameleon.h>
 
 @interface FirstViewController ()
 
