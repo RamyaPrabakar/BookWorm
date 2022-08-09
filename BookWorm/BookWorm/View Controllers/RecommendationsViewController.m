@@ -27,12 +27,6 @@
     [super viewDidLoad];
     
     [super viewDidLoad];
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"paper.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:image];
     self.tableView.dataSource = self;
     
     // getting bestselling books from the NYT API
@@ -100,11 +94,6 @@
     [cell.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"paper.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    cell.backgroundColor = [UIColor colorWithPatternImage:image];
     return cell;
 }
 
