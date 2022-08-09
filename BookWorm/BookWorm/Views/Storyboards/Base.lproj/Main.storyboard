@@ -332,7 +332,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dd5-ou-d5A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.90588235859999999" green="0.96078431610000004" blue="0.87450981139999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" systemColor="systemGreenColor"/>
+                        <color key="barTintColor" red="0.90588235859999999" green="0.96078431610000004" blue="0.87450981139999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="3vK-Fc-M9D" kind="relationship" relationship="viewControllers" id="11k-4N-KA1"/>
@@ -618,7 +620,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qhq-Ag-dFW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.90588235859999999" green="0.96078431610000004" blue="0.87450981139999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="UBe-NQ-qoF" firstAttribute="top" secondItem="b5v-fP-0fU" secondAttribute="bottom" constant="10" id="44X-8e-1pl"/>
@@ -2367,10 +2369,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HTX-p0-XDd"/>
+        <segue reference="dRb-QY-LPS"/>
         <segue reference="Bgg-2R-SWY"/>
         <segue reference="Q1n-b7-RYp"/>
-        <segue reference="XlD-ZX-ZkQ"/>
+        <segue reference="P0C-PF-Pa4"/>
         <segue reference="2f5-gL-dBk"/>
     </inferredMetricsTieBreakers>
     <resources>
