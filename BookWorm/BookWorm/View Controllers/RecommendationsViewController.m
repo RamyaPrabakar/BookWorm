@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.dataSource = self;
     
     // getting bestselling books from the NYT API

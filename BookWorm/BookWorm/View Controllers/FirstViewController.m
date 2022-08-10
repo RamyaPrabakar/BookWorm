@@ -6,7 +6,6 @@
 //
 
 #import "FirstViewController.h"
-#import <ChameleonFramework/Chameleon.h>
 
 @interface FirstViewController ()
 
@@ -16,6 +15,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"background9.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 @end

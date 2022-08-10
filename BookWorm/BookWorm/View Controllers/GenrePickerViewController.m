@@ -18,6 +18,11 @@ NSArray *data;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self confettiAnimation];
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"celebration page background.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 

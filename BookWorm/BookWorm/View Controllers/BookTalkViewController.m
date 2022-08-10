@@ -34,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.outerChatTableView.dataSource = self;
     self.searchTableView.dataSource = self;
     self.groupChatTableView.dataSource = self;
@@ -145,6 +146,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (tableView == self.searchTableView) {
         ChatCell *cell = [self.searchTableView dequeueReusableCellWithIdentifier:@"outerChatCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

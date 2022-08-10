@@ -8,6 +8,7 @@
 #import "NewMessageViewController.h"
 #import "NewMessageUserCell.h"
 #import "GroupChatViewController.h"
+#import "SCLAlertView.h"
 
 @interface NewMessageViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -77,10 +78,14 @@
     cell.profileImage.layer.masksToBounds = YES;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if ([self.userToAddBar.text rangeOfString:user.username].location == NSNotFound) {
-        cell.checkmark.hidden = YES;
-    } else {
+    NSRange range = [self.userToAddBar.text rangeOfString:user.username];
+    NSArray *array = [self.userToAddBar.text componentsSeparatedByString:@" "];
+    BOOL isTheObjectThere1 = [array containsObject: user.username];
+    BOOL isTheObjectThere2 = [array containsObject: [NSString stringWithFormat:@"%@%@", user.username, @","]];
+    if ([self.userToAddBar.text isEqualToString:user.username] || isTheObjectThere1 == YES || isTheObjectThere2 == YES) {
         cell.checkmark.hidden = NO;
+    } else {
+        cell.checkmark.hidden = YES;
     }
     
     return cell;
@@ -94,7 +99,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PFUser *currUser = self.arrayOfUsers[indexPath.row];
     NSString *oldText = self.userToAddBar.text;
-    NSString *newText;
+    NSArray *array = [oldText componentsSeparatedByString:@" "];
+    NSString *newText = @"";
     
     NewMessageUserCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if (cell.checkmark.hidden == YES) {
@@ -109,16 +115,19 @@
         [self.usersToAddToGroup addObject:currUser.username];
     } else {
         cell.checkmark.hidden = YES;
-        NSString *stringToRemove = [NSString stringWithFormat:@"%@%@", currUser.username, @", "];
-        NSString *otherStringToRemove = [NSString stringWithFormat:@"%@%@", @", ", currUser.username];
-        newText = [oldText stringByReplacingOccurrencesOfString:stringToRemove withString:@""];
-        newText = [newText stringByReplacingOccurrencesOfString:otherStringToRemove withString:@""];
-        newText = [newText stringByReplacingOccurrencesOfString:currUser.username withString:@""];
+        NSString *stringToRemove = [NSString stringWithFormat:@"%@%@", currUser.username, @","];
+        
+        for (int i = 0; i < [array count]; i++) {
+            if ([array[i] isEqualToString:currUser.username] == NO && [array[i] isEqualToString:stringToRemove] == NO) {
+                newText = [newText stringByAppendingString:[NSString stringWithFormat:@"%@%@", array[i], @" "]];
+            }
+        }
         
         [self.usersToAddToGroup removeObject:currUser.username];
     }
     
-    self.userToAddBar.text = newText;
+    NSString *trimmed = [newText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.userToAddBar.text = trimmed;
 }
 
 - (IBAction)clearSearch:(id)sender {
@@ -138,57 +147,19 @@
 
 // creating group chat with the selected users
 - (IBAction)createGroupChat:(id)sender {
-    if ([self.usersToAddToGroup count] == 0) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No users chosen"
-                                    message:@"You can't create group chat with no members!"
-                                     preferredStyle:(UIAlertControllerStyleAlert)];
-       // create an OK action
-       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * _Nonnull action) {
-                                    // handle response here.
-                                  }];
+    if ([self.usersToAddToGroup count] == 1) {
         
-       // add the OK action to the alert controller
-       [alert addAction:okAction];
-       
-       [self presentViewController:alert animated:YES completion:^{
-           // optional code for what happens after the alert controller has finished presenting
-       }];
-    } else if ([self.usersToAddToGroup count] == 1) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Only one user chosen"
-                                    message:@"You can't create group chat with only one other member! Search their username on the previous page and private message them instead"
-                                    preferredStyle:(UIAlertControllerStyleAlert)];
-       // create an OK action
-       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * _Nonnull action) {
-                                    // handle response here.
-                                  }];
-        
-       // add the OK action to the alert controller
-       [alert addAction:okAction];
-       
-       [self presentViewController:alert animated:YES completion:^{
-           // optional code for what happens after the alert controller has finished presenting
-       }];
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        alert.customViewColor = [UIColor systemGreenColor];
+        [alert showWarning:self title:@"No users chosen" subTitle:@"You can't create group chat with no members!" closeButtonTitle:@"Ok" duration:0.0f]; // Warning
+    } else if ([self.usersToAddToGroup count] == 2) {
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        alert.customViewColor = [UIColor systemGreenColor];
+        [alert showWarning:self title:@"Only one user chosen" subTitle:@"You can't create group chat with only one other member! Search their username on the previous page and private message them instead" closeButtonTitle:@"Ok" duration:0.0f]; // Warning
     } else if ([self.groupNameTextField.text length] == 0) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No group name"
-                                    message:@"Add name for your groupchat!"
-                                    preferredStyle:(UIAlertControllerStyleAlert)];
-       // create an OK action
-       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * _Nonnull action) {
-                                    // handle response here.
-                                  }];
-        
-       // add the OK action to the alert controller
-       [alert addAction:okAction];
-       
-       [self presentViewController:alert animated:YES completion:^{
-           // optional code for what happens after the alert controller has finished presenting
-       }];
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        alert.customViewColor = [UIColor systemGreenColor];
+        [alert showWarning:self title:@"No group name" subTitle:@"Add name for your groupchat!" closeButtonTitle:@"Ok" duration:0.0f]; // Warning
     } else {
         // Creating a new conversation object
         PFObject *groupConversation = [PFObject objectWithClassName:@"GroupConversation"];

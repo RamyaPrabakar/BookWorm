@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.dataSource = self;
     self.arrayOfBooks = [[NSMutableArray alloc] init];
     self.autocompleteTitles = [[NSMutableArray alloc] init];
