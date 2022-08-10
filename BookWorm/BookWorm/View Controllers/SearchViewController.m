@@ -226,7 +226,6 @@
         [cell.bookImage setImageWithURL:bookPosterURL placeholderImage:nil];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        // cell.backgroundColor = [UIColor colorWithPatternImage:image];
         return cell;
     } else if (tableView == self.titleTableView) {
         MarkingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarkingCell"];

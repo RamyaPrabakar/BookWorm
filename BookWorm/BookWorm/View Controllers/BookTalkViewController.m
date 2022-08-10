@@ -177,13 +177,11 @@
         [cell.profilePicture loadInBackground];
         cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height / 2;
         cell.profilePicture.layer.masksToBounds = YES;
-        // cell.backgroundColor = [UIColor colorWithPatternImage:image];
         return cell;
     } else if (tableView == self.groupChatTableView) {
         MarkingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarkingCell"];
         cell.bookTitle.text = self.groupConversations[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        // cell.backgroundColor = [UIColor colorWithPatternImage:image];
         return cell;
     }
     
