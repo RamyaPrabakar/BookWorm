@@ -443,29 +443,18 @@
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="18"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Next &gt;&gt;">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <segue destination="SXc-c1-bCk" kind="show" id="7QM-sK-AMr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congrats on becoming a worm!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vg-u1-Oln">
-                                <rect key="frame" x="55" y="710" width="304" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="e5u-U5-RLi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tiy-oF-nEE"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ikn-1m-wxp" firstAttribute="top" secondItem="5vg-u1-Oln" secondAttribute="bottom" constant="30" id="0p2-Ga-VcJ"/>
                             <constraint firstItem="Tiy-oF-nEE" firstAttribute="bottom" secondItem="Ikn-1m-wxp" secondAttribute="bottom" constant="60" id="A25-F0-mMO"/>
                             <constraint firstItem="Tiy-oF-nEE" firstAttribute="trailing" secondItem="Ikn-1m-wxp" secondAttribute="trailing" constant="40" id="wCY-pg-qyh"/>
-                            <constraint firstItem="5vg-u1-Oln" firstAttribute="centerX" secondItem="Tiy-oF-nEE" secondAttribute="centerX" id="wFX-5c-RW7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9Ew-SY-ogJ"/>
@@ -2373,7 +2362,7 @@
         <segue reference="Bgg-2R-SWY"/>
         <segue reference="Q1n-b7-RYp"/>
         <segue reference="P0C-PF-Pa4"/>
-        <segue reference="2f5-gL-dBk"/>
+        <segue reference="7QM-sK-AMr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="99"/>

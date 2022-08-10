@@ -36,6 +36,7 @@ PODS:
     - Bolts-Swift (~> 1.5.0)
     - Parse (~> 1.19.0)
     - Starscream (~> 4.0.4)
+  - RQShineLabel (1.0.0)
   - SCLAlertView-Objective-C (1.2.0)
   - Starscream (4.0.4)
 
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - Parse
   - Parse/UI
   - ParseLiveQuery
+  - RQShineLabel
   - SCLAlertView-Objective-C
 
 SPEC REPOS:
@@ -62,6 +64,7 @@ SPEC REPOS:
     - JTFadingInfoView
     - Parse
     - ParseLiveQuery
+    - RQShineLabel
     - SCLAlertView-Objective-C
     - Starscream
 
@@ -77,9 +80,10 @@ SPEC CHECKSUMS:
   JTFadingInfoView: 9fcb410da4bf8e3ce722b04b14ee0046a8f13a65
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
   ParseLiveQuery: 7bc437c3b986880ffe5f241a9921e37f45df0677
+  RQShineLabel: 17457abf7250d1220ddd99bc61323d57563344cd
   SCLAlertView-Objective-C: 84f12f66d779dadad7f293e5e8b7697ba4254ee0
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
 
-PODFILE CHECKSUM: 16acff1101e4392e423e166396769d28bbef7e3b
+PODFILE CHECKSUM: 5218b3137943d781f87069315308ffbf357dfc0a
 
 COCOAPODS: 1.11.3
