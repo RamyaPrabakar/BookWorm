@@ -13,6 +13,7 @@ target 'BookWorm' do
   pod 'ParseLiveQuery'
   pod 'DZNEmptyDataSet'
   pod 'SCLAlertView-Objective-C'
+  pod 'JTFadingInfoView'
 
   target 'BookWormTests' do
     inherit! :search_paths

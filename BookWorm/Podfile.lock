@@ -25,6 +25,7 @@ PODS:
   - FBSDKCoreKit_Basics (14.1.0)
   - FBSDKLoginKit (14.1.0):
     - FBSDKCoreKit (= 14.1.0)
+  - JTFadingInfoView (1.0.2)
   - Parse (1.19.3):
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - AFNetworking
   - DZNEmptyDataSet
   - FBSDKLoginKit
+  - JTFadingInfoView
   - Parse
   - Parse/UI
   - ParseLiveQuery
@@ -57,6 +59,7 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
     - FBSDKLoginKit
+    - JTFadingInfoView
     - Parse
     - ParseLiveQuery
     - SCLAlertView-Objective-C
@@ -71,11 +74,12 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 24f8bc8d3b5b2a8c5c656a1329492a12e8efa792
   FBSDKCoreKit_Basics: 6e578c9bdc7aa1365dbbbde633c9ebb536bcaa98
   FBSDKLoginKit: 787de205d524c3a4b17d527916f1d066e4361660
+  JTFadingInfoView: 9fcb410da4bf8e3ce722b04b14ee0046a8f13a65
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
   ParseLiveQuery: 7bc437c3b986880ffe5f241a9921e37f45df0677
   SCLAlertView-Objective-C: 84f12f66d779dadad7f293e5e8b7697ba4254ee0
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
 
-PODFILE CHECKSUM: 84072ee6afde1d2954e000e5c60aaed9fbd78f06
+PODFILE CHECKSUM: 16acff1101e4392e423e166396769d28bbef7e3b
 
 COCOAPODS: 1.11.3

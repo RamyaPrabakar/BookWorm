@@ -8,6 +8,7 @@
 #import "ProfileViewController.h"
 #import "Parse/Parse.h"
 #import "PFImageView.h"
+#import "JTFadingInfoView.h"
 
 @interface ProfileViewController ()
 @property (weak, nonatomic) IBOutlet PFImageView *profileImage;
@@ -70,6 +71,12 @@
     currUser[@"fullName"] = self.fullName.text;
     currUser[@"bio"] = self.bioTextView.text;
     [currUser saveInBackground];
+    
+    CGRect frame = CGRectMake(125, 720, 150, 30);
+    NSString *label = @"Profile info saved!";
+    JTFadingInfoView *infoView = [[JTFadingInfoView alloc] initWithFrame:frame
+                                                                     label:label];
+    [self.view addSubview:infoView];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
