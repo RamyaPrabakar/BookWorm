@@ -44,7 +44,6 @@ BookWorm is a book recommendation and reviewing app that allows users to customi
 * Other users can like and comment on these book posts
 * User profile has statistics of the user's book reading experience (number of books completed, number of friends, etc..)
 * Detailed view of a book links to an amazon link to purchase that book
-* Users can search for book reviews by scanning the barcode of the book
 
 ### 2. Screen Archetypes
 
