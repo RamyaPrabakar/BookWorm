@@ -12,6 +12,9 @@ Original App Design Project - README
 ### Description
 BookWorm is a book recommendation and reviewing app that allows users to customize their book reading experience. The app also has a chat feature that allows users to interact with each other and form groups to discuss the books that they are reading (sort of like a bookclub!).
 
+### Video Demo of App
+https://drive.google.com/file/d/1oCF4V2Jrd2S_vkikFH2lCf6CxmhmC4vT/view?usp=sharing
+
 ### App Evaluation
 
 - **Category:** Education / Entertainment
